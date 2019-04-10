@@ -1,0 +1,2649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.7.0.v201707031807</property>
+    <property name="units">in</property>
+    <property name="theme">defaultTheme</property>
+    <data-sources>
+        <data-mart-data-source name="Text Analytics DO" id="45">
+            <property name="datamartURL">Data Objects/Text Analytics</property>
+            <property name="accessType">latest</property>
+        </data-mart-data-source>
+    </data-sources>
+    <themes>
+        <theme name="defaultTheme" id="4"/>
+    </themes>
+    <components>
+        <table name="Documents Table" id="5">
+            <property name="fontFamily">"Lato"</property>
+            <property name="fontSize">9pt</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">doc_date</property>
+                    <text-property name="displayName">Creation Date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["doc_date"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">name</property>
+                    <text-property name="displayName">Document Name</text-property>
+                    <expression name="expression" type="javascript">if (dataSetRow["name"]===null)&#13;
+	null;&#13;
+else {&#13;
+	if (dataSetRow["name"].length >= 60)&#13;
+		dataSetRow["name"].substr(0,57) + '...';&#13;
+	else&#13;
+		dataSetRow["name"];&#13;
+}</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">doc_id</property>
+                    <text-property name="displayName">Document ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">tone</property>
+                    <text-property name="displayName">Tone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tone"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">document_body</property>
+                    <text-property name="displayName">Body</text-property>
+                    <expression name="expression" type="javascript">if (dataSetRow["document_body"]===null)&#13;
+	null;&#13;
+else {&#13;
+	if (dataSetRow["document_body"].length >=100)&#13;
+		dataSetRow["document_body"].substr(0,97) + '...';&#13;
+	else&#13;
+		dataSetRow["document_body"];&#13;
+}</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">content_type</property>
+                    <text-property name="displayName">Content Type</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["content_type"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">document_month</property>
+                    <text-property name="displayName">Creation Month</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["document_month"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">positive_tone_score1</property>
+                    <text-property name="displayName">Positive Tone Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["positive_tone_score1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">negative_tone_score</property>
+                    <text-property name="displayName">Negative Tone Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["negative_tone_score"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">tone_score</property>
+                    <text-property name="displayName">Tone Score</text-property>
+                    <expression name="expression" type="javascript">if (dataSetRow["tone"] == 'Neutral') null;&#13;
+else if (dataSetRow["tone"] == 'Positive') dataSetRow["positive_tone_score1"];&#13;
+else if (dataSetRow["tone"] == 'Negative') dataSetRow["negative_tone_score"];&#13;
+else 0;</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <property name="pageBreakInterval">31</property>
+            <list-property name="sort">
+                <structure>
+                    <expression name="key" type="javascript">row["doc_date"]</expression>
+                    <property name="direction">asc</property>
+                    <property name="strength">-1</property>
+                </structure>
+            </list-property>
+            <column id="39"/>
+            <column id="40"/>
+            <column id="41"/>
+            <column id="42"/>
+            <column id="43"/>
+            <column id="44"/>
+            <header>
+                <row id="6">
+                    <property name="fontWeight">normal</property>
+                    <property name="textAlign">center</property>
+                    <cell id="7">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <property name="color">#5D6066</property>
+                        <property name="paddingTop">3pt</property>
+                        <property name="paddingBottom">3pt</property>
+                        <text id="8">
+                            <property name="fontFamily">monospace</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="contentType">html</property>
+                            <text-property name="content"><![CDATA[<div id="ContentAnalyticsDox"></div>
+<script>var allCells = $("#ContentAnalyticsDox").closest("table").find( "td" );
+
+allCells.parent().parent().parent().find("tr:odd").css("background-color", "#EEEEEE");
+allCells.parent().parent().parent().find("tr:even").css("background-color", "");
+     
+allCells
+  .on("mouseover", function() {
+    var el = $(this);
+    el.parent().css("background","#9da3b9");
+  })
+  .on("mouseout", function() {
+	allCells.parent().parent().parent().find("tr:odd").css("background-color", "#EEEEEE");
+	allCells.parent().parent().parent().find("tr:even").css("background-color", "");       
+  })
+  .on("click", function() {
+  
+	regex = /Applications\/(.*?)\/Dashboards/;
+	if (regex.test(window.location.href)) {
+		loc = regex.exec(window.location.href)[1];
+	}
+	else {
+		regex = /Applications%2f(.*?)%2fDashboards/;
+		if (regex.test(window.location.href)) {
+			loc = regex.exec(window.location.href)[1];
+		}
+		else {
+			console.log (window.location.href);
+			debugger;
+			alert ('Error ' + window.location.href);
+		}
+	}
+
+	url = "/iportal/executereport.do?__requesttype=immediate&amp;invokesubmit=true&amp;__executablename=/Applications/" + loc + "/Report Designs/Document Detail.rptdesign&amp;pDocId=" + $(this).closest("tr")[0].id.split('_')[1];
+	win = window.open(url, '_blank');
+	win.focus(); 
+  });
+</script>]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="9">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <property name="color">#5D6066</property>
+                        <property name="paddingTop">3pt</property>
+                        <property name="paddingBottom">3pt</property>
+                        <label id="10">
+                            <property name="fontWeight">normal</property>
+                            <property name="paddingLeft">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">CREATE DATE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="11">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <property name="color">#5D6066</property>
+                        <property name="paddingTop">3pt</property>
+                        <property name="paddingBottom">3pt</property>
+                        <label id="12">
+                            <property name="fontWeight">normal</property>
+                            <property name="paddingLeft">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">DOCUMENT NAME</text-property>
+                        </label>
+                    </cell>
+                    <cell id="13">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <property name="color">#5D6066</property>
+                        <property name="paddingTop">3pt</property>
+                        <property name="paddingBottom">3pt</property>
+                        <label id="14">
+                            <property name="fontWeight">normal</property>
+                            <property name="paddingLeft">4pt</property>
+                            <property name="paddingRight">10pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">TONE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="15">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <property name="color">#5D6066</property>
+                        <property name="paddingTop">3pt</property>
+                        <property name="paddingBottom">3pt</property>
+                        <label id="16">
+                            <property name="fontWeight">normal</property>
+                            <property name="paddingLeft">4pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">%</text-property>
+                        </label>
+                    </cell>
+                    <cell id="17">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <property name="color">#5D6066</property>
+                        <property name="paddingTop">3pt</property>
+                        <property name="paddingBottom">3pt</property>
+                        <label id="18">
+                            <property name="fontWeight">normal</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">BODY</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="19">
+                    <expression name="bookmark" type="javascript">row["doc_id"]</expression>
+                    <property name="borderBottomColor">#CACACA</property>
+                    <property name="borderBottomStyle">dotted</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <cell id="20">
+                        <property name="paddingTop">2pt</property>
+                        <text id="21">
+                            <property name="paddingTop">2pt</property>
+                            <property name="paddingLeft">4pt</property>
+                            <property name="contentType">html</property>
+                            <text-property name="content"><![CDATA[<VALUE-OF format="HTML">if (row["content_type"] == 'Twitter')
+	"<img src='https://i.imgur.com/bs7G4PO.png'/>";
+else if (row["content_type"] == 'Web')
+	"<img src='https://i.imgur.com/aU1a66l.png'/>";
+else "<img src='https://i.imgur.com/d3cdHdO.png'/>";</VALUE-OF>]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="22">
+                        <property name="paddingTop">3pt</property>
+                        <data id="23">
+                            <property name="paddingLeft">7pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">MM/dd/yyyy</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">doc_date</property>
+                        </data>
+                    </cell>
+                    <cell id="24">
+                        <property name="paddingTop">3pt</property>
+                        <data id="25">
+                            <property name="paddingLeft">7pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">name</property>
+                        </data>
+                    </cell>
+                    <cell id="26">
+                        <property name="paddingTop">3pt</property>
+                        <data id="27">
+                            <property name="paddingLeft">4pt</property>
+                            <property name="paddingRight">10pt</property>
+                            <property name="textAlign">left</property>
+                            <list-property name="highlightRules">
+                                <structure>
+                                    <property name="operator">eq</property>
+                                    <property name="color">#EE6C70</property>
+                                    <expression name="testExpr" type="javascript">row["tone"]</expression>
+                                    <simple-property-list name="value1">
+                                        <value type="javascript">"Negative"</value>
+                                    </simple-property-list>
+                                </structure>
+                                <structure>
+                                    <property name="operator">eq</property>
+                                    <property name="color">#2E8D50</property>
+                                    <expression name="testExpr" type="javascript">row["tone"]</expression>
+                                    <simple-property-list name="value1">
+                                        <value type="javascript">"Positive"</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">tone</property>
+                        </data>
+                    </cell>
+                    <cell id="28">
+                        <property name="paddingTop">3pt</property>
+                        <data id="29">
+                            <property name="paddingRight">7pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Percent</property>
+                                <property name="pattern">###0.0%{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">tone_score</property>
+                        </data>
+                    </cell>
+                    <cell id="30">
+                        <property name="paddingTop">3pt</property>
+                        <data id="31">
+                            <property name="paddingLeft">6pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">document_body</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="32">
+                    <cell id="33"/>
+                    <cell id="34"/>
+                    <cell id="35"/>
+                    <cell id="36"/>
+                    <cell id="37"/>
+                    <cell id="38"/>
+                </row>
+            </footer>
+        </table>
+        <table name="Documents Count" id="355">
+            <property name="fontFamily">"Lato Black"</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">entity</property>
+                    <text-property name="displayName">Entity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Total Docs</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["entity"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <property name="isSummaryTable">true</property>
+            <column id="364"/>
+            <header>
+                <row id="356">
+                    <cell id="357">
+                        <data name="NewData1" id="366">
+                            <property name="backgroundColor">white</property>
+                            <property name="fontFamily">"Lato"</property>
+                            <property name="fontSize">20pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#555555</property>
+                            <property name="paddingTop">0pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">center</property>
+                            <expression name="bookmark" type="javascript">"TotalDocsStat"</expression>
+                            <property name="resultSetColumn">Total Docs</property>
+                        </data>
+                    </cell>
+                </row>
+            </header>
+        </table>
+        <table name="People Word Cloud" id="1399">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">entity</property>
+                    <text-property name="displayName">Entity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["entity"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cartridge</property>
+                    <expression name="expression" type="javascript">dataSetRow["cartridge"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">EntityCount</property>
+                    <expression name="expression" type="javascript">dataSetRow["entity_count"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["cartridge"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"PN"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <property name="isSummaryTable">true</property>
+            <column id="1408"/>
+            <header>
+                <row id="1400">
+                    <cell id="1401">
+                        <extended-item extensionName="HTMLControl" name="People1" id="1418">
+                            <method name="clientOnCreate"><![CDATA[var config = {
+
+	wordColumn : "entity",
+	wordSize: "EntityCount",
+	min:100000000,
+	max:0,
+	
+	/* the total number of word to display */
+	wordCount : 500 			///  Controlled by the TOP N of the parameter
+};
+
+// If data binding is used, the data should be saved and transformed in order
+// to fit the Word Cloud Chart map.
+function dataTransfrom(cursor) {
+      var rows = [];
+      var count = 0;
+      while (cursor.hasNext()) {
+            if(config.wordCount != null &amp;&amp; count >= config.wordCount){
+                  break;
+            }
+            var dataObj = cursor.next();
+            
+            if ( rows.map(function(x) {return x.word; }).indexOf(dataObj[config.wordColumn]) < 0 ) {
+            
+                  rows.push({word: dataObj[config.wordColumn], value: dataObj[config.wordSize]});
+                  count++;
+                  
+                  if (config.min> dataObj[config.wordSize])
+                        config.min = dataObj[config.wordSize];
+                  if (config.max < dataObj[config.wordSize])
+                        config.max = dataObj[config.wordSize];
+            }
+      }
+      return rows;
+}
+
+
+var containerId = this.getId();
+
+var data = dataTransfrom(this.getDataCursor());
+
+window["__draw_word_cloud"] = function(containerId, data, min, max) {
+
+	var colors = ["#2a608a", "#153045"];
+	
+	var containerWidth = $("#" + containerId).width();
+	var containerHeight = $("#" + containerId).height();
+
+	var fontScale = d3.scale.linear()
+                     .domain([min, max])
+                     .range([9, 100]);
+	
+	var fill = d3.scale.linear()
+	        .domain([min, max])
+            .range(colors);
+
+	d3.layout.cloud().size([ containerWidth, containerHeight ]).words(
+			data.map(function(row) {
+				return {
+					text : row.word,
+					value : row.value,
+					size : fontScale( row.value )
+				};
+			})).padding(5).rotate(function() {
+		return 0;
+	}).font("Lato").fontSize(function(d) {
+		return d.size;
+	}).on("end", draw).start();
+
+
+	function draw(words) {
+		$("#" + containerId + " svg").remove();
+		d3.select("#" + containerId).append("svg")
+				.attr("width", containerWidth).attr("height", containerHeight).attr("class","wordcloud")
+				.append("g").attr(
+						"transform",
+						"translate(" + containerWidth / 2 + ","
+								+ containerHeight / 2 + ")").selectAll("text")
+				.data(words).enter().append("text").style("font-size", function(d) {
+							return d.size + "px";
+						}).style("font-family", "Lato").style("font-size",function(d){
+							return d.size + "px";
+						}).style("fill", function(d, i) {
+							return fill(d.value);
+						}).attr("text-anchor", "middle").attr("transform", function(d) {
+							return "translate(" + [ d.x, d.y ] + ") rotate("
+									+ d.rotate + ")";
+						}).text(function(d) {
+					return d.text;
+				});
+	}
+}
+
+window["__data"] = data;
+window["__containerId"] = containerId;
+
+var downloadURL = 'js/d3-cloud-master/d3.layout.cloud.js';
+head.load('https://d3js.org/d3.v2.min.js', this.getBirtResourceURL(downloadURL), function() {
+	__draw_word_cloud(containerId, data, config.min, config.max);
+});]]></method>
+                            <property name="groups">
+                                <data-group>
+                                    <property name="groupName">EntityGroup</property>
+                                    <expression name="keyExpr" type="javascript">data["entity"]</expression>
+                                    <property name="interval">none</property>
+                                    <property name="sortDirection">desc</property>
+                                </data-group>
+                            </property>
+                            <property name="summaryData">true</property>
+                            <property name="height">250px</property>
+                            <property name="width">100%</property>
+                            <expression name="bookmark" type="javascript">"WordCloudPN"</expression>
+                        </extended-item>
+                    </cell>
+                </row>
+            </header>
+            <group id="1410">
+                <property name="groupName">entity</property>
+                <expression name="keyExpr" type="javascript">row["entity"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["entity"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+            </group>
+        </table>
+        <table name="Places Word Cloud" id="1607">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">entity</property>
+                    <text-property name="displayName">Entity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["entity"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cartridge</property>
+                    <expression name="expression" type="javascript">dataSetRow["cartridge"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">EntityCount</property>
+                    <expression name="expression" type="javascript">dataSetRow["entity_count"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["cartridge"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"PN"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <property name="isSummaryTable">true</property>
+            <column id="1612"/>
+            <header>
+                <row id="1608">
+                    <cell id="1609">
+                        <extended-item extensionName="HTMLControl" name="People11" id="1610">
+                            <method name="clientOnCreate"><![CDATA[var config = {
+
+	wordColumn : "entity",
+	wordSize: "EntityCount",
+	min:100000000,
+	max:0,
+	
+	/* the total number of word to display */
+	wordCount : 500 			///  Controlled by the TOP N of the parameter
+};
+
+// If data binding is used, the data should be saved and transformed in order
+// to fit the Word Cloud Chart map.
+function dataTransfrom(cursor) {
+      var rows = [];
+      var count = 0;
+      while (cursor.hasNext()) {
+            if(config.wordCount != null &amp;&amp; count >= config.wordCount){
+                  break;
+            }
+            var dataObj = cursor.next();
+            
+            if ( rows.map(function(x) {return x.word; }).indexOf(dataObj[config.wordColumn]) < 0 ) {
+            
+                  rows.push({word: dataObj[config.wordColumn], value: dataObj[config.wordSize]});
+                  count++;
+                  
+                  if (config.min> dataObj[config.wordSize])
+                        config.min = dataObj[config.wordSize];
+                  if (config.max < dataObj[config.wordSize])
+                        config.max = dataObj[config.wordSize];
+            }
+      }
+      return rows;
+}
+
+
+var containerId = this.getId();
+
+var data = dataTransfrom(this.getDataCursor());
+
+window["__draw_word_cloud"] = function(containerId, data, min, max) {
+
+	var colors = ["#2a608a", "#153045"];
+
+	var containerWidth = $("#" + containerId).width();
+	var containerHeight = $("#" + containerId).height();
+
+	var fontScale = d3.scale.linear()
+                     .domain([min, max])
+                     .range([9, 100]);
+	
+	var fill = d3.scale.linear()
+	        .domain([min, max])
+            .range(colors);
+
+	d3.layout.cloud().size([ containerWidth, containerHeight ]).words(
+			data.map(function(row) {
+				return {
+					text : row.word,
+					value : row.value,
+					size : fontScale( row.value )
+				};
+			})).padding(5).rotate(function() {
+		return 0;
+	}).font("Lato").fontSize(function(d) {
+		return d.size;
+	}).on("end", draw).start();
+
+
+	function draw(words) {
+		$("#" + containerId + " svg").remove();
+		d3.select("#" + containerId).append("svg")
+				.attr("width", containerWidth).attr("height", containerHeight).attr("class","wordcloud")
+				.append("g").attr(
+						"transform",
+						"translate(" + containerWidth / 2 + ","
+								+ containerHeight / 2 + ")").selectAll("text")
+				.data(words).enter().append("text").style("font-size", function(d) {
+							return d.size + "px";
+						}).style("font-family", "Lato").style("font-size",function(d){
+							return d.size + "px";
+						}).style("fill", function(d, i) {
+							return fill(d.value);
+						}).attr("text-anchor", "middle").attr("transform", function(d) {
+							return "translate(" + [ d.x, d.y ] + ") rotate("
+									+ d.rotate + ")";
+						}).text(function(d) {
+					return d.text;
+				});
+	}
+}
+
+window["__data"] = data;
+window["__containerId"] = containerId;
+
+var downloadURL = 'js/d3-cloud-master/d3.layout.cloud.js';
+head.load('https://d3js.org/d3.v2.min.js', this.getBirtResourceURL(downloadURL), function() {
+	__draw_word_cloud(containerId, data, config.min, config.max);
+});]]></method>
+                            <property name="groups">
+                                <data-group>
+                                    <property name="groupName">EntityGroup</property>
+                                    <expression name="keyExpr" type="javascript">data["entity"]</expression>
+                                    <property name="interval">none</property>
+                                    <property name="sortDirection">desc</property>
+                                </data-group>
+                            </property>
+                            <property name="summaryData">true</property>
+                            <property name="height">250px</property>
+                            <property name="width">100%</property>
+                            <expression name="bookmark" type="javascript">"WordCloudPN"</expression>
+                        </extended-item>
+                    </cell>
+                </row>
+            </header>
+            <group id="1611">
+                <property name="groupName">entity</property>
+                <expression name="keyExpr" type="javascript">row["entity"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["entity"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+            </group>
+        </table>
+        <table name="Top N Positive Sentences Word Cloud" id="1505">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">tone1</property>
+                    <text-property name="displayName">Sentence Tone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tone1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">positive_tone_score</property>
+                    <text-property name="displayName">Sentence Positive Tone Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["positive_tone_score"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">sentence</property>
+                    <text-property name="displayName">Sentence</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["sentence"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["tone1"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"Positive"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+                <structure>
+                    <property name="operator">top-n</property>
+                    <expression name="expr" type="javascript">row["positive_tone_score"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">25</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <property name="isSummaryTable">true</property>
+            <column id="1510"/>
+            <header>
+                <row id="1506">
+                    <cell id="1507">
+                        <extended-item extensionName="HTMLControl" name="Positive Article Word Cloud" id="1508">
+                            <method name="clientOnCreate"><![CDATA[var config = {
+	min:100000000,
+	max:0
+};
+
+
+function wordFreq(string) {
+	var stopwords = ['à', 'a', 'an', 'and', 'are', 'as', 'at', 'e', 'for', 'he', 'is', 'it', 'of', 'on', 'or', 's', 'to', 'the', 'was', '-', '|'];
+    var words = string.replace(new RegExp('\\b('+stopwords.join('|')+')\\b', 'gi'), '').replace(/[0-9]/g, '').replace(/[’]/g, '').replace(/[;]/g, '').replace(/[,]/g, '').replace(/[@]/g, '').replace(/[:]/g, '').replace(/[)]/g, '').replace(/[(]/g, '').replace(/\\/g, '').replace(/\//g, '').replace(/[!]/g, '').replace(/[?]/g, '').replace(/\s\s+/g, ' ').replace(/[.]/g, '').trim().split(/\s/);
+    var freqMap = {};
+    words.forEach(function(w) {
+    	if (w !=='') {
+        if (!freqMap[w]) {
+            freqMap[w] = 0;
+        }
+        freqMap[w] += 1;
+        }
+    });
+
+    return freqMap;
+}
+
+function dataTransfrom(data) {
+
+	myStr = '';
+	
+	for (i=0; i<data.rows.length; i++) {
+		myStr += data.rows[i][2];
+	}
+	
+	myMap = wordFreq(myStr);
+	
+	rows =[];
+
+	for(var key in myMap) {
+    	if(myMap.hasOwnProperty(key)) {
+        	rows.push({word: key, value: myMap[key]});
+        	
+			if (config.min > myMap[key]) config.min = myMap[key];
+			if (config.max < myMap[key]) config.max = myMap[key];
+        	
+    	}
+    }
+    
+    return rows;
+}
+
+
+var containerId = this.getId();
+
+var data = dataTransfrom(this.getData());
+//console.log (data);
+//debugger;
+
+
+window["__draw_positive_word_cloud"] = function(containerId, data, min, max) {
+	var colors = ["#90B390", "#468046"];
+	
+	var containerWidth = $("#" + containerId).width();
+	var containerHeight = $("#" + containerId).height();
+
+	var fontScale = d3.scale.linear()
+                     .domain([min, max])
+                     .range([9, 100]);
+
+	var fill = d3.scale.linear()
+	        .domain([min, max])
+            .range(colors);
+
+	d3.layout.cloud().size([ containerWidth, containerHeight ]).words(
+			data.map(function(row) {
+				return {
+					text : row.word,
+					value : row.value,
+					size : fontScale( row.value )
+				};
+			})).padding(5).rotate(function() {
+		return 0;
+	}).font("Lato").fontSize(function(d) {
+		return d.size;
+	}).on("end", draw).start();
+
+
+	function draw(words) {
+		$("#" + containerId + " svg").remove();
+		d3.select("#" + containerId).append("svg")
+				.attr("width", containerWidth).attr("height", containerHeight).attr("class","wordcloud")
+				.append("g").attr(
+						"transform",
+						"translate(" + containerWidth / 2 + ","
+								+ containerHeight / 2 + ")").selectAll("text")
+				.data(words).enter().append("text").style("font-size", function(d) {
+							return d.size + "px";
+						}).style("font-family", "Lato").style("font-size",function(d){
+							return d.size + "px";
+						}).style("fill", function(d, i) {
+							return fill(d.value);
+						}).attr("text-anchor", "middle").attr("transform", function(d) {
+							return "translate(" + [ d.x, d.y ] + ") rotate("
+									+ d.rotate + ")";
+						}).text(function(d) {
+					return d.text;
+				});
+	}
+}
+
+window["__data"] = data;
+window["__containerId"] = containerId;
+
+var downloadURL = 'js/d3-cloud-master/d3.layout.cloud.js';
+head.load('https://d3js.org/d3.v2.min.js', this.getBirtResourceURL(downloadURL), function() {
+	__draw_positive_word_cloud(containerId, data, config.min, config.max);
+});]]></method>
+                            <property name="summaryData">false</property>
+                            <property name="height">250px</property>
+                            <property name="width">100%</property>
+                            <expression name="bookmark" type="javascript">"WordCloudPN"</expression>
+                        </extended-item>
+                    </cell>
+                </row>
+            </header>
+        </table>
+        <table name="Top N Negative Sentences Word Cloud" id="1613">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">tone1</property>
+                    <text-property name="displayName">Sentence Tone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tone1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">positive_tone_score</property>
+                    <text-property name="displayName">Sentence Positive Tone Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["positive_tone_score"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">sentence</property>
+                    <text-property name="displayName">Sentence</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["sentence"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["tone1"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"Negative"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+                <structure>
+                    <property name="operator">top-n</property>
+                    <expression name="expr" type="javascript">row["positive_tone_score"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">25</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <property name="isSummaryTable">true</property>
+            <column id="1617"/>
+            <header>
+                <row id="1614">
+                    <cell id="1615">
+                        <extended-item extensionName="HTMLControl" name="Negative Article Word Cloud" id="1616">
+                            <method name="clientOnCreate"><![CDATA[var config = {
+	min:100000000,
+	max:0
+};
+
+
+function wordFreq(string) {
+	var stopwords = ['à', 'a', 'an', 'and', 'are', 'as', 'at', 'e', 'for', 'he', 'is', 'it', 'of', 'on', 'or', 's', 'to', 'the', 'was', '-', '|'];
+    var words = string.replace(new RegExp('\\b('+stopwords.join('|')+')\\b', 'gi'), '').replace(/[0-9]/g, '').replace(/[’]/g, '').replace(/[;]/g, '').replace(/[,]/g, '').replace(/[@]/g, '').replace(/[:]/g, '').replace(/[)]/g, '').replace(/[(]/g, '').replace(/\\/g, '').replace(/\//g, '').replace(/[!]/g, '').replace(/[?]/g, '').replace(/\s\s+/g, ' ').replace(/[.]/g, '').trim().split(/\s/);
+    var freqMap = {};
+    words.forEach(function(w) {
+    	if (w !=='') {
+        if (!freqMap[w]) {
+            freqMap[w] = 0;
+        }
+        freqMap[w] += 1;
+        }
+    });
+
+    return freqMap;
+}
+
+function dataTransfrom(data) {
+
+	myStr = '';
+	
+	for (i=0; i<data.rows.length; i++) {
+		myStr += data.rows[i][2];
+	}
+	
+	myMap = wordFreq(myStr);
+	
+	rows =[];
+
+	for(var key in myMap) {
+    	if(myMap.hasOwnProperty(key)) {
+        	rows.push({word: key, value: myMap[key]});
+        	
+			if (config.min > myMap[key]) config.min = myMap[key];
+			if (config.max < myMap[key]) config.max = myMap[key];
+        	
+    	}
+    }
+    
+    return rows;
+}
+
+
+var containerId = this.getId();
+
+var data = dataTransfrom(this.getData());
+
+window["__draw_negative_word_cloud"] = function(containerId, data, min, max) {
+	var colors = ["#F87A7F", "#933438"];
+	
+	var containerWidth = $("#" + containerId).width();
+	var containerHeight = $("#" + containerId).height();
+
+	var fontScale = d3.scale.linear()
+                     .domain([min, max])
+                     .range([9, 100]);
+
+	var fill = d3.scale.linear()
+	        .domain([min, max])
+            .range(colors);
+
+	d3.layout.cloud().size([ containerWidth, containerHeight ]).words(
+			data.map(function(row) {
+				return {
+					text : row.word,
+					value : row.value,
+					size : fontScale( row.value )
+				};
+			})).padding(5).rotate(function() {
+		return 0;
+	}).font("Lato").fontSize(function(d) {
+		return d.size;
+	}).on("end", draw).start();
+
+
+	function draw(words) {
+		$("#" + containerId + " svg").remove();
+		d3.select("#" + containerId).append("svg")
+				.attr("width", containerWidth).attr("height", containerHeight).attr("class","wordcloud")
+				.append("g").attr(
+						"transform",
+						"translate(" + containerWidth / 2 + ","
+								+ containerHeight / 2 + ")").selectAll("text")
+				.data(words).enter().append("text").style("font-size", function(d) {
+							return d.size + "px";
+						}).style("font-family", "Lato").style("font-size",function(d){
+							return d.size + "px";
+						}).style("fill", function(d, i) {
+							return fill(d.value);
+						}).attr("text-anchor", "middle").attr("transform", function(d) {
+							return "translate(" + [ d.x, d.y ] + ") rotate("
+									+ d.rotate + ")";
+						}).text(function(d) {
+					return d.text;
+				});
+	}
+}
+
+window["__data"] = data;
+window["__containerId"] = containerId;
+
+var downloadURL = 'js/d3-cloud-master/d3.layout.cloud.js';
+head.load('https://d3js.org/d3.v2.min.js', this.getBirtResourceURL(downloadURL), function() {
+	__draw_negative_word_cloud(containerId, data, config.min, config.max);
+});]]></method>
+                            <property name="summaryData">false</property>
+                            <property name="height">250px</property>
+                            <property name="width">100%</property>
+                            <expression name="bookmark" type="javascript">"WordCloudPN"</expression>
+                        </extended-item>
+                    </cell>
+                </row>
+            </header>
+        </table>
+        <table name="Organizations Word Cloud" id="1511">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">entity</property>
+                    <text-property name="displayName">Entity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["entity"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cartridge</property>
+                    <expression name="expression" type="javascript">dataSetRow["cartridge"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">EntityCount</property>
+                    <expression name="expression" type="javascript">dataSetRow["entity_count"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["cartridge"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"ON"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <property name="isSummaryTable">true</property>
+            <column id="1516"/>
+            <header>
+                <row id="1512">
+                    <cell id="1513">
+                        <extended-item extensionName="HTMLControl" name="Organizations" id="1514">
+                            <method name="clientOnCreate"><![CDATA[var config = {
+
+	wordColumn : "entity",
+	wordSize: "EntityCount",
+	min:100000000,
+	max:0,
+	
+	/* the total number of word to display */
+	wordCount : 500 			///  Controlled by the TOP N of the parameter
+};
+
+// If data binding is used, the data should be saved and transformed in order
+// to fit the Word Cloud Chart map.
+function dataTransfrom(cursor) {
+      var rows = [];
+      var count = 0;
+      while (cursor.hasNext()) {
+            if(config.wordCount != null &amp;&amp; count >= config.wordCount){
+                  break;
+            }
+            var dataObj = cursor.next();
+            
+            if ( rows.map(function(x) {return x.word; }).indexOf(dataObj[config.wordColumn]) < 0 ) {
+            
+                  rows.push({word: dataObj[config.wordColumn], value: dataObj[config.wordSize]});
+                  count++;
+                  
+                  if (config.min> dataObj[config.wordSize])
+                        config.min = dataObj[config.wordSize];
+                  if (config.max < dataObj[config.wordSize])
+                        config.max = dataObj[config.wordSize];
+            }
+      }
+      return rows;
+}
+
+
+var containerId = this.getId();
+
+var data = dataTransfrom(this.getDataCursor());
+
+window["__draw_word_cloud"] = function(containerId, data, min, max) {
+	var colors = ["#2a608a", "#153045"];
+	
+	var containerWidth = $("#" + containerId).width();
+	var containerHeight = $("#" + containerId).height();
+
+	var fontScale = d3.scale.linear()
+                     .domain([min, max])
+                     .range([9, 100]);
+	
+	var fill = d3.scale.linear()
+	        .domain([min, max])
+            .range(colors);
+
+	d3.layout.cloud().size([ containerWidth, containerHeight ]).words(
+			data.map(function(row) {
+
+				return {
+					text : row.word,
+					value : row.value,
+					size : fontScale( row.value )
+				};
+			})).padding(5).rotate(function() {
+		return 0;
+	}).font("Lato").fontSize(function(d) {
+		return d.size;
+	}).on("end", draw).start();
+
+
+	function draw(words) {
+		$("#" + containerId + " svg").remove();
+		d3.select("#" + containerId).append("svg")
+				.attr("width", containerWidth).attr("height", containerHeight).attr("class","wordcloud")
+				.append("g").attr(
+						"transform",
+						"translate(" + containerWidth / 2 + ","
+								+ containerHeight / 2 + ")").selectAll("text")
+				.data(words).enter().append("text").style("font-size", function(d) {
+							return d.size + "px";
+						}).style("font-family", "Lato").style("font-size",function(d){
+							return d.size + "px";
+						}).style("fill", function(d, i) {
+							return fill(d.value);
+						}).attr("text-anchor", "middle").attr("transform", function(d) {
+							return "translate(" + [ d.x, d.y ] + ") rotate("
+									+ d.rotate + ")";
+						}).text(function(d) {
+					return d.text;
+				});
+	}
+}
+
+window["__data"] = data;
+window["__containerId"] = containerId;
+
+var downloadURL = 'js/d3-cloud-master/d3.layout.cloud.js';
+head.load('https://d3js.org/d3.v2.min.js', this.getBirtResourceURL(downloadURL), function() {
+	__draw_word_cloud(containerId, data, config.min, config.max);
+});]]></method>
+                            <property name="groups">
+                                <data-group>
+                                    <property name="groupName">EntityGroup</property>
+                                    <expression name="keyExpr" type="javascript">data["entity"]</expression>
+                                    <property name="interval">none</property>
+                                    <property name="sortDirection">desc</property>
+                                </data-group>
+                            </property>
+                            <property name="summaryData">true</property>
+                            <property name="height">250px</property>
+                            <property name="width">100%</property>
+                            <expression name="bookmark" type="javascript">"WordCloudPN"</expression>
+                        </extended-item>
+                    </cell>
+                </row>
+            </header>
+            <group id="1515">
+                <property name="groupName">entity</property>
+                <expression name="keyExpr" type="javascript">row["entity"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["entity"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+            </group>
+        </table>
+        <table name="Concepts Simple Word Cloud" id="1499">
+            <list-property name="userProperties">
+                <structure>
+                    <property name="name">__ac_group_collapse_level</property>
+                    <property name="type">string</property>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">name1</property>
+                    <text-property name="displayName">Concept Name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">is_complex</property>
+                    <text-property name="displayName">Is Complex</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["is_complex"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">conceptcount</property>
+                    <text-property name="displayName">conceptcount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["concept_count"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["is_complex"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">new java.math.BigDecimal("0")</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+                <structure>
+                    <property name="operator">gt</property>
+                    <expression name="expr" type="javascript">row["conceptcount"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">2</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <property name="isSummaryTable">true</property>
+            <column id="1504"/>
+            <header>
+                <row id="1500">
+                    <cell id="1501">
+                        <extended-item extensionName="HTMLControl" name="SimpleConcepts" id="1502">
+                            <method name="clientOnCreate"><![CDATA[var config = {
+
+	wordColumn : "name1",
+	wordSize: "conceptcount",
+	min:100000000,
+	max:0,
+	
+	/* the total number of word to display */
+	wordCount : 500 			///  Controlled by the TOP N of the parameter
+};
+
+// If data binding is used, the data should be saved and transformed in order
+// to fit the Word Cloud Chart map.
+function dataTransfrom(cursor) {
+      var rows = [];
+      var count = 0;
+      while (cursor.hasNext()) {
+            if(config.wordCount != null &amp;&amp; count >= config.wordCount){
+                  break;
+            }
+            var dataObj = cursor.next();
+            
+            if ( rows.map(function(x) {return x.word; }).indexOf(dataObj[config.wordColumn]) < 0 ) {
+            
+                  rows.push({word: dataObj[config.wordColumn], value: dataObj[config.wordSize]});
+                  count++;
+                  
+                  if (config.min> dataObj[config.wordSize])
+                        config.min = dataObj[config.wordSize];
+                  if (config.max < dataObj[config.wordSize])
+                        config.max = dataObj[config.wordSize];
+            }
+      }
+      return rows;
+}
+
+
+var containerId = this.getId();
+
+var data = dataTransfrom(this.getDataCursor());
+
+window["__draw_word_cloud"] = function(containerId, data, min, max) {
+	var colors = ["#2a608a", "#153045"];
+	
+	//var typeSize = [14, 18, 24, 32, 40, 48, 60, 72, 96, 128, 144];
+	var containerWidth = $("#" + containerId).width();
+	var containerHeight = $("#" + containerId).height();
+
+	var fontScale = d3.scale.linear()
+                     .domain([min, max])
+                     .range([9, 100]);
+	
+	var fill = d3.scale.linear()
+	        .domain([min, max])
+            .range(colors);
+
+	d3.layout.cloud().size([ containerWidth, containerHeight ]).words(
+			data.map(function(row) {
+				return {
+					text : row.word,
+					value : row.value,
+					size : fontScale( row.value )
+				};
+			})).padding(5).rotate(function() {
+		return 0;
+	}).font("Lato").fontSize(function(d) {
+		return d.size;
+	}).on("end", draw).start();
+
+
+	function draw(words) {
+		$("#" + containerId + " svg").remove();
+		d3.select("#" + containerId).append("svg")
+				.attr("width", containerWidth).attr("height", containerHeight).attr("class","wordcloud")
+				.append("g").attr(
+						"transform",
+						"translate(" + containerWidth / 2 + ","
+								+ containerHeight / 2 + ")").selectAll("text")
+				.data(words).enter().append("text").style("font-size", function(d) {
+							return d.size + "px";
+						}).style("font-family", "Lato").style("font-size",function(d){
+							return d.size + "px";
+						}).style("fill", function(d, i) {
+							return fill(d.value);
+						}).attr("text-anchor", "middle").attr("transform", function(d) {
+							return "translate(" + [ d.x, d.y ] + ") rotate("
+									+ d.rotate + ")";
+						}).text(function(d) {
+					return d.text;
+				});
+	}
+}
+
+window["__data"] = data;
+window["__containerId"] = containerId;
+
+var downloadURL = 'js/d3-cloud-master/d3.layout.cloud.js';
+head.load('https://d3js.org/d3.v2.min.js', this.getBirtResourceURL(downloadURL), function() {
+	__draw_word_cloud(containerId, data, config.min, config.max);
+});
+
+]]></method>
+                            <property name="summaryData">false</property>
+                            <property name="height">250px</property>
+                            <property name="width">100%</property>
+                            <expression name="bookmark" type="javascript">"WordCloudComplexConcepts"</expression>
+                        </extended-item>
+                    </cell>
+                </row>
+            </header>
+            <group id="1503">
+                <property name="groupName">NewTableGroup1</property>
+                <expression name="keyExpr" type="javascript">row["name1"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["name1"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+            </group>
+        </table>
+        <table name="Concepts Complex Word Cloud" id="1473">
+            <list-property name="userProperties">
+                <structure>
+                    <property name="name">__ac_group_collapse_level</property>
+                    <property name="type">string</property>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">name1</property>
+                    <text-property name="displayName">Concept Name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">is_complex</property>
+                    <text-property name="displayName">Is Complex</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["is_complex"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">conceptcount</property>
+                    <text-property name="displayName">conceptcount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["concept_count"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["is_complex"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">new java.math.BigDecimal("1")</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <property name="isSummaryTable">true</property>
+            <column id="1485"/>
+            <header>
+                <row id="1474">
+                    <cell id="1475">
+                        <extended-item extensionName="HTMLControl" name="ComplexConcepts" id="1498">
+                            <method name="clientOnCreate"><![CDATA[var config = {
+
+	wordColumn : "name1",
+	wordSize: "conceptcount",
+	min:100000000,
+	max:0,
+	
+	/* the total number of word to display */
+	wordCount : 500 			///  Controlled by the TOP N of the parameter
+};
+
+// If data binding is used, the data should be saved and transformed in order
+// to fit the Word Cloud Chart map.
+function dataTransfrom(cursor) {
+      var rows = [];
+      var count = 0;
+      while (cursor.hasNext()) {
+            if(config.wordCount != null &amp;&amp; count >= config.wordCount){
+                  break;
+            }
+            var dataObj = cursor.next();
+            
+            if ( rows.map(function(x) {return x.word; }).indexOf(dataObj[config.wordColumn]) < 0 ) {
+            
+                  rows.push({word: dataObj[config.wordColumn], value: dataObj[config.wordSize]});
+                  count++;
+                  
+                  if (config.min> dataObj[config.wordSize])
+                        config.min = dataObj[config.wordSize];
+                  if (config.max < dataObj[config.wordSize])
+                        config.max = dataObj[config.wordSize];
+            }
+      }
+      return rows;
+}
+
+
+var containerId = this.getId();
+
+var data = dataTransfrom(this.getDataCursor());
+
+window["__draw_word_cloud"] = function(containerId, data, min, max) {
+	var colors = ["#2a608a", "#153045"];
+
+	//var typeSize = [14, 18, 24, 32, 40, 48, 60, 72, 96, 128, 144];
+	var containerWidth = $("#" + containerId).width();
+	var containerHeight = $("#" + containerId).height();
+
+	var fontScale = d3.scale.linear()
+                     .domain([min, max])
+                     .range([9, 100]);
+	
+	var fill = d3.scale.linear()
+	        .domain([min, max])
+            .range(colors);
+
+	d3.layout.cloud().size([ containerWidth, containerHeight ]).words(
+			data.map(function(row) {
+				return {
+					text : row.word,
+					value : row.value,
+					size : fontScale( row.value )
+				};
+			})).padding(5).rotate(function() {
+		return 0;
+	}).font("Lato").fontSize(function(d) {
+		return d.size;
+	}).on("end", draw).start();
+
+
+	function draw(words) {
+		$("#" + containerId + " svg").remove();
+		d3.select("#" + containerId).append("svg")
+				.attr("width", containerWidth).attr("height", containerHeight).attr("class","wordcloud")
+				.append("g").attr(
+						"transform",
+						"translate(" + containerWidth / 2 + ","
+								+ containerHeight / 2 + ")").selectAll("text")
+				.data(words).enter().append("text").style("font-size", function(d) {
+							return d.size + "px";
+						}).style("font-family", "Lato").style("font-size",function(d){
+							return d.size + "px";
+						}).style("fill", function(d, i) {
+							return fill(d.value);
+						}).attr("text-anchor", "middle").attr("transform", function(d) {
+							return "translate(" + [ d.x, d.y ] + ") rotate("
+									+ d.rotate + ")";
+						}).text(function(d) {
+					return d.text;
+				});
+	}
+}
+
+window["__data"] = data;
+window["__containerId"] = containerId;
+
+var downloadURL = 'js/d3-cloud-master/d3.layout.cloud.js';
+head.load('https://d3js.org/d3.v2.min.js', this.getBirtResourceURL(downloadURL), function() {
+	__draw_word_cloud(containerId, data, config.min, config.max);
+});
+
+]]></method>
+                            <property name="summaryData">false</property>
+                            <property name="height">250px</property>
+                            <property name="width">100%</property>
+                            <expression name="bookmark" type="javascript">"WordCloudComplexConcepts"</expression>
+                        </extended-item>
+                    </cell>
+                </row>
+            </header>
+            <group id="1488">
+                <property name="groupName">NewTableGroup1</property>
+                <expression name="keyExpr" type="javascript">row["name1"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["name1"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+            </group>
+        </table>
+        <table name="Categories Word Cloud" id="1618">
+            <list-property name="userProperties">
+                <structure>
+                    <property name="name">__ac_group_collapse_level</property>
+                    <property name="type">string</property>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">name1</property>
+                    <text-property name="displayName">Concept Name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["category2"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">conceptcount</property>
+                    <text-property name="displayName">Category Count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["category_count"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <property name="isSummaryTable">true</property>
+            <column id="1623"/>
+            <header>
+                <row id="1619">
+                    <cell id="1620">
+                        <extended-item extensionName="HTMLControl" name="ComplexConcepts1" id="1621">
+                            <method name="clientOnCreate"><![CDATA[var config = {
+
+	wordColumn : "name1",
+	wordSize: "conceptcount",
+	min:100000000,
+	max:0,
+	
+	/* the total number of word to display */
+	wordCount : 500 			///  Controlled by the TOP N of the parameter
+};
+
+// If data binding is used, the data should be saved and transformed in order
+// to fit the Word Cloud Chart map.
+function dataTransfrom(cursor) {
+      var rows = [];
+      var count = 0;
+      while (cursor.hasNext()) {
+            if(config.wordCount != null &amp;&amp; count >= config.wordCount){
+                  break;
+            }
+            var dataObj = cursor.next();
+            
+            if ( rows.map(function(x) {return x.word; }).indexOf(dataObj[config.wordColumn]) < 0 ) {
+            
+                  rows.push({word: dataObj[config.wordColumn], value: dataObj[config.wordSize]});
+                  count++;
+                  
+                  if (config.min> dataObj[config.wordSize])
+                        config.min = dataObj[config.wordSize];
+                  if (config.max < dataObj[config.wordSize])
+                        config.max = dataObj[config.wordSize];
+            }
+      }
+      return rows;
+}
+
+
+var containerId = this.getId();
+
+var data = dataTransfrom(this.getDataCursor());
+
+window["__draw_word_cloud"] = function(containerId, data, min, max) {
+	var colors = ["#2a608a", "#153045"];
+
+	//var typeSize = [14, 18, 24, 32, 40, 48, 60, 72, 96, 128, 144];
+	var containerWidth = $("#" + containerId).width();
+	var containerHeight = $("#" + containerId).height();
+
+	var fontScale = d3.scale.linear()
+                     .domain([min, max])
+                     .range([9, 100]);
+	
+	var fill = d3.scale.linear()
+	        .domain([min, max])
+            .range(colors);
+
+	d3.layout.cloud().size([ containerWidth, containerHeight ]).words(
+			data.map(function(row) {
+				return {
+					text : row.word,
+					value : row.value,
+					size : fontScale( row.value )
+				};
+			})).padding(5).rotate(function() {
+		return 0;
+	}).font("Lato").fontSize(function(d) {
+		return d.size;
+	}).on("end", draw).start();
+
+
+	function draw(words) {
+		$("#" + containerId + " svg").remove();
+		d3.select("#" + containerId).append("svg")
+				.attr("width", containerWidth).attr("height", containerHeight).attr("class","wordcloud")
+				.append("g").attr(
+						"transform",
+						"translate(" + containerWidth / 2 + ","
+								+ containerHeight / 2 + ")").selectAll("text")
+				.data(words).enter().append("text").style("font-size", function(d) {
+							return d.size + "px";
+						}).style("font-family", "Lato").style("font-size",function(d){
+							return d.size + "px";
+						}).style("fill", function(d, i) {
+							return fill(d.value);
+						}).attr("text-anchor", "middle").attr("transform", function(d) {
+							return "translate(" + [ d.x, d.y ] + ") rotate("
+									+ d.rotate + ")";
+						}).text(function(d) {
+					return d.text;
+				});
+	}
+}
+
+window["__data"] = data;
+window["__containerId"] = containerId;
+
+var downloadURL = 'js/d3-cloud-master/d3.layout.cloud.js';
+head.load('https://d3js.org/d3.v2.min.js', this.getBirtResourceURL(downloadURL), function() {
+	__draw_word_cloud(containerId, data, config.min, config.max);
+});
+
+]]></method>
+                            <property name="summaryData">false</property>
+                            <property name="height">250px</property>
+                            <property name="width">100%</property>
+                            <expression name="bookmark" type="javascript">"WordCloudComplexConcepts"</expression>
+                        </extended-item>
+                    </cell>
+                </row>
+            </header>
+            <group id="1622">
+                <property name="groupName">NewTableGroup1</property>
+                <expression name="keyExpr" type="javascript">row["name1"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["name1"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+            </group>
+        </table>
+        <table name="Sentiment Totals" id="1261">
+            <property name="fontFamily">"Lato"</property>
+            <property name="fontSize">36pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="color">#5B5B5B</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Total Positive New</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["doc_id"]</expression>
+                        </structure>
+                    </list-property>
+                    <expression name="filterExpr" type="javascript">dataSetRow["tone"]=="Positive"</expression>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Total Neutral New</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["doc_id"]</expression>
+                        </structure>
+                    </list-property>
+                    <expression name="filterExpr" type="javascript">dataSetRow["tone"]=="Neutral"</expression>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Total Negative New</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["doc_id"]</expression>
+                        </structure>
+                    </list-property>
+                    <expression name="filterExpr" type="javascript">dataSetRow["tone"]=="Negative"</expression>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <expression name="bookmark" type="javascript">'myTable11'</expression>
+            <property name="linkedDataModel">Data Model</property>
+            <column id="1524">
+                <property name="width">6%</property>
+            </column>
+            <column id="126">
+                <property name="width">25%</property>
+            </column>
+            <column id="842">
+                <property name="width">6%</property>
+            </column>
+            <column id="845">
+                <property name="width">25%</property>
+            </column>
+            <column id="1525">
+                <property name="width">6%</property>
+            </column>
+            <column id="1526">
+                <property name="width">25%</property>
+            </column>
+            <column id="854">
+                <property name="width">7%</property>
+            </column>
+            <header>
+                <row id="1262">
+                    <property name="borderBottomColor">#D7D7D7</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">medium</property>
+                    <cell id="846"/>
+                    <cell id="1263">
+                        <grid name="NewGrid1" id="151">
+                            <property name="width">3.3229166666666665in</property>
+                            <column id="1264">
+                                <property name="width">1in</property>
+                            </column>
+                            <column id="1265"/>
+                            <row id="1266">
+                                <cell id="1267">
+                                    <image name="NewImage1" id="1268">
+                                        <property name="height">88px</property>
+                                        <property name="width">97px</property>
+                                        <property name="source">file</property>
+                                        <expression name="uri" type="constant">Images/Faces-Icon-Positive-sm.png</expression>
+                                    </image>
+                                </cell>
+                                <cell id="1269">
+                                    <property name="verticalAlign">middle</property>
+                                    <label name="NewLabel10" id="1270">
+                                        <property name="fontSize">28pt</property>
+                                        <property name="color">#909090</property>
+                                        <property name="marginLeft">10px</property>
+                                        <text-property name="text">Positive</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                    <cell id="840"/>
+                    <cell id="843">
+                        <grid name="NewGrid2" id="170">
+                            <property name="width">3.3229166666666665in</property>
+                            <column id="171">
+                                <property name="width">1in</property>
+                            </column>
+                            <column id="172"/>
+                            <row id="173">
+                                <cell id="174">
+                                    <image name="NewImage2" id="175">
+                                        <property name="height">88px</property>
+                                        <property name="width">91px</property>
+                                        <property name="source">file</property>
+                                        <expression name="uri" type="constant">Images/Faces-Icon-Neutral-sm.png</expression>
+                                    </image>
+                                </cell>
+                                <cell id="176">
+                                    <property name="verticalAlign">middle</property>
+                                    <label name="NewLabel11" id="177">
+                                        <property name="fontSize">28pt</property>
+                                        <property name="color">#909090</property>
+                                        <property name="marginLeft">10px</property>
+                                        <text-property name="text">Neutral</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                    <cell id="1517"/>
+                    <cell id="1518">
+                        <grid name="NewGrid3" id="1271">
+                            <property name="width">3.3229166666666665in</property>
+                            <column id="186">
+                                <property name="width">1in</property>
+                            </column>
+                            <column id="187"/>
+                            <row id="188">
+                                <cell id="189">
+                                    <image name="NewImage3" id="1272">
+                                        <property name="height">88px</property>
+                                        <property name="width">97px</property>
+                                        <property name="source">file</property>
+                                        <expression name="uri" type="constant">Images/Faces-Icon-Negative-sm.png</expression>
+                                    </image>
+                                </cell>
+                                <cell id="1273">
+                                    <property name="verticalAlign">middle</property>
+                                    <label name="NewLabel12" id="192">
+                                        <property name="fontSize">28pt</property>
+                                        <property name="color">#909090</property>
+                                        <property name="marginLeft">10px</property>
+                                        <text-property name="text">Negative</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                    <cell id="1519"/>
+                </row>
+                <row id="127">
+                    <cell id="1520"/>
+                    <cell id="1274">
+                        <data name="NewData12" id="1279">
+                            <property name="color">#555555</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="resultSetColumn">Total Positive New</property>
+                        </data>
+                    </cell>
+                    <cell id="841"/>
+                    <cell id="844">
+                        <data name="NewData122" id="1332">
+                            <property name="color">#555555</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="resultSetColumn">Total Neutral New</property>
+                        </data>
+                    </cell>
+                    <cell id="1521"/>
+                    <cell id="1522">
+                        <data name="NewData123" id="1333">
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#555555</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="resultSetColumn">Total Negative New</property>
+                        </data>
+                    </cell>
+                    <cell id="1523"/>
+                </row>
+            </header>
+        </table>
+        <table name="Top Positive Sentences" id="1676">
+            <property name="fontFamily">"Lato"</property>
+            <property name="fontSize">9pt</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">doc_id</property>
+                    <text-property name="displayName">Internal Document ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">tone1</property>
+                    <text-property name="displayName">Sentence Tone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tone1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">sentiment_index</property>
+                    <text-property name="displayName">Sentiment Index</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["sentiment_index"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">positive_tone_score</property>
+                    <text-property name="displayName">Sentence Positive Tone Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["positive_tone_score"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">negative_tone_score1</property>
+                    <text-property name="displayName">Sentence Negative Tone Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["negative_tone_score1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">subjectivity1</property>
+                    <text-property name="displayName">Sentence Subjectivity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["subjectivity1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">subjectivity_score1</property>
+                    <text-property name="displayName">Sentence Subjectivity Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["subjectivity_score1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">sentence</property>
+                    <text-property name="displayName">Sentence</text-property>
+                    <expression name="expression" type="javascript">if (dataSetRow["sentence"].length >=100)&#13;
+	dataSetRow["sentence"].substr(0,97) + '...';&#13;
+else&#13;
+	dataSetRow["sentence"];</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="sort">
+                <structure>
+                    <expression name="key" type="javascript">row["positive_tone_score"]</expression>
+                    <property name="direction">desc</property>
+                    <property name="strength">-1</property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["tone1"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"Positive"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+                <structure>
+                    <property name="operator">top-n</property>
+                    <expression name="expr" type="javascript">row["positive_tone_score"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">20</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <column id="1692">
+                <property name="width">90px</property>
+            </column>
+            <column id="1725">
+                <property name="width">100px</property>
+            </column>
+            <column id="1693">
+                <property name="width">95px</property>
+            </column>
+            <column id="1694"/>
+            <header>
+                <row id="1677">
+                    <property name="textAlign">center</property>
+                    <cell id="1678">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <text id="1679">
+                            <property name="fontFamily">monospace</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="contentType">html</property>
+                            <text-property name="content"><![CDATA[<div id="ContentAnalyticsTopPosSentences"></div>
+<script>var allPosCells = $("#ContentAnalyticsTopPosSentences").closest("table").find( "td" );
+
+allPosCells.parent().parent().parent().find("tr:odd").css("background-color", "#EEEEEE");
+allPosCells.parent().parent().parent().find("tr:even").css("background-color", "");
+     
+allPosCells
+  .on("mouseover", function() {
+    var el = $(this);
+    el.parent().css("background","#9da3b9");
+  })
+  .on("mouseout", function() {
+	allPosCells.parent().parent().parent().find("tr:odd").css("background-color", "#EEEEEE");
+	allPosCells.parent().parent().parent().find("tr:even").css("background-color", "");       
+  })
+  .on("click", function() {
+  
+	regex = /Applications\/(.*?)\/Dashboards/;
+	if (regex.test(window.location.href)) {
+		loc = regex.exec(window.location.href)[1];
+	}
+	else {
+		regex = /Applications%2f(.*?)%2fDashboards/;
+		if (regex.test(window.location.href)) {
+			loc = regex.exec(window.location.href)[1];
+		}
+		else {
+			console.log (window.location.href);
+			debugger;
+			alert ('Error ' + window.location.href);
+		}
+	}
+	debugger;
+	url = "/iportal/executereport.do?__requesttype=immediate&amp;invokesubmit=true&amp;__executablename=/Applications/" + loc + "/Report Designs/Document Detail.rptdesign&amp;pDocId=" + $(this).parent().children(':first-child').children(':first-child')[0].innerHTML;
+	win = window.open(url, '_blank');
+	win.focus(); 
+  });
+</script>]]></text-property>
+                        </text>
+                        <label name="NewLabel1" id="1726">
+                            <property name="fontWeight">normal</property>
+                            <property name="color">#5D6066</property>
+                            <property name="paddingTop">3pt</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="paddingBottom">3pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">DOC ID</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1723">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <label name="NewLabel" id="1680">
+                            <property name="fontWeight">normal</property>
+                            <property name="color">#5D6066</property>
+                            <property name="paddingTop">3pt</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="paddingBottom">3pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">POSITIVITY</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1681">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <label id="1682">
+                            <property name="fontWeight">normal</property>
+                            <property name="color">#5D6066</property>
+                            <property name="paddingTop">3pt</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="paddingBottom">3pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">SUBJECTIVITY</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1683">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <label id="1684">
+                            <property name="fontWeight">normal</property>
+                            <property name="color">#5D6066</property>
+                            <property name="paddingTop">3pt</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="paddingBottom">3pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">SENTENCE</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="1685">
+                    <cell id="1686">
+                        <data name="NewData2" id="1727">
+                            <property name="paddingLeft">6pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">doc_id</property>
+                        </data>
+                    </cell>
+                    <cell id="1724">
+                        <data name="NewData" id="1687">
+                            <property name="paddingLeft">6pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Percent</property>
+                                <property name="pattern">###0.00%{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">positive_tone_score</property>
+                        </data>
+                    </cell>
+                    <cell id="1688">
+                        <data id="1689">
+                            <property name="paddingLeft">6pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">subjectivity1</property>
+                        </data>
+                    </cell>
+                    <cell id="1690">
+                        <data id="1691">
+                            <property name="paddingLeft">6pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">sentence</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table name="Top Negative Sentences" id="1695">
+            <property name="fontFamily">"Lato"</property>
+            <property name="fontSize">9pt</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">doc_id</property>
+                    <text-property name="displayName">Internal Document ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">tone1</property>
+                    <text-property name="displayName">Sentence Tone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tone1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">sentiment_index</property>
+                    <text-property name="displayName">Sentiment Index</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["sentiment_index"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">positive_tone_score</property>
+                    <text-property name="displayName">Sentence Positive Tone Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["positive_tone_score"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">negative_tone_score1</property>
+                    <text-property name="displayName">Sentence Negative Tone Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["negative_tone_score1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">subjectivity1</property>
+                    <text-property name="displayName">Sentence Subjectivity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["subjectivity1"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">subjectivity_score1</property>
+                    <text-property name="displayName">Sentence Subjectivity Score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["subjectivity_score1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">sentence</property>
+                    <text-property name="displayName">Sentence</text-property>
+                    <expression name="expression" type="javascript">if (dataSetRow["sentence"].length >=100)&#13;
+	dataSetRow["sentence"].substr(0,97) + '...';&#13;
+else&#13;
+	dataSetRow["sentence"];</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="sort">
+                <structure>
+                    <expression name="key" type="javascript">row["positive_tone_score"]</expression>
+                    <property name="direction">desc</property>
+                    <property name="strength">-1</property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["tone1"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"Negative"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+                <structure>
+                    <property name="operator">top-n</property>
+                    <expression name="expr" type="javascript">row["negative_tone_score1"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">20</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <column id="1711">
+                <property name="width">90px</property>
+            </column>
+            <column id="1730">
+                <property name="width">100px</property>
+            </column>
+            <column id="1712">
+                <property name="width">95px</property>
+            </column>
+            <column id="1713"/>
+            <header>
+                <row id="1696">
+                    <property name="textAlign">center</property>
+                    <cell id="1697">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <text id="1698">
+                            <property name="fontFamily">monospace</property>
+                            <property name="fontSize">8pt</property>
+                            <property name="contentType">html</property>
+                            <text-property name="content"><![CDATA[<div id="ContentAnalyticsTopNegSentences"></div>
+<script>var allNegCells = $("#ContentAnalyticsTopNegSentences").closest("table").find( "td" );
+
+allNegCells.parent().parent().parent().find("tr:odd").css("background-color", "#EEEEEE");
+allNegCells.parent().parent().parent().find("tr:even").css("background-color", "");
+     
+allNegCells
+  .on("mouseover", function() {
+    var el = $(this);
+    el.parent().css("background","#9da3b9");
+  })
+  .on("mouseout", function() {
+	allNegCells.parent().parent().parent().find("tr:odd").css("background-color", "#EEEEEE");
+	allNegCells.parent().parent().parent().find("tr:even").css("background-color", "");       
+  })
+  .on("click", function() {
+  
+	regex = /Applications\/(.*?)\/Dashboards/;
+	if (regex.test(window.location.href)) {
+		loc = regex.exec(window.location.href)[1];
+	}
+	else {
+		regex = /Applications%2f(.*?)%2fDashboards/;
+		if (regex.test(window.location.href)) {
+			loc = regex.exec(window.location.href)[1];
+		}
+		else {
+			console.log (window.location.href);
+			debugger;
+			alert ('Error ' + window.location.href);
+		}
+	}
+
+	debugger;
+	url = "/iportal/executereport.do?__requesttype=immediate&amp;invokesubmit=true&amp;__executablename=/Applications/" + loc + "/Report Designs/Document Detail.rptdesign&amp;pDocId=" + $(this).parent().children(':first-child').children(':first-child')[0].innerHTML;
+	win = window.open(url, '_blank');
+	win.focus(); 
+  });
+</script>]]></text-property>
+                        </text>
+                        <label name="NewLabel21" id="1731">
+                            <property name="fontWeight">normal</property>
+                            <property name="color">#5D6066</property>
+                            <property name="paddingTop">3pt</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="paddingBottom">3pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">DOC ID</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1728">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <label name="NewLabel2" id="1699">
+                            <property name="fontWeight">normal</property>
+                            <property name="color">#5D6066</property>
+                            <property name="paddingTop">3pt</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="paddingBottom">3pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">NEGATIVITY</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1700">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <label id="1701">
+                            <property name="fontWeight">normal</property>
+                            <property name="color">#5D6066</property>
+                            <property name="paddingTop">3pt</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="paddingBottom">3pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">SUBJECTIVITY</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1702">
+                        <property name="backgroundColor">#F8F8F8</property>
+                        <label id="1703">
+                            <property name="fontWeight">normal</property>
+                            <property name="color">#5D6066</property>
+                            <property name="paddingTop">3pt</property>
+                            <property name="paddingLeft">6pt</property>
+                            <property name="paddingBottom">3pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">SENTENCE</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="1704">
+                    <cell id="1705">
+                        <data name="NewData31" id="1732">
+                            <property name="paddingLeft">6pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">doc_id</property>
+                        </data>
+                    </cell>
+                    <cell id="1729">
+                        <data name="NewData3" id="1706">
+                            <property name="paddingLeft">6pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Percent</property>
+                                <property name="pattern">###0.00%{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">negative_tone_score1</property>
+                        </data>
+                    </cell>
+                    <cell id="1707">
+                        <data id="1708">
+                            <property name="paddingLeft">6pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">subjectivity1</property>
+                        </data>
+                    </cell>
+                    <cell id="1709">
+                        <data id="1710">
+                            <property name="paddingLeft">6pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">sentence</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <extended-item extensionName="Chart" name="Top 5 Categories Chart" id="1721">
+            <xml-property name="xmlRepresentation"><![CDATA[<ActuateChart version="2.6.1">
+ <ChartWithAxes version="2.6.1" type="Bar Chart" subType="Side-by-side">
+  <block>
+   <children _type="TitleBlock" visible="false">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <label>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+   </children>
+   <children _type="Plot">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </clientArea>
+   </children>
+   <children _type="Legend" visible="false">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </clientArea>
+    <separator>
+     <color _nil="1"/>
+    </separator>
+    <title>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+   </children>
+   <bounds _body="0.0,0.0,552.75,276.375"/>
+   <outline>
+    <color _nil="1"/>
+   </outline>
+  </block>
+  <extendedProperties name="enable.area.alt" value="false"/>
+  <extendedProperties name="enable.drill.category" value="true"/>
+  <extendedProperties name="enable.drill.series" value="true"/>
+  <extendedProperties name="jschart.series.shadow" value="false"/>
+  <extendedProperties name="jschart.animation" value="false"/>
+  <extendedProperties name="jschart.glass.style" value="false"/>
+  <extendedProperties name="enable.data.summarize" value="true"/>
+  <sampleData>
+   <baseSampleData dataSetRepresentation="A, B, C"/>
+   <orthogonalSampleData dataSetRepresentation="5,4,12" seriesDefinitionIndex="0"/>
+  </sampleData>
+  <emptyMessage>
+   <caption value="This chart contains no data."/>
+   <background _body=",64,127,127,127"/>
+   <outline>
+    <color _body=",128,127,127,127"/>
+   </outline>
+  </emptyMessage>
+  <axes staggered="true">
+   <title>
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </title>
+   <associatedAxes primaryAxis="true">
+    <title>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+    <seriesDefinitions>
+     <query definition=""/>
+     <seriesPalette>
+      <entries _body=",255,42,96,138"/>
+      <entries _body=",255,242,88,106"/>
+      <entries _body=",255,232,172,57"/>
+      <entries _body=",255,128,255,128"/>
+      <entries _body=",255,64,128,128"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,170,85,85"/>
+      <entries _body=",255,128,128,0"/>
+      <entries _body=",255,192,192,192"/>
+      <entries _body=",255,255,255,128"/>
+      <entries _body=",255,128,192,128"/>
+      <entries _body=",255,7,146,94"/>
+      <entries _body=",255,0,128,255"/>
+      <entries _body=",255,255,128,192"/>
+      <entries _body=",255,0,255,255"/>
+      <entries _body=",255,255,128,128"/>
+      <entries _body=",255,0,128,192"/>
+      <entries _body=",255,128,128,192"/>
+      <entries _body=",255,255,0,255"/>
+      <entries _body=",255,128,64,64"/>
+      <entries _body=",255,255,128,64"/>
+      <entries _body=",255,80,240,120"/>
+      <entries _body=",255,0,64,128"/>
+      <entries _body=",255,128,0,64"/>
+      <entries _body=",255,255,0,128"/>
+      <entries _body=",255,128,128,64"/>
+      <entries _body=",255,128,128,128"/>
+      <entries _body=",255,255,128,255"/>
+      <entries _body=",255,0,64,0"/>
+      <entries _body=",255,0,0,0"/>
+      <entries _body=",255,255,255,255"/>
+      <entries _body=",255,255,128,0"/>
+     </seriesPalette>
+     <series _type="BarSeries" seriesIdentifier="Topics" riser="0">
+      <label visible="false">
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataDefinition definition="row[&quot;concept_count&quot;]">
+       <grouping/>
+      </dataDefinition>
+      <triggers condition="6">
+       <action type="1">
+        <value _type="TooltipValue" text="" delay="200"/>
+       </action>
+      </triggers>
+      <curveFitting _nil="1"/>
+     </series>
+    </seriesDefinitions>
+    <lineAttributes visible="true">
+     <color _body=",255,192,192,192"/>
+    </lineAttributes>
+    <label>
+     <caption>
+      <font size="8.0"/>
+      <color _body=",255,145,145,145"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+    <majorGrid>
+     <lineAttributes style="1" visible="true">
+      <color _body=",255,228,228,228"/>
+     </lineAttributes>
+     <tickAttributes visible="false">
+      <color _nil="1"/>
+     </tickAttributes>
+    </majorGrid>
+    <minorGrid>
+     <lineAttributes visible="false">
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes visible="false">
+      <color _nil="1"/>
+     </tickAttributes>
+    </minorGrid>
+    <origin>
+     <value _nil="1"/>
+    </origin>
+   </associatedAxes>
+   <seriesDefinitions>
+    <query definition=""/>
+    <seriesPalette>
+     <entries _body=",255,42,96,138"/>
+     <entries _body=",255,242,88,106"/>
+     <entries _body=",255,232,172,57"/>
+     <entries _body=",255,128,255,128"/>
+     <entries _body=",255,64,128,128"/>
+     <entries _body=",255,128,128,192"/>
+     <entries _body=",255,170,85,85"/>
+     <entries _body=",255,128,128,0"/>
+     <entries _body=",255,192,192,192"/>
+     <entries _body=",255,255,255,128"/>
+     <entries _body=",255,128,192,128"/>
+     <entries _body=",255,7,146,94"/>
+     <entries _body=",255,0,128,255"/>
+     <entries _body=",255,255,128,192"/>
+     <entries _body=",255,0,255,255"/>
+     <entries _body=",255,255,128,128"/>
+     <entries _body=",255,0,128,192"/>
+     <entries _body=",255,128,128,192"/>
+     <entries _body=",255,255,0,255"/>
+     <entries _body=",255,128,64,64"/>
+     <entries _body=",255,255,128,64"/>
+     <entries _body=",255,80,240,120"/>
+     <entries _body=",255,0,64,128"/>
+     <entries _body=",255,128,0,64"/>
+     <entries _body=",255,255,0,128"/>
+     <entries _body=",255,128,128,64"/>
+     <entries _body=",255,128,128,128"/>
+     <entries _body=",255,255,128,255"/>
+     <entries _body=",255,0,64,0"/>
+     <entries _body=",255,0,0,0"/>
+     <entries _body=",255,255,255,255"/>
+     <entries _body=",255,255,128,0"/>
+    </seriesPalette>
+    <series seriesIdentifier="">
+     <label>
+      <background _nil="1"/>
+      <outline>
+       <color _nil="1"/>
+      </outline>
+     </label>
+     <dataDefinition definition="row[&quot;concept&quot;]"/>
+     <curveFitting _nil="1"/>
+    </series>
+    <grouping enabled="true"/>
+   </seriesDefinitions>
+   <lineAttributes visible="true">
+    <color _body=",255,192,192,192"/>
+   </lineAttributes>
+   <label>
+    <caption>
+     <font size="9.0"/>
+     <color _body=",255,145,145,145"/>
+    </caption>
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </label>
+   <majorGrid>
+    <lineAttributes visible="false">
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes visible="false">
+     <color _nil="1"/>
+    </tickAttributes>
+   </majorGrid>
+   <minorGrid>
+    <lineAttributes visible="false">
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes visible="false">
+     <color _nil="1"/>
+    </tickAttributes>
+   </minorGrid>
+   <origin>
+    <value _nil="1"/>
+   </origin>
+  </axes>
+  <rotation>
+   <angles/>
+  </rotation>
+ </ChartWithAxes>
+</ActuateChart>
+]]></xml-property>
+            <property name="outputFormat">JS</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">top-n</property>
+                    <expression name="expr" type="javascript">data["concept_count"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">5</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <property name="inheritColumns">true</property>
+            <property name="fontFamily">"Lato"</property>
+            <property name="height">276.375pt</property>
+            <property name="width">552.75pt</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">concept_count</property>
+                    <text-property name="displayName">Concept Count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["concept_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">concept</property>
+                    <text-property name="displayName">Concept</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["concept"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+        </extended-item>
+    </components>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="3"/>
+    </page-setup>
+    <property name="linkedDataModels">
+        <data-mart-linked-data-model name="Data Model" id="46">
+            <property name="dataSource">Text Analytics DO</property>
+            <property name="dataObject">Data Model</property>
+        </data-mart-linked-data-model>
+    </property>
+</library>
