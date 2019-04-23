@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
+    <property name="units">in</property>
+    <property name="theme">ThemesReportItems31.Innovate Bank</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">/ThemesReportItems31.rptlibrary</property>
+            <property name="namespace">ThemesReportItems31</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <data-mart-data-source name="Data Source" id="4">
+            <property name="datamartURL">Data Objects/Text Analytics</property>
+            <property name="accessType">latest</property>
+        </data-mart-data-source>
+    </data-sources>
+    <property name="linkedDataModels">
+        <data-mart-linked-data-model name="Data Model" id="6">
+            <property name="dataSource">Data Source</property>
+            <property name="dataObject">Data Model</property>
+        </data-mart-linked-data-model>
+    </property>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="orientation">auto</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="1084">
+            <property name="fontSize">10pt</property>
+            <property name="theme">ThemesReportItems31.Table-Innovate Bank</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">doc_date</property>
+                    <text-property name="displayName">Creation Date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["doc_date"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">kb_name</property>
+                    <text-property name="displayName">Knowledgebase Name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["kb_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">category</property>
+                    <text-property name="displayName">Category</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["category"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cartridge</property>
+                    <text-property name="displayName">Cartridge</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cartridge"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">doc_id</property>
+                    <text-property name="displayName">doc_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["id"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="linkedDataModel">Data Model</property>
+            <list-property name="sort">
+                <structure>
+                    <expression name="key" type="javascript">row["doc_date"]</expression>
+                    <property name="direction">desc</property>
+                    <property name="strength">-1</property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["kb_name"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"PersonalInformation"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+                <structure>
+                    <property name="operator">ge</property>
+                    <expression name="expr" type="javascript">row["doc_date"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"2013-01-04 09:34:35.000-0500"</value>
+                    </simple-property-list>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <column id="1122">
+                <property name="repeat">1</property>
+            </column>
+            <column id="1110"/>
+            <column id="1128">
+                <property name="repeat">1</property>
+            </column>
+            <header>
+                <row id="1085">
+                    <property name="backgroundColor">#6D65FF</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="color">#FFFFFF</property>
+                    <cell id="1123">
+                        <label id="1124">
+                            <text-property name="text">Cartridge</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1090">
+                        <label id="1091">
+                            <text-property name="text">Category</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1129">
+                        <label id="1130">
+                            <text-property name="text">Creation Date</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="1094">
+                    <list-property name="highlightRules">
+                        <structure>
+                            <property name="operator">eq</property>
+                            <property name="backgroundColor">#E1E1E1</property>
+                            <expression name="testExpr" type="javascript">row[0] % 2</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">0</value>
+                            </simple-property-list>
+                        </structure>
+                    </list-property>
+                    <cell id="1125">
+                        <data id="1126">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">cartridge</property>
+                            <list-property name="action">
+                                <structure>
+                                    <property name="linkType">drill-through</property>
+                                    <property name="reportName">Document Detail.rptdesign</property>
+                                    <property name="targetWindow">_blank</property>
+                                    <property name="targetFileType">report-design</property>
+                                    <list-property name="paramBindings">
+                                        <structure>
+                                            <property name="paramName">pDocID</property>
+                                            <simple-property-list name="expression">
+                                                <value type="javascript">row["doc_id"]</value>
+                                            </simple-property-list>
+                                        </structure>
+                                    </list-property>
+                                </structure>
+                            </list-property>
+                        </data>
+                    </cell>
+                    <cell id="1099">
+                        <data id="1100">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">category</property>
+                        </data>
+                    </cell>
+                    <cell id="1131">
+                        <data id="1132">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Medium Date</property>
+                                <property name="pattern">Medium Date</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">doc_date</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="1103">
+                    <cell id="1127"/>
+                    <cell id="1106"/>
+                    <cell id="1133"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

@@ -419,6 +419,7 @@
   <extendedProperties name="jschart.zoom" value=""/>
   <extendedProperties name="drilled.filters_" value="_@,_"/>
   <extendedProperties name="enable.drill.proc_" value="true"/>
+  <extendedProperties name="jschart.series.shadow" value="false"/>
   <sampleData>
    <baseSampleData dataSetRepresentation="QWER"/>
    <orthogonalSampleData dataSetRepresentation="QWER" seriesDefinitionIndex="0"/>
@@ -603,6 +604,18 @@
                     <expression name="expression">dataSetRow["id"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">category</property>
+                    <text-property name="displayName">Category</text-property>
+                    <expression name="expression">dataSetRow["category"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cartridge</property>
+                    <text-property name="displayName">Cartridge</text-property>
+                    <expression name="expression">dataSetRow["cartridge"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <property name="theme">ThemesReportItems31.Chart-Innovate Bank</property>
             <property name="linkedDataModel">Text Analytics DO::Classification</property>
@@ -673,6 +686,7 @@
   <extendedProperties name="keep.hierarchy.series" value="true"/>
   <extendedProperties name="enable.data.summarize" value="false"/>
   <extendedProperties name="jschart.zoom" value="xy"/>
+  <extendedProperties name="jschart.series.shadow" value="false"/>
   <sampleData>
    <baseSampleData dataSetRepresentation="01/25/2005"/>
    <orthogonalSampleData dataSetRepresentation="QWER QWER" seriesDefinitionIndex="0"/>
@@ -708,7 +722,7 @@
      </outline>
     </title>
     <seriesDefinitions>
-     <query definition="row[&quot;Classification&quot;]"/>
+     <query definition="row[&quot;category&quot;]"/>
      <series _type="BubbleSeries" seriesIdentifier="Category ID" stacked="false">
       <label>
        <caption value="Category ID"/>
@@ -841,6 +855,15 @@
                     <property name="filterTarget">DataSet</property>
                     <property name="type">slicer</property>
                 </structure>
+                <structure>
+                    <property name="operator">ge</property>
+                    <expression name="expr">dataSetRow["doc_date"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="constant">1996-08-16T12:29:00.000</value>
+                    </simple-property-list>
+                    <property name="filterTarget">DataSet</property>
+                    <property name="type">slicer</property>
+                </structure>
             </list-property>
             <property name="height">249pt</property>
             <property name="width">499.5pt</property>
@@ -864,8 +887,9 @@
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
-                    <property name="name">Classification</property>
-                    <expression name="expression">dataSetRow["Classification"]</expression>
+                    <property name="name">category</property>
+                    <text-property name="displayName">Category</text-property>
+                    <expression name="expression">dataSetRow["category"]</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -1042,7 +1066,10 @@
             </footer>
         </table>
         <text name="8e841661-1dc0-4946-a820-1e83a989a195" id="2035">
-            <text-property name="content"><![CDATA[<div style="background-color: rgb(245, 157, 76);"><div><br></div><div><br></div><div><br></div><div><br></div><div align="center"><font size="32" face="Lato" color="#6D65FF"><b>5.2</b></font></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div></div>]]></text-property>
+            <text-property name="content"><![CDATA[<div style="background-color: rgb(245, 157, 76);"><div><br></div><div><br></div><div align="center"><font size="32" face="Lato" color="#6D65FF"><b>4.2</b></font><br><br><br>1 - 2.9 Minimal<br>3 - 4.9 Moderate<br>5 - 6.9 Critical<br>7 - 8.9 Severe<br>9 - 10 Catastrophic</div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div></div>]]></text-property>
+        </text>
+        <text name="b0860ba7-64f9-47a3-8d70-fb35d13e258a" id="2079">
+            <text-property name="content"><![CDATA[http://visjs.org/examples/network/nodeStyles/customGroups.html]]></text-property>
         </text>
     </body>
     <property name="dashboardView">
@@ -1237,7 +1264,7 @@
                         <gadget name="Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0" id="1991">
                             <property name="x">756px</property>
                             <property name="y">324px</property>
-                            <property name="title">Personal Information by Classification Over Time</property>
+                            <property name="title">Personal Information by Category Over Time</property>
                             <property name="showTitle">false</property>
                             <property name="showBorder">false</property>
                             <property name="zIndex">5</property>
@@ -1381,6 +1408,68 @@
                                 </data-view>
                             </property>
                         </gadget>
+                    </property>
+                </tab-element>
+                <tab-element name="653b4275-a662-4b09-a29b-b97ebdc5116a" id="2071">
+                    <list-property name="userProperties">
+                        <structure>
+                            <property name="name">responsiveView</property>
+                            <property name="type">boolean</property>
+                        </structure>
+                    </list-property>
+                    <property name="responsiveView">true</property>
+                    <property name="title">Network Map</property>
+                    <property name="sections">
+                        <section id="2072">
+                            <property name="width">100%</property>
+                            <property name="gadgets">
+                                <gadget name="90e244f1-99e2-423f-8980-f0c153d90d7c" id="2077">
+                                    <property name="title">Show Relationship between Documents</property>
+                                    <property name="gadgetContentType">url</property>
+                                    <property name="showTitle">false</property>
+                                    <property name="showBorder">false</property>
+                                    <property name="zIndex">2</property>
+                                    <property name="showScrollBar">false</property>
+                                    <property name="height">839px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="2078">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Lato"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="2081">
+                                            <property name="gadgetType">embedded</property>
+                                            <property name="internalReportLetRef">b0860ba7-64f9-47a3-8d70-fb35d13e258a</property>
+                                        </data-view>
+                                    </property>
+                                </gadget>
+                                <gadget name="6b76badb-3330-4a13-9ccb-bef5c24f6ec5" id="2074">
+                                    <property name="zIndex">1</property>
+                                    <property name="isVisible">false</property>
+                                    <property name="height">150px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="2076">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Lato"</property>
+                                            <property name="fontSize">24pt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="color">#000000</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <current-selections id="2075"/>
+                                    </property>
+                                </gadget>
+                            </property>
+                        </section>
                     </property>
                 </tab-element>
             </property>

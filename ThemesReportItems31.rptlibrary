@@ -4553,6 +4553,24 @@
  </ChartWithAxes>
 </ActuateChart>]]></xml-property>
         </report-item-theme>
+        <report-item-theme type="Table" name="Table-Innovate Bank" id="1627">
+            <styles>
+                <style name="table" id="1628">
+                    <property name="fontFamily">"Lato"</property>
+                    <property name="canShrink">true</property>
+                    <list-property name="highlightRules">
+                        <structure>
+                            <property name="operator">eq</property>
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <expression name="testExpr" type="javascript">mod(row[0],2) == 0</expression>
+                            <simple-property-list name="value1">
+                                <value type="javascript">true</value>
+                            </simple-property-list>
+                        </structure>
+                    </list-property>
+                </style>
+            </styles>
+        </report-item-theme>
     </themes>
     <page-setup>
         <simple-master-page name="NewSimpleMasterPage" id="23"/>
