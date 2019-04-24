@@ -68,7 +68,13 @@
                 <structure>
                     <property name="name">doc_id</property>
                     <text-property name="displayName">doc_id</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["id"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">doc_id1</property>
+                    <expression name="expression" type="javascript">row["doc_id"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
@@ -106,6 +112,9 @@
             <column id="1128">
                 <property name="repeat">1</property>
             </column>
+            <column id="1138">
+                <property name="repeat">1</property>
+            </column>
             <header>
                 <row id="1085">
                     <property name="backgroundColor">#6D65FF</property>
@@ -126,6 +135,7 @@
                             <text-property name="text">Creation Date</text-property>
                         </label>
                     </cell>
+                    <cell id="1135"/>
                 </row>
             </header>
             <detail>
@@ -178,6 +188,11 @@
                             <property name="resultSetColumn">doc_date</property>
                         </data>
                     </cell>
+                    <cell id="1136">
+                        <data id="1142">
+                            <property name="resultSetColumn">doc_id1</property>
+                        </data>
+                    </cell>
                 </row>
             </detail>
             <footer>
@@ -185,6 +200,7 @@
                     <cell id="1127"/>
                     <cell id="1106"/>
                     <cell id="1133"/>
+                    <cell id="1137"/>
                 </row>
             </footer>
         </table>

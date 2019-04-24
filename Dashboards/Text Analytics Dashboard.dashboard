@@ -1418,13 +1418,14 @@
                         </structure>
                     </list-property>
                     <property name="responsiveView">true</property>
-                    <property name="title">Network Map</property>
+                    <property name="title">Explore</property>
+                    <property name="backgroundColor">RGB(34,30,111)</property>
                     <property name="sections">
                         <section id="2072">
-                            <property name="width">100%</property>
+                            <property name="width">44.607046070460704%</property>
                             <property name="gadgets">
                                 <gadget name="90e244f1-99e2-423f-8980-f0c153d90d7c" id="2077">
-                                    <property name="title">Show Relationship between Documents</property>
+                                    <property name="title">Network Map Example</property>
                                     <property name="gadgetContentType">url</property>
                                     <property name="showTitle">false</property>
                                     <property name="showBorder">false</property>
@@ -1469,6 +1470,53 @@
                                     </property>
                                 </gadget>
                             </property>
+                        </section>
+                        <section id="2085">
+                            <property name="width">41.24661246612466%</property>
+                            <property name="gadgets">
+                                <gadget name="Gadget_75fd41a9-92d8-43b5-b584-72c9fd79d166" id="2082">
+                                    <property name="title">Sankey Example</property>
+                                    <property name="externalGadgetURI">/Applications/GDPR-PII-Demo/Report Designs/launcher.rptdesign</property>
+                                    <property name="showTitle">false</property>
+                                    <property name="showBorder">false</property>
+                                    <property name="zIndex">3</property>
+                                    <property name="showScrollBar">false</property>
+                                    <property name="height">841px</property>
+                                    <property name="caption">
+                                        <gadget-caption id="2083">
+                                            <property name="showCaption">true</property>
+                                            <property name="horizontalAlignment">left</property>
+                                            <property name="fontFamily">"Lato"</property>
+                                            <property name="fontSize">18pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">normal</property>
+                                            <property name="color">#353535</property>
+                                            <property name="textUnderline">none</property>
+                                        </gadget-caption>
+                                    </property>
+                                    <property name="content">
+                                        <data-view id="2084">
+                                            <list-property name="userProperties">
+                                                <structure>
+                                                    <property name="name">showViewerToolbar</property>
+                                                    <property name="type">boolean</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="showViewerToolbar">false</property>
+                                            <property name="gadgetType">viewer</property>
+                                            <property name="externalContentRef">
+                                                <external-element-ref>
+                                                    <property name="sourceFile">^/Report Designs/launcher.RPTDESIGN</property>
+                                                    <property name="targetBookmark">sankey</property>
+                                                </external-element-ref>
+                                            </property>
+                                        </data-view>
+                                    </property>
+                                </gadget>
+                            </property>
+                        </section>
+                        <section id="2086">
+                            <property name="width">14.146341463414632%</property>
                         </section>
                     </property>
                 </tab-element>
