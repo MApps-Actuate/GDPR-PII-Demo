@@ -302,6 +302,46 @@
             <property name="type">integer</property>
             <property name="isVisible">false</property>
         </structure>
+        <structure>
+            <property name="name">1084.Entities.x</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">1084.Entities.y</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">1084.Entities.width</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">1084.Entities.height</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">1084.Entities Classification.x</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">1084.Entities Classification.y</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">1084.Entities Classification.width</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">1084.Entities Classification.height</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
     </list-property>
     <property name="846.Summary.x">11</property>
     <property name="846.Summary.y">445</property>
@@ -363,6 +403,14 @@
     <property name="846.Classification.y">664</property>
     <property name="846.Classification.width">150</property>
     <property name="846.Classification.height">200</property>
+    <property name="1084.Entities.x">520</property>
+    <property name="1084.Entities.y">9</property>
+    <property name="1084.Entities.width">150</property>
+    <property name="1084.Entities.height">200</property>
+    <property name="1084.Entities Classification.x">395</property>
+    <property name="1084.Entities Classification.y">682</property>
+    <property name="1084.Entities Classification.width">150</property>
+    <property name="1084.Entities Classification.height">200</property>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Text Analytics" id="4">
             <list-property name="privateDriverProperties">
@@ -3923,6 +3971,537 @@ where web_crawler_group_name = ?]]></xml-property>
             <design:label>object_type</design:label>
             <design:formattingHints>
               <design:displaySize>256</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Entities Classification" id="1295">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">entity_type</property>
+                    <expression name="expression" type="javascript">if (row["cartridge"] == "ON") {&#13;
+	"Organizations"&#13;
+}&#13;
+else if (row["cartridge"] == "PN") {&#13;
+	"People"&#13;
+}&#13;
+else if (row["cartridge"] == "GL") {&#13;
+	"Places"&#13;
+}&#13;
+else {row["cartridge"]}</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PII_status</property>
+                    <expression name="expression" type="javascript">if (row["cartridge"] == "PN") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "Phone") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "URL") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "Email") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "Address") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "Filename") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "DriversLicense") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "Hashtag") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "CreditCard") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "Twitter") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "SSN") {&#13;
+	"PII detected"&#13;
+}&#13;
+else if (row["cartridge"] == "BankAccount") {&#13;
+	"PII detected"&#13;
+}&#13;
+else {"No PII found"}</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">doc_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Internal Document ID</text-property>
+                    <property name="horizontalAlign">left</property>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cartridge</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Cartridge</text-property>
+                    <property name="horizontalAlign">left</property>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+                <structure>
+                    <property name="columnName">entity</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Entity</text-property>
+                    <property name="horizontalAlign">left</property>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+                <structure>
+                    <property name="columnName">term_index</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Term Index</text-property>
+                    <property name="horizontalAlign">right</property>
+                    <structure name="valueFormat">
+                        <property name="category">Fixed</property>
+                        <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                    </structure>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+                <structure>
+                    <property name="columnName">confidence_score</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Confidence Score</text-property>
+                    <property name="horizontalAlign">right</property>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+                <structure>
+                    <property name="columnName">relevancy_score</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Entity Relevancy</text-property>
+                    <property name="horizontalAlign">right</property>
+                    <structure name="valueFormat">
+                        <property name="category">Percent</property>
+                        <property name="pattern">###0.00%{RoundingMode=HALF_UP}</property>
+                    </structure>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+                <structure>
+                    <property name="columnName">frequency</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Entity Fequency</text-property>
+                    <property name="horizontalAlign">right</property>
+                    <structure name="valueFormat">
+                        <property name="category">Fixed</property>
+                        <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                    </structure>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+                <structure>
+                    <property name="columnName">entity_type</property>
+                    <property name="analysis">attribute</property>
+                    <text-property name="displayName">Entity Type</text-property>
+                    <property name="horizontalAlign">left</property>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+                <structure>
+                    <property name="columnName">PII_status</property>
+                    <property name="analysis">attribute</property>
+                    <text-property name="displayName">PII Status</text-property>
+                    <property name="horizontalAlign">left</property>
+                    <property name="indexColumn">false</property>
+                    <property name="compressed">false</property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">in</property>
+                    <expression name="expr" type="javascript">row["cartridge"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="javascript">"PN"</value>
+                        <value type="javascript">"Email"</value>
+                        <value type="javascript">"Phone"</value>
+                        <value type="javascript">"PersonalInformation"</value>
+                        <value type="javascript">"Address"</value>
+                        <value type="javascript">"IP"</value>
+                        <value type="javascript">"SSN"</value>
+                        <value type="javascript">"Twitter"</value>
+                        <value type="javascript">"CreditCard"</value>
+                        <value type="javascript">"BankAccount"</value>
+                        <value type="javascript">"Passport"</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">Minimum Entity Confidence</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">Minimum Entity Relevancy</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">Twitter Job Group Name</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_4</property>
+                    <property name="paramName">Minimum Entity Confidence</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_5</property>
+                    <property name="paramName">Minimum Entity Relevancy</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_6</property>
+                    <property name="paramName">Web Job Group Name</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_7</property>
+                    <property name="paramName">Minimum Entity Confidence</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                    <property name="position">7</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_8</property>
+                    <property name="paramName">Minimum Entity Relevancy</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                    <property name="position">8</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">doc_id</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">cartridge</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">entity</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">term_index</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">confidence_score</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">relevancy_score</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">frequency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">entity_type</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">PII_status</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[var pArray = params["Repository ID"].value.split(",");
+this.queryText = this.queryText.replace("9999", pArray.join("','"));]]></method>
+            <property name="dataSource">Text Analytics</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">doc_id</property>
+                    <property name="nativeName">doc_id</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">cartridge</property>
+                    <property name="nativeName">cartridge</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">entity</property>
+                    <property name="nativeName">entity</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">term_index</property>
+                    <property name="nativeName">term_index</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">confidence_score</property>
+                    <property name="nativeName">confidence_score</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">relevancy_score</property>
+                    <property name="nativeName">relevancy_score</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">frequency</property>
+                    <property name="nativeName">frequency</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select d.doc_id, s.cartridge, case when s.main_term_value is not null then s.main_term_value else s.normalized_name end as entity, s.term_index, s.confidence_score/100 as confidence_score, s.relevancy_score/100 as relevancy_score, s.frequency as frequency
+from document d, ca_term s
+where d.doc_id=s.doc_id
+and d.repository_id in ('9999')
+and s.confidence_score >= ?
+and s.relevancy_score >= ?
+
+UNION
+
+select t.doc_id, s.cartridge, case when s.main_term_value is not null then s.main_term_value else s.normalized_name end as entity, s.term_index, s.confidence_score/100 as confidence_score, s.relevancy_score/100 as relevancy_score, s.frequency as frequency
+from tweets t, ca_term s
+where t.doc_id=s.doc_id
+and t.twitter_crawler_group_name = ?
+and s.confidence_score >= ?
+and s.relevancy_score >= ?
+
+UNION
+
+select w.doc_id, s.cartridge, case when s.main_term_value is not null then s.main_term_value else s.normalized_name end as entity, s.term_index, s.confidence_score/100 as confidence_score, s.relevancy_score/100 as relevancy_score, s.frequency as frequency
+from web w, ca_term s
+where w.doc_id=s.doc_id
+and w.web_crawler_group_name = ?
+and s.confidence_score >= ?
+and s.relevancy_score >= ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>doc_id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>doc_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>doc_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cartridge</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cartridge</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cartridge</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>entity</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>entity</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>entity</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>term_index</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>5</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>term_index</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>term_index</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>confidence_score</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>5</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>confidence_score</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>confidence_score</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>relevancy_score</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>5</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>relevancy_score</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>relevancy_score</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>frequency</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>frequency</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>frequency</design:label>
+            <design:formattingHints>
+              <design:displaySize>12</design:displaySize>
             </design:formattingHints>
           </design:usageHints>
         </design:resultColumnDefinitions>

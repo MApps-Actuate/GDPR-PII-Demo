@@ -354,279 +354,6 @@
             </list-property>
             <property name="copyHyperlink">true</property>
         </extended-item>
-        <extended-item extensionName="Chart" name="Column Chart - Data Model_dde1a046-4de7-4972-b26c-657b9e257ff5" id="1989">
-            <xml-property name="xmlRepresentation"><![CDATA[<ActuateChart version="2.6.1">
- <ChartWithAxes version="2.6.1" type="Bar Chart" subType="SideBySide" orientation="0">
-  <block>
-   <children _type="TitleBlock" visible="true" auto="false">
-    <outline>
-     <color _nil="1"/>
-    </outline>
-    <label>
-     <caption value="(Click to drill for Category then PII Type)">
-      <font name="Lato" size="12.0" bold="false" italic="false" underline="false"/>
-      <color _body=",255,150,150,150"/>
-     </caption>
-     <background _nil="1"/>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </label>
-   </children>
-   <children _type="Plot">
-    <outline>
-     <color _nil="1"/>
-    </outline>
-    <clientArea>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </clientArea>
-   </children>
-   <children _type="Legend" visible="false" orientation="1" position="3">
-    <outline>
-     <color _nil="1"/>
-    </outline>
-    <clientArea>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </clientArea>
-    <separator>
-     <color _nil="1"/>
-    </separator>
-    <title visible="true">
-     <background _nil="1"/>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </title>
-   </children>
-   <outline>
-    <color _nil="1"/>
-   </outline>
-  </block>
-  <extendedProperties name="enable.area.alt" value="false"/>
-  <extendedProperties name="enable.drill.category" value="true"/>
-  <extendedProperties name="enable.drill.series" value="true"/>
-  <extendedProperties name="jschart.range.selector" value="false"/>
-  <extendedProperties name="jschart.navigator" value="false"/>
-  <extendedProperties name="jschart.scroll" value="false"/>
-  <extendedProperties name="keep.hierarchy.category" value="true"/>
-  <extendedProperties name="keep.hierarchy.series" value="true"/>
-  <extendedProperties name="enable.data.summarize" value="false"/>
-  <extendedProperties name="jschart.glass.style" value="false"/>
-  <extendedProperties name="jschart.zoom" value=""/>
-  <extendedProperties name="drilled.filters_" value="_@,_"/>
-  <extendedProperties name="enable.drill.proc_" value="true"/>
-  <extendedProperties name="jschart.series.shadow" value="false"/>
-  <sampleData>
-   <baseSampleData dataSetRepresentation="QWER"/>
-   <orthogonalSampleData dataSetRepresentation="QWER" seriesDefinitionIndex="0"/>
-  </sampleData>
-  <interactivity enable="true" legendBehavior="1"/>
-  <emptyMessage visible="true">
-   <caption value="This chart contains no data."/>
-   <background _body=",64,127,127,127"/>
-   <outline>
-    <color _body=",128,127,127,127"/>
-   </outline>
-  </emptyMessage>
-  <axes type="2" gapWidth="0.5" labelPosition="1" staggered="true" interval="1" categoryAxis="true">
-   <title visible="false">
-    <caption value="">
-     <font size="14.0" bold="false" italic="false" underline="false" rotation="90.0"/>
-     <color _body=",255,0,0,0"/>
-    </caption>
-    <background _nil="1"/>
-    <outline>
-     <color _nil="1"/>
-    </outline>
-   </title>
-   <associatedAxes type="0" labelPosition="2" staggered="true" primaryAxis="true" percent="false">
-    <title visible="false">
-     <caption value="">
-      <font bold="false" italic="false" underline="false" rotation="0.0"/>
-      <color _body=",255,0,0,0"/>
-     </caption>
-     <background _nil="1"/>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </title>
-    <seriesDefinitions>
-     <query definition=""/>
-     <series _type="BarSeries" seriesIdentifier="Document ID" labelPosition="5" stacked="false">
-      <label>
-       <caption value="Document ID"/>
-       <background _nil="1"/>
-       <outline>
-        <color _nil="1"/>
-       </outline>
-      </label>
-      <dataDefinition definition="row[&quot;id&quot;]">
-       <grouping enabled="true" aggregateExpression="DistinctCount"/>
-      </dataDefinition>
-      <triggers condition="6">
-       <action type="1">
-        <value _type="TooltipValue" text="" delay="0"/>
-       </action>
-      </triggers>
-      <curveFitting _nil="1"/>
-     </series>
-    </seriesDefinitions>
-    <lineAttributes>
-     <color _nil="1"/>
-    </lineAttributes>
-    <label visible="true">
-     <caption>
-      <font name="Lato" size="10.0" bold="false" italic="false" underline="false" rotation="0.0"/>
-      <color _body=",255,0,0,0"/>
-     </caption>
-     <background _nil="1"/>
-     <outline>
-      <color _nil="1"/>
-     </outline>
-    </label>
-    <majorGrid>
-     <lineAttributes>
-      <color _nil="1"/>
-     </lineAttributes>
-     <tickAttributes>
-      <color _nil="1"/>
-     </tickAttributes>
-    </majorGrid>
-    <minorGrid>
-     <lineAttributes>
-      <color _nil="1"/>
-     </lineAttributes>
-     <tickAttributes>
-      <color _nil="1"/>
-     </tickAttributes>
-    </minorGrid>
-    <scale step="0.0" stepNumber="1"/>
-    <origin>
-     <value _nil="1"/>
-    </origin>
-   </associatedAxes>
-   <seriesDefinitions sorting="0">
-    <query definition=""/>
-    <series seriesIdentifier="Classification">
-     <label>
-      <background _nil="1"/>
-      <outline>
-       <color _nil="1"/>
-      </outline>
-     </label>
-     <dataDefinition definition="row[&quot;Classification&quot;]"/>
-     <curveFitting _nil="1"/>
-    </series>
-    <grouping enabled="true" groupingInterval="0.0"/>
-   </seriesDefinitions>
-   <lineAttributes>
-    <color _nil="1"/>
-   </lineAttributes>
-   <label visible="true">
-    <caption>
-     <font name="Lato" size="10.0" bold="false" italic="false" underline="false" rotation="0.0"/>
-     <color _body=",255,0,0,0"/>
-    </caption>
-    <background _nil="1"/>
-    <outline>
-     <color _nil="1"/>
-    </outline>
-   </label>
-   <majorGrid>
-    <lineAttributes>
-     <color _nil="1"/>
-    </lineAttributes>
-    <tickAttributes>
-     <color _nil="1"/>
-    </tickAttributes>
-   </majorGrid>
-   <minorGrid>
-    <lineAttributes>
-     <color _nil="1"/>
-    </lineAttributes>
-    <tickAttributes>
-     <color _nil="1"/>
-    </tickAttributes>
-   </minorGrid>
-   <origin>
-    <value _nil="1"/>
-   </origin>
-  </axes>
-  <rotation>
-   <angles/>
-  </rotation>
- </ChartWithAxes>
-</ActuateChart>
-]]></xml-property>
-            <property name="outputFormat">JS</property>
-            <list-property name="filter">
-                <structure>
-                    <property name="operator">eq</property>
-                    <expression name="expr">dataSetRow["kb_name"]</expression>
-                    <simple-property-list name="value1">
-                        <value type="constant">PersonalInformation</value>
-                    </simple-property-list>
-                    <property name="filterTarget">DataSet</property>
-                    <property name="type">slicer</property>
-                </structure>
-            </list-property>
-            <property name="borderTopStyle">none</property>
-            <property name="borderTopWidth">medium</property>
-            <property name="borderTopColor">#000000</property>
-            <property name="borderLeftStyle">none</property>
-            <property name="borderLeftWidth">medium</property>
-            <property name="borderLeftColor">#000000</property>
-            <property name="borderBottomStyle">none</property>
-            <property name="borderBottomWidth">medium</property>
-            <property name="borderBottomColor">#000000</property>
-            <property name="borderRightStyle">none</property>
-            <property name="borderRightWidth">medium</property>
-            <property name="borderRightColor">#000000</property>
-            <property name="marginTop">0pt</property>
-            <property name="marginBottom">0pt</property>
-            <property name="marginLeft">0pt</property>
-            <property name="marginRight">0pt</property>
-            <property name="height">247.5pt</property>
-            <property name="width">515.25pt</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">Classification</property>
-                    <expression name="expression">dataSetRow["Classification"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">id</property>
-                    <text-property name="displayName">Document ID</text-property>
-                    <expression name="expression">dataSetRow["id"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">category</property>
-                    <text-property name="displayName">Category</text-property>
-                    <expression name="expression">dataSetRow["category"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">cartridge</property>
-                    <text-property name="displayName">Cartridge</text-property>
-                    <expression name="expression">dataSetRow["cartridge"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <property name="theme">ThemesReportItems31.Chart-Innovate Bank</property>
-            <property name="linkedDataModel">Text Analytics DO::Classification</property>
-            <list-property name="userProperties">
-                <structure>
-                    <property name="name">copyHyperlink</property>
-                    <property name="type">string</property>
-                </structure>
-            </list-property>
-            <property name="copyHyperlink">true</property>
-        </extended-item>
         <extended-item extensionName="Chart" name="Bubble Chart - Data Model_587d5db7-cdb4-48b1-bf11-343019166f30" id="1993">
             <xml-property name="xmlRepresentation"><![CDATA[<ActuateChart version="2.6.1">
  <ChartWithAxes version="2.6.1" type="Bubble Chart" subType="Standard" orientation="1">
@@ -946,6 +673,15 @@
                 </structure>
                 <structure>
                     <property name="operator">eq</property>
+                    <expression name="expr">dataSetRow["PII_status"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="constant">PII detected</value>
+                    </simple-property-list>
+                    <property name="filterTarget">DataSet</property>
+                    <property name="type">slicer</property>
+                </structure>
+                <structure>
+                    <property name="operator">eq</property>
                     <expression name="expr">dataSetRow["kb_name"]</expression>
                     <simple-property-list name="value1">
                         <value type="constant">PersonalInformation</value>
@@ -979,7 +715,7 @@
                             <property name="fontFamily">"Lato"</property>
                             <property name="fontSize">10pt</property>
                             <property name="color">#FFFFFF</property>
-                            <text-property name="text">Cartridge</text-property>
+                            <text-property name="text">PII Type</text-property>
                         </label>
                     </cell>
                     <cell id="2059">
@@ -1071,6 +807,273 @@
         <text name="b0860ba7-64f9-47a3-8d70-fb35d13e258a" id="2079">
             <text-property name="content"><![CDATA[http://visjs.org/examples/network/nodeStyles/customGroups.html]]></text-property>
         </text>
+        <extended-item extensionName="Chart" name="Bar Chart - Classification_c6c0fbcc-514b-43ad-a5d3-a893605afa89" id="2089">
+            <xml-property name="xmlRepresentation"><![CDATA[<ActuateChart version="2.6.1">
+ <ChartWithAxes version="2.6.1" type="Bar Chart" subType="SideBySide" orientation="0">
+  <block>
+   <children _type="TitleBlock" visible="true" auto="false">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <label>
+     <caption value="(Click to drill for Category then PII Type)">
+      <font name="Lato" size="12.0" bold="false" italic="false" underline="false"/>
+      <color _body=",255,150,150,150"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+   </children>
+   <children _type="Plot">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </clientArea>
+   </children>
+   <children _type="Legend" visible="false" orientation="1" position="3">
+    <outline>
+     <color _nil="1"/>
+    </outline>
+    <clientArea>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </clientArea>
+    <separator>
+     <color _nil="1"/>
+    </separator>
+    <title visible="true">
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+   </children>
+   <bounds _body=",,513.0,"/>
+   <outline>
+    <color _nil="1"/>
+   </outline>
+  </block>
+  <extendedProperties name="enable.area.alt" value="false"/>
+  <extendedProperties name="enable.drill.category" value="true"/>
+  <extendedProperties name="enable.drill.series" value="true"/>
+  <extendedProperties name="jschart.range.selector" value="false"/>
+  <extendedProperties name="jschart.navigator" value="false"/>
+  <extendedProperties name="jschart.scroll" value="true"/>
+  <extendedProperties name="keep.hierarchy.category" value="true"/>
+  <extendedProperties name="keep.hierarchy.series" value="true"/>
+  <extendedProperties name="enable.data.summarize" value="false"/>
+  <extendedProperties name="jschart.glass.style" value="false"/>
+  <extendedProperties name="jschart.zoom" value="xy"/>
+  <extendedProperties name="enable.drill.proc_" value="true"/>
+  <extendedProperties name="drilled.filters_" value="_@,_"/>
+  <sampleData>
+   <baseSampleData dataSetRepresentation="QWER"/>
+   <orthogonalSampleData dataSetRepresentation="QWER" seriesDefinitionIndex="0"/>
+  </sampleData>
+  <interactivity enable="true" legendBehavior="1"/>
+  <emptyMessage visible="true">
+   <caption value="This chart contains no data."/>
+   <background _body=",64,127,127,127"/>
+   <outline>
+    <color _body=",128,127,127,127"/>
+   </outline>
+  </emptyMessage>
+  <axes type="2" gapWidth="0.5" labelPosition="1" staggered="false" interval="1" categoryAxis="true">
+   <title visible="false">
+    <caption value="">
+     <font size="14.0" bold="false" italic="false" underline="false" rotation="90.0"/>
+     <color _body=",255,51,51,51"/>
+    </caption>
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </title>
+   <associatedAxes type="0" labelPosition="2" staggered="false" primaryAxis="true" percent="false">
+    <title visible="false">
+     <caption value="">
+      <font bold="false" italic="false" underline="false" rotation="0.0"/>
+      <color _body=",255,0,0,0"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </title>
+    <seriesDefinitions>
+     <query definition=""/>
+     <series _type="BarSeries" seriesIdentifier="Document ID" labelPosition="5" stacked="false">
+      <label>
+       <caption value="Document ID"/>
+       <background _nil="1"/>
+       <outline>
+        <color _nil="1"/>
+       </outline>
+      </label>
+      <dataDefinition definition="row[&quot;id&quot;]">
+       <grouping enabled="true" aggregateExpression="DistinctCount"/>
+      </dataDefinition>
+      <triggers condition="6">
+       <action type="1">
+        <value _type="TooltipValue" text="valueData" delay="0"/>
+       </action>
+      </triggers>
+      <curveFitting _nil="1"/>
+     </series>
+    </seriesDefinitions>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <label visible="true">
+     <caption>
+      <font size="10.0" bold="false" italic="false" underline="false" rotation="0.0"/>
+      <color _body=",255,51,51,51"/>
+     </caption>
+     <background _nil="1"/>
+     <outline>
+      <color _nil="1"/>
+     </outline>
+    </label>
+    <majorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </majorGrid>
+    <minorGrid>
+     <lineAttributes>
+      <color _nil="1"/>
+     </lineAttributes>
+     <tickAttributes>
+      <color _nil="1"/>
+     </tickAttributes>
+    </minorGrid>
+    <scale step="0.0" stepNumber="1"/>
+    <origin>
+     <value _nil="1"/>
+    </origin>
+   </associatedAxes>
+   <seriesDefinitions sorting="0">
+    <query definition=""/>
+    <series seriesIdentifier="Category">
+     <label>
+      <caption value="Category"/>
+      <background _nil="1"/>
+      <outline>
+       <color _nil="1"/>
+      </outline>
+     </label>
+     <dataDefinition definition="row[&quot;Classification&quot;]"/>
+     <curveFitting _nil="1"/>
+    </series>
+    <grouping enabled="true" groupingInterval="0.0"/>
+   </seriesDefinitions>
+   <lineAttributes>
+    <color _nil="1"/>
+   </lineAttributes>
+   <label visible="true">
+    <caption>
+     <font size="10.0" bold="false" italic="false" underline="false" rotation="0.0"/>
+     <color _body=",255,51,51,51"/>
+    </caption>
+    <background _nil="1"/>
+    <outline>
+     <color _nil="1"/>
+    </outline>
+   </label>
+   <majorGrid>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes>
+     <color _nil="1"/>
+    </tickAttributes>
+   </majorGrid>
+   <minorGrid>
+    <lineAttributes>
+     <color _nil="1"/>
+    </lineAttributes>
+    <tickAttributes>
+     <color _nil="1"/>
+    </tickAttributes>
+   </minorGrid>
+   <origin>
+    <value _nil="1"/>
+   </origin>
+  </axes>
+  <rotation>
+   <angles/>
+  </rotation>
+ </ChartWithAxes>
+</ActuateChart>
+]]></xml-property>
+            <property name="outputFormat">JS</property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr">dataSetRow["PII_status"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="constant">PII detected</value>
+                    </simple-property-list>
+                    <property name="filterTarget">DataSet</property>
+                    <property name="type">slicer</property>
+                </structure>
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr">dataSetRow["kb_name"]</expression>
+                    <simple-property-list name="value1">
+                        <value type="constant">PersonalInformation</value>
+                    </simple-property-list>
+                    <property name="filterTarget">DataSet</property>
+                    <property name="type">slicer</property>
+                </structure>
+            </list-property>
+            <property name="height">249pt</property>
+            <property name="width">513pt</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Classification</property>
+                    <expression name="expression">dataSetRow["Classification"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">id</property>
+                    <text-property name="displayName">Document ID</text-property>
+                    <expression name="expression">dataSetRow["id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">category</property>
+                    <text-property name="displayName">Category</text-property>
+                    <expression name="expression">dataSetRow["category"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cartridge</property>
+                    <text-property name="displayName">Cartridge</text-property>
+                    <expression name="expression">dataSetRow["cartridge"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="theme">ThemesReportItems31.Chart-Innovate Bank</property>
+            <property name="linkedDataModel">Text Analytics DO::Classification</property>
+            <list-property name="userProperties">
+                <structure>
+                    <property name="name">copyHyperlink</property>
+                    <property name="type">string</property>
+                </structure>
+            </list-property>
+            <property name="copyHyperlink">true</property>
+        </extended-item>
     </body>
     <property name="dashboardView">
         <dashboard id="2">
@@ -1131,61 +1134,6 @@
                                     <property name="eventObjects">
                                         <event-object>
                                             <property name="gadget">Gadget_be9597b3-c827-49e6-be74-4fa58bae711f</property>
-                                        </event-object>
-                                    </property>
-                                </event-subscriber>
-                            </property>
-                        </gadget>
-                        <gadget name="Gadget_fcb75a9f-0e42-463b-8ed2-41168af76d0d" id="1987">
-                            <property name="x">18px</property>
-                            <property name="y">324px</property>
-                            <property name="title">Personal Information By Classification</property>
-                            <property name="showTitle">false</property>
-                            <property name="showBorder">false</property>
-                            <property name="zIndex">4</property>
-                            <property name="showScrollBar">false</property>
-                            <property name="height">365px</property>
-                            <property name="width">704px</property>
-                            <property name="caption">
-                                <gadget-caption id="1988">
-                                    <property name="showCaption">true</property>
-                                    <property name="horizontalAlignment">left</property>
-                                    <property name="fontFamily">"Lato"</property>
-                                    <property name="fontSize">18pt</property>
-                                    <property name="fontWeight">normal</property>
-                                    <property name="fontStyle">normal</property>
-                                    <property name="color">#353535</property>
-                                    <property name="textUnderline">none</property>
-                                </gadget-caption>
-                            </property>
-                            <property name="content">
-                                <data-view id="1990">
-                                    <property name="gadgetType">viewer</property>
-                                    <property name="internalReportLetRef">Column Chart - Data Model_dde1a046-4de7-4972-b26c-657b9e257ff5</property>
-                                </data-view>
-                            </property>
-                            <property name="observers">
-                                <event-subscriber>
-                                    <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
-                                    <property name="eventObjects">
-                                        <event-object>
-                                            <property name="gadget">Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0</property>
-                                        </event-object>
-                                        <event-object>
-                                            <property name="gadget">Gadget_6094142b-ee3d-413f-b2d0-5e2ecced88df</property>
-                                        </event-object>
-                                    </property>
-                                </event-subscriber>
-                            </property>
-                            <property name="subscribeTo">
-                                <event-subscriber>
-                                    <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
-                                    <property name="eventObjects">
-                                        <event-object>
-                                            <property name="gadget">Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0</property>
-                                        </event-object>
-                                        <event-object>
-                                            <property name="gadget">Gadget_6094142b-ee3d-413f-b2d0-5e2ecced88df</property>
                                         </event-object>
                                     </property>
                                 </event-subscriber>
@@ -1294,10 +1242,10 @@
                                     <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
                                     <property name="eventObjects">
                                         <event-object>
-                                            <property name="gadget">Gadget_fcb75a9f-0e42-463b-8ed2-41168af76d0d</property>
+                                            <property name="gadget">Gadget_6094142b-ee3d-413f-b2d0-5e2ecced88df</property>
                                         </event-object>
                                         <event-object>
-                                            <property name="gadget">Gadget_6094142b-ee3d-413f-b2d0-5e2ecced88df</property>
+                                            <property name="gadget">Gadget_fb1cce5f-ce2d-4b1a-90a7-934c2712026b</property>
                                         </event-object>
                                     </property>
                                 </event-subscriber>
@@ -1307,10 +1255,10 @@
                                     <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
                                     <property name="eventObjects">
                                         <event-object>
-                                            <property name="gadget">Gadget_fcb75a9f-0e42-463b-8ed2-41168af76d0d</property>
+                                            <property name="gadget">Gadget_6094142b-ee3d-413f-b2d0-5e2ecced88df</property>
                                         </event-object>
                                         <event-object>
-                                            <property name="gadget">Gadget_6094142b-ee3d-413f-b2d0-5e2ecced88df</property>
+                                            <property name="gadget">Gadget_fb1cce5f-ce2d-4b1a-90a7-934c2712026b</property>
                                         </event-object>
                                     </property>
                                 </event-subscriber>
@@ -1356,10 +1304,10 @@
                                     <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
                                     <property name="eventObjects">
                                         <event-object>
-                                            <property name="gadget">Gadget_fcb75a9f-0e42-463b-8ed2-41168af76d0d</property>
+                                            <property name="gadget">Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0</property>
                                         </event-object>
                                         <event-object>
-                                            <property name="gadget">Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0</property>
+                                            <property name="gadget">Gadget_fb1cce5f-ce2d-4b1a-90a7-934c2712026b</property>
                                         </event-object>
                                     </property>
                                 </event-subscriber>
@@ -1369,10 +1317,10 @@
                                     <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
                                     <property name="eventObjects">
                                         <event-object>
-                                            <property name="gadget">Gadget_fcb75a9f-0e42-463b-8ed2-41168af76d0d</property>
+                                            <property name="gadget">Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0</property>
                                         </event-object>
                                         <event-object>
-                                            <property name="gadget">Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0</property>
+                                            <property name="gadget">Gadget_fb1cce5f-ce2d-4b1a-90a7-934c2712026b</property>
                                         </event-object>
                                     </property>
                                 </event-subscriber>
@@ -1406,6 +1354,61 @@
                                     <property name="gadgetType">embedded</property>
                                     <property name="internalReportLetRef">8e841661-1dc0-4946-a820-1e83a989a195</property>
                                 </data-view>
+                            </property>
+                        </gadget>
+                        <gadget name="Gadget_fb1cce5f-ce2d-4b1a-90a7-934c2712026b" id="2087">
+                            <property name="x">18px</property>
+                            <property name="y">324px</property>
+                            <property name="title">Personal Information Detected By Classification</property>
+                            <property name="showTitle">false</property>
+                            <property name="showBorder">false</property>
+                            <property name="zIndex">8</property>
+                            <property name="showScrollBar">false</property>
+                            <property name="height">367px</property>
+                            <property name="width">701px</property>
+                            <property name="caption">
+                                <gadget-caption id="2088">
+                                    <property name="showCaption">true</property>
+                                    <property name="horizontalAlignment">left</property>
+                                    <property name="fontFamily">"Lato"</property>
+                                    <property name="fontSize">18pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="fontStyle">normal</property>
+                                    <property name="color">#353535</property>
+                                    <property name="textUnderline">none</property>
+                                </gadget-caption>
+                            </property>
+                            <property name="content">
+                                <data-view id="2090">
+                                    <property name="gadgetType">viewer</property>
+                                    <property name="internalReportLetRef">Bar Chart - Classification_c6c0fbcc-514b-43ad-a5d3-a893605afa89</property>
+                                </data-view>
+                            </property>
+                            <property name="observers">
+                                <event-subscriber>
+                                    <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
+                                    <property name="eventObjects">
+                                        <event-object>
+                                            <property name="gadget">Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0</property>
+                                        </event-object>
+                                        <event-object>
+                                            <property name="gadget">Gadget_6094142b-ee3d-413f-b2d0-5e2ecced88df</property>
+                                        </event-object>
+                                    </property>
+                                </event-subscriber>
+                            </property>
+                            <property name="subscribeTo">
+                                <event-subscriber>
+                                    <property name="eventName">SELECT_EVENT:SEMANTIC_filter</property>
+                                    <property name="eventObjects">
+                                        <event-object>
+                                            <property name="gadget">Gadget_2dd17d28-5d77-4a5d-ab13-5afccec702b0</property>
+                                        </event-object>
+                                        <event-object>
+                                            <property name="gadget">Gadget_6094142b-ee3d-413f-b2d0-5e2ecced88df</property>
+                                        </event-object>
+                                    </property>
+                                </event-subscriber>
                             </property>
                         </gadget>
                     </property>
