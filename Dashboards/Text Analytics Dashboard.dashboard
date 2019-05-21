@@ -129,6 +129,8 @@
   <extendedProperties name="keep.hierarchy.series" value="false"/>
   <extendedProperties name="enable.data.summarize" value="false"/>
   <extendedProperties name="jschart.series.shadow" value="false"/>
+  <extendedProperties name="drilled.filters_" value="_@,_"/>
+  <extendedProperties name="enable.drill.proc_" value="true"/>
   <sampleData>
    <baseSampleData dataSetRepresentation="&#039;A&#039;,&#039;B&#039;,&#039;C&#039;,&#039;D&#039;,&#039;E&#039;"/>
    <orthogonalSampleData dataSetRepresentation="6,4,12,8,10" seriesDefinitionIndex="0"/>
@@ -199,6 +201,12 @@
                     <property name="name">id</property>
                     <text-property name="displayName">Document ID</text-property>
                     <expression name="expression">dataSetRow["id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">entity_type</property>
+                    <text-property name="displayName">Entity Type</text-property>
+                    <expression name="expression">dataSetRow["entity_type"]</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -872,7 +880,8 @@
   <extendedProperties name="jschart.glass.style" value="false"/>
   <extendedProperties name="jschart.zoom" value="xy"/>
   <extendedProperties name="enable.drill.proc_" value="true"/>
-  <extendedProperties name="drilled.filters_" value="_@,_"/>
+  <extendedProperties name="drilled.filters_" value="row[&quot;Classification&quot;]eq&quot;Protected&quot;_@,__@,_"/>
+  <extendedProperties name="jschart.series.shadow" value="false"/>
   <sampleData>
    <baseSampleData dataSetRepresentation="QWER"/>
    <orthogonalSampleData dataSetRepresentation="QWER" seriesDefinitionIndex="0"/>
@@ -972,7 +981,7 @@
        <color _nil="1"/>
       </outline>
      </label>
-     <dataDefinition definition="row[&quot;Classification&quot;]"/>
+     <dataDefinition definition="row[&quot;category&quot;]"/>
      <curveFitting _nil="1"/>
     </series>
     <grouping enabled="true" groupingInterval="0.0"/>
@@ -1035,6 +1044,13 @@
                     </simple-property-list>
                     <property name="filterTarget">DataSet</property>
                     <property name="type">slicer</property>
+                </structure>
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["Classification"]</expression>
+                    <simple-property-list name="value1">
+                        <value>"Protected"</value>
+                    </simple-property-list>
                 </structure>
             </list-property>
             <property name="height">249pt</property>
@@ -1379,7 +1395,7 @@
                                 </gadget-caption>
                             </property>
                             <property name="content">
-                                <data-view id="2090">
+                                <data-view id="2091">
                                     <property name="gadgetType">viewer</property>
                                     <property name="internalReportLetRef">Bar Chart - Classification_c6c0fbcc-514b-43ad-a5d3-a893605afa89</property>
                                 </data-view>
