@@ -12,6 +12,19 @@
             <property name="namespace">ThemesReportItems31</property>
         </structure>
     </list-property>
+    <method name="onContentUpdate"><![CDATA[// Get the Viewer's current UI Options
+var uiOptions = this.getViewer().getUIOptions();
+
+// Remove ability for user to change interactivity options
+uiOptions.enableEditReport(false);
+uiOptions.enableToolBar(false);
+
+// Set the modified UI Options back into the Viewer
+this.getViewer().setUIOptions(uiOptions);
+
+// If Interactivity is not enabled, enable it
+//if (!this.getViewer().isInteractive())
+	//this.getViewer().enableIV();]]></method>
     <parameters>
         <scalar-parameter name="pDocID" id="111">
             <property name="valueType">static</property>
@@ -27,13 +40,13 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
-        <scalar-parameter name="hideSummary" id="1281">
+        <scalar-parameter name="pHideBanner" id="2668">
             <property name="valueType">static</property>
             <property name="isRequired">false</property>
             <property name="dataType">boolean</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">true</value>
+                <value type="constant">false</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -42,49 +55,61 @@
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <data-mart-data-source name="Text Analytics DO" id="45">
-            <property name="datamartURL">Data Objects/Text Analytics</property>
+        <data-mart-data-source name="Data Source" id="1620">
+            <property name="datamartURL">Data Objects/PII Network</property>
             <property name="accessType">latest</property>
         </data-mart-data-source>
     </data-sources>
     <property name="linkedDataModels">
-        <data-mart-linked-data-model name="Data Model" id="46">
-            <property name="dataSource">Text Analytics DO</property>
-            <property name="dataObject">Data Model</property>
+        <data-mart-linked-data-model name="PII Documents Data Model" id="1621">
+            <property name="dataSource">Data Source</property>
+            <property name="dataObject">PII Documents Data Model</property>
         </data-mart-linked-data-model>
     </property>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="orientation">auto</property>
-            <page-footer>
-                <text id="3">
-                    <property name="fontFamily">"Lato"</property>
-                    <property name="fontSize">8pt</property>
-                    <property name="fontStyle">italic</property>
-                    <property name="paddingLeft">25pt</property>
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
-            </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
-        <text id="784">
+        <text id="2462">
+            <property name="marginBottom">5pt</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["pHideBanner"].value</expression>
+                </structure>
+            </list-property>
             <property name="contentType">html</property>
             <text-property name="content"><![CDATA[<script>
-$("<style type='text/css'> .highlight { background-color: <VALUE-OF>vars["Highlight Color"]</VALUE-OF> }</style>").appendTo("head");
+	$('head').append('<link id="myCSS" rel="stylesheet" type="text/css" href="/iportal/servlet/DownloadFile/blank.css?name=/Applications/GDPR-PII-Demo/css/blank.css&amp;fileExtension=css&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false">');
+	$("#myCSS").attr("href", "/iportal/servlet/DownloadFile/overrideActuate_2019.css?name=/Applications/GDPR-PII-Demo/css/overrideActuate_2019.css&amp;fileExtension=css&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false");
+	$(".floatPanel").css("margin-top","-25px");
+</script>
 
-jQuery.fn.highlight=function(c){function e(b,c){var d=0;if(3==b.nodeType){var a=b.data.toUpperCase().indexOf(c),a=a-(b.data.substr(0,a).toUpperCase().length-b.data.substr(0,a).length);if(0<=a){d=document.createElement("span");d.className="highlight";a=b.splitText(a);a.splitText(c.length);var f=a.cloneNode(!0);d.appendChild(f);a.parentNode.replaceChild(d,a);d=1}}else if(1==b.nodeType&amp;&amp;b.childNodes&amp;&amp;!/(script|style)/i.test(b.tagName))for(a=0;a<b.childNodes.length;++a)a+=e(b.childNodes[a],c);return d} return this.length&amp;&amp;c&amp;&amp;c.length?this.each(function(){e(this,c.toUpperCase())}):this};jQuery.fn.removeHighlight=function(){return this.find("span.highlight").each(function(){this.parentNode.firstChild.nodeName;with(this.parentNode)replaceChild(this.firstChild,this),normalize()}).end()};
-
-if (!/johannburkard.de$/i.test(location.hostname)) {
-    (function() {
-        function load(b,c){var d=document,f="script",a=d.createElement(f),e=2166136261,g=b.length,h=c,k=/=\?/;d=d.getElementsByTagName("script")[0];if(k.test(b)){for(;g--;)e=16777619*e^b.charCodeAt(g);window[f+=0>e?-e:e]=function(){h.apply(h,arguments);delete window[f]};b=b.replace(k,"="+f);c=0}a.onload=a.onreadystatechange=function(){if(/de|m/.test(a.readyState||"m")){c&amp;&amp;c();d.parentNode.removeChild(a);try{for(c in a)delete a[c]}catch(l){}}};a.src=b;window.setTimeout(function(){d.parentNode.insertBefore(a,d)},0)};
-        
-    })()
-}</script>]]></text-property>
+<div id="banner" align="left" style="height:65px;">
+	<table id="bannerHeading" width="100%">
+		<tbody>
+			<tr style="vertical-align:middle;">
+				<td width="30%" align="left" style="white-space: nowrap;">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/Home%20Banner.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px" style="padding-left:20px"><span style="vertical-align:super; white-space: nowrap;">Privacy and Data Governance</span>
+				</td>
+				<td width="30%" align="center">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/OT%20Magellan.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px">
+				</td>
+				<td width="40%" align="right">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/userhead.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px" style="padding-right:20px">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div>
+]]></text-property>
         </text>
         <grid id="178">
             <property name="fontFamily">"Lato"</property>
+            <expression name="bookmark" type="javascript">"DocViewer"</expression>
             <column id="774">
                 <property name="width">2%</property>
             </column>
@@ -135,8 +160,9 @@ if (!/johannburkard.de$/i.test(location.hostname)) {
                             <structure>
                                 <property name="name">positive_tone_score1</property>
                                 <text-property name="displayName">Positive Tone Score</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["positive_tone_score1"]</expression>
+                                <expression name="expression" type="javascript">dataSetRow["positive_tone_score"]</expression>
                                 <property name="dataType">decimal</property>
+                                <property name="allowExport">true</property>
                             </structure>
                             <structure>
                                 <property name="name">negative_tone_score</property>
@@ -178,7 +204,7 @@ else null;</expression>
                                 <property name="allowExport">true</property>
                             </structure>
                         </list-property>
-                        <property name="linkedDataModel">Data Model</property>
+                        <property name="linkedDataModel">PII Documents Data Model</property>
                         <list-property name="filter">
                             <structure>
                                 <property name="operator">eq</property>
@@ -202,6 +228,23 @@ else null;</expression>
                                 <cell id="1435">
                                     <property name="colSpan">8</property>
                                     <property name="rowSpan">1</property>
+                                    <text id="784">
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[<script>
+$("<style type='text/css'> .highlight { background-color: <VALUE-OF>vars["Highlight Color"]</VALUE-OF> }</style>").appendTo("head");
+
+jQuery.fn.highlight=function(c){function e(b,c){var d=0;if(3==b.nodeType){var a=b.data.toUpperCase().indexOf(c),a=a-(b.data.substr(0,a).toUpperCase().length-b.data.substr(0,a).length);if(0<=a){d=document.createElement("span");d.className="highlight";a=b.splitText(a);a.splitText(c.length);var f=a.cloneNode(!0);d.appendChild(f);a.parentNode.replaceChild(d,a);d=1}}else if(1==b.nodeType&amp;&amp;b.childNodes&amp;&amp;!/(script|style)/i.test(b.tagName))for(a=0;a<b.childNodes.length;++a)a+=e(b.childNodes[a],c);return d} return this.length&amp;&amp;c&amp;&amp;c.length?this.each(function(){e(this,c.toUpperCase())}):this};jQuery.fn.removeHighlight=function(){return this.find("span.highlight").each(function(){this.parentNode.firstChild.nodeName;with(this.parentNode)replaceChild(this.firstChild,this),normalize()}).end()};
+
+if (!/johannburkard.de$/i.test(location.hostname)) {
+    (function() {
+        function load(b,c){var d=document,f="script",a=d.createElement(f),e=2166136261,g=b.length,h=c,k=/=\?/;d=d.getElementsByTagName("script")[0];if(k.test(b)){for(;g--;)e=16777619*e^b.charCodeAt(g);window[f+=0>e?-e:e]=function(){h.apply(h,arguments);delete window[f]};b=b.replace(k,"="+f);c=0}a.onload=a.onreadystatechange=function(){if(/de|m/.test(a.readyState||"m")){c&amp;&amp;c();d.parentNode.removeChild(a);try{for(c in a)delete a[c]}catch(l){}}};a.src=b;window.setTimeout(function(){d.parentNode.insertBefore(a,d)},0)};
+        
+    })()
+}
+bg = "";
+fontColor = "";
+</script>]]></text-property>
+                                    </text>
                                     <grid id="698">
                                         <column id="699">
                                             <property name="width">56px</property>
@@ -448,107 +491,7 @@ else "<img src='https://i.imgur.com/Oe3DHl9.png'/>";</VALUE-OF>]]></text-propert
             <row id="184">
                 <cell id="772"/>
                 <cell id="185">
-                    <grid id="1234">
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">params["hideSummary"].value</expression>
-                            </structure>
-                        </list-property>
-                        <column id="1235"/>
-                        <row id="1236">
-                            <cell id="1237">
-                                <property name="paddingBottom">11pt</property>
-                                <property name="paddingRight">11pt</property>
-                                <table id="1238">
-                                    <list-property name="boundDataColumns">
-                                        <structure>
-                                            <property name="name">doc_summary</property>
-                                            <expression name="expression" type="javascript">dataSetRow["summary"]</expression>
-                                            <property name="dataType">string</property>
-                                            <property name="allowExport">true</property>
-                                        </structure>
-                                        <structure>
-                                            <property name="name">id</property>
-                                            <text-property name="displayName">Internal Doc ID</text-property>
-                                            <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
-                                            <property name="dataType">string</property>
-                                            <property name="allowExport">true</property>
-                                        </structure>
-                                    </list-property>
-                                    <property name="linkedDataModel">Data Model</property>
-                                    <list-property name="filter">
-                                        <structure>
-                                            <property name="operator">eq</property>
-                                            <expression name="expr" type="javascript">row["id"]</expression>
-                                            <simple-property-list name="value1">
-                                                <value type="javascript">params["pDocID"].value</value>
-                                            </simple-property-list>
-                                            <property name="updateAggregation">true</property>
-                                        </structure>
-                                    </list-property>
-                                    <column id="1267"/>
-                                    <header>
-                                        <row id="1239">
-                                            <cell id="1240">
-                                                <property name="colSpan">1</property>
-                                                <property name="rowSpan">1</property>
-                                                <grid id="1241">
-                                                    <column id="1242">
-                                                        <property name="width">56px</property>
-                                                    </column>
-                                                    <column id="1243"/>
-                                                    <row id="1244">
-                                                        <property name="backgroundColor">#E6E6E6</property>
-                                                        <cell id="1245">
-                                                            <property name="paddingTop">3pt</property>
-                                                            <property name="paddingLeft">8pt</property>
-                                                            <property name="paddingBottom">3pt</property>
-                                                            <image id="1246">
-                                                                <property name="marginTop">5px</property>
-                                                                <property name="marginLeft">3px</property>
-                                                                <property name="marginBottom">5px</property>
-                                                                <property name="height">24px</property>
-                                                                <property name="width">24px</property>
-                                                                <property name="source">url</property>
-                                                                <expression name="uri" type="constant">https://i.imgur.com/Z8fnNWK.png</expression>
-                                                            </image>
-                                                        </cell>
-                                                        <cell id="1247">
-                                                            <property name="paddingLeft">4pt</property>
-                                                            <property name="verticalAlign">middle</property>
-                                                            <label id="1248">
-                                                                <property name="fontSize">11pt</property>
-                                                                <property name="fontWeight">normal</property>
-                                                                <property name="paddingTop">3pt</property>
-                                                                <property name="paddingBottom">3pt</property>
-                                                                <property name="textAlign">left</property>
-                                                                <text-property name="text">SUMMARY</text-property>
-                                                            </label>
-                                                        </cell>
-                                                    </row>
-                                                </grid>
-                                            </cell>
-                                        </row>
-                                    </header>
-                                    <detail>
-                                        <row id="1258">
-                                            <cell id="1259">
-                                                <data id="1260">
-                                                    <property name="paddingTop">2pt</property>
-                                                    <property name="paddingLeft">7pt</property>
-                                                    <property name="paddingBottom">2pt</property>
-                                                    <property name="paddingRight">2pt</property>
-                                                    <property name="textAlign">left</property>
-                                                    <property name="resultSetColumn">doc_summary</property>
-                                                </data>
-                                            </cell>
-                                        </row>
-                                    </detail>
-                                </table>
-                            </cell>
-                        </row>
-                    </grid>
+                    <property name="overflow">scroll</property>
                     <grid id="562">
                         <column id="563"/>
                         <row id="564">
@@ -597,7 +540,8 @@ else "<img src='https://i.imgur.com/Oe3DHl9.png'/>";</VALUE-OF>]]></text-propert
                                             <property name="dataType">string</property>
                                         </structure>
                                     </list-property>
-                                    <property name="linkedDataModel">Data Model</property>
+                                    <property name="linkedDataModel">PII Documents Data Model</property>
+                                    <property name="pageBreakInterval">0</property>
                                     <list-property name="sort">
                                         <structure>
                                             <expression name="key" type="javascript">row["weight"]</expression>
@@ -814,8 +758,33 @@ else "<img src='https://i.imgur.com/Oe3DHl9.png'/>";</VALUE-OF>]]></text-propert
                                             <property name="dataType">decimal</property>
                                             <property name="allowExport">true</property>
                                         </structure>
+                                        <structure>
+                                            <property name="name">confidence_score_1</property>
+                                            <text-property name="displayName">Confidence Score</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["confidence_score"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">relevancy_score_1</property>
+                                            <text-property name="displayName">Entity Relevancy</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["relevancy_score"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">frequency1_1</property>
+                                            <text-property name="displayName">Entity Fequency</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["frequency1"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">PII_status</property>
+                                            <text-property name="displayName">PII Status</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["PII_status"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
                                     </list-property>
-                                    <property name="linkedDataModel">Data Model</property>
+                                    <property name="linkedDataModel">PII Documents Data Model</property>
+                                    <property name="pageBreakInterval">0</property>
                                     <list-property name="sort">
                                         <structure>
                                             <expression name="key" type="javascript">row["confidence_score"]</expression>
@@ -938,12 +907,126 @@ else "<img src='https://i.imgur.com/Oe3DHl9.png'/>";</VALUE-OF>]]></text-propert
                                     </header>
                                     <detail>
                                         <row id="962">
+                                            <list-property name="highlightRules">
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#2E988C</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"Email"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#3578AD</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"PN"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#2C8E3C</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"URL"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#8CEA9C</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"Phone"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#464646</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"SSN"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#005377</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"Filename"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#93D6E2</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"Twitter"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#93D6E2</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"Hashtag"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#9ECC4C</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"BankAccount"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#0C6B17</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"CreditCard"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#75C6B1</property>
+                                                    <property name="color">#FFFFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"Address"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="operator">eq</property>
+                                                    <property name="backgroundColor">#00FFFF</property>
+                                                    <expression name="testExpr" type="javascript">row["cartridge"]</expression>
+                                                    <simple-property-list name="value1">
+                                                        <value type="javascript">"Passport"</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                            </list-property>
                                             <cell id="965">
                                                 <text id="785">
                                                     <property name="paddingTop">2pt</property>
                                                     <property name="paddingLeft">6pt</property>
                                                     <property name="contentType">html</property>
-                                                    <text-property name="content"><![CDATA[<div onmouseover="$(this).parent().get(0).style.background='#DEDEDE';$('#container_theBody').removeHighlight();$('#container_theBody').highlight('<VALUE-OF>row["entity"]</VALUE-OF>');"  onmouseout="$(this).parent().get(0).style.background='#ffffff';$('#container_theBody').removeHighlight()" style="cursor: pointer;"><VALUE-OF>row["entity"]</VALUE-OF></div>
+                                                    <text-property name="content"><![CDATA[<div onmouseover="bg = $(this).parent().get(0).style.background;
+fontColor = $(this).css('color');
+$(this).css('color','black');
+$(this).parent().get(0).style.background='#DEDEDE';$('[id*=_theBody]').removeHighlight();$('[id*=_theBody]').highlight('<VALUE-OF>row["entity"]</VALUE-OF>');"  onmouseout="$(this).parent().get(0).style.background=bg;
+$(this).css('color',fontColor);
+$('[id*=_theBody]').removeHighlight()" style="cursor: pointer;"><VALUE-OF>row["entity"]</VALUE-OF></div>
 ]]></text-property>
                                                 </text>
                                             </cell>
@@ -1063,7 +1146,8 @@ else {"Simple Concepts"}</expression>
                                             <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
-                                    <property name="linkedDataModel">Data Model</property>
+                                    <property name="linkedDataModel">PII Documents Data Model</property>
+                                    <property name="pageBreakInterval">0</property>
                                     <list-property name="sort">
                                         <structure>
                                             <expression name="key" type="javascript">row["relevancy"]</expression>
@@ -1196,7 +1280,7 @@ else {"Simple Concepts"}</expression>
                                                     <property name="paddingLeft">6pt</property>
                                                     <property name="paddingBottom">1pt</property>
                                                     <property name="contentType">html</property>
-                                                    <text-property name="content"><![CDATA[<div onmouseover="$(this).parent().get(0).style.background='#DEDEDE';$('#container_theBody').removeHighlight();$('#container_theBody').highlight('<VALUE-OF>row["name1"]</VALUE-OF>');" onmouseout="$(this).parent().get(0).style.background='#ffffff';$('#container_theBody').removeHighlight()" style="cursor: pointer;"><VALUE-OF>row["name1"]</VALUE-OF></div>
+                                                    <text-property name="content"><![CDATA[<div onmouseover="$(this).parent().get(0).style.background='#DEDEDE';$('[id*=_theBody]').removeHighlight();$('[id*=_theBody]').highlight('<VALUE-OF>row["name1"]</VALUE-OF>');" onmouseout="$(this).parent().get(0).style.background='#ffffff';$('[id*=_theBody]').removeHighlight()" style="cursor: pointer;"><VALUE-OF>row["name1"]</VALUE-OF></div>
 ]]></text-property>
                                                 </text>
                                             </cell>
@@ -1240,7 +1324,20 @@ else {"Simple Concepts"}</expression>
                                 <property name="paddingLeft">11pt</property>
                                 <property name="paddingBottom">21pt</property>
                                 <property name="paddingRight">1pt</property>
+                                <property name="overflow">scroll</property>
                                 <table id="1156">
+                                    <property name="borderBottomColor">#808080</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#808080</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#808080</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#808080</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">id</property>
@@ -1292,7 +1389,8 @@ txt;</expression>
                                             <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
-                                    <property name="linkedDataModel">Data Model</property>
+                                    <property name="linkedDataModel">PII Documents Data Model</property>
+                                    <property name="pageBreakInterval">0</property>
                                     <list-property name="filter">
                                         <structure>
                                             <property name="operator">eq</property>
