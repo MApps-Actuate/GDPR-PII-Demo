@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.actuate.istudio.analysis.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.actuate.istudio.analysis.model="http:///com.actuate.istudio.analysis.model.ecore" name="GDPR-PII-Demo">
-  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="ThemesReportItems31.rptlibrary" path="/GDPR-PII-Demo/ThemesReportItems31.rptlibrary" reports="//@files.6 //@files.7 //@files.8 //@files.9 //@files.10 //@files.11 //@files.12 //@files.13 //@files.14 //@files.15 //@files.16 //@files.17"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="ThemesReportItems31.rptlibrary" path="/GDPR-PII-Demo/ThemesReportItems31.rptlibrary" reports="//@files.7 //@files.8 //@files.9 //@files.10 //@files.11 //@files.12 //@files.13 //@files.14 //@files.15 //@files.16 //@files.17"/>
   <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="ThemesOTDemo.rptlibrary" path="/GDPR-PII-Demo/ThemesOTDemo.rptlibrary"/>
   <files xsi:type="com.actuate.istudio.analysis.model:Dashboard" name="Text Analytics Dashboard.dashboard" path="/GDPR-PII-Demo/Dashboards/Text Analytics Dashboard.dashboard"/>
   <files xsi:type="com.actuate.istudio.analysis.model:DataDesign" name="Text Analytics.datadesign" path="/GDPR-PII-Demo/Data Objects/Text Analytics.datadesign">
@@ -194,67 +194,6 @@
       <columns name="Classification" expression="if (row[&quot;haspikbname&quot;] > 0 &amp;&amp; row[&quot;haspicartridge&quot;] > 0) { 'Protected' }&#xD;&#xA;else if (row[&quot;haspikbname&quot;] == 0 &amp;&amp; row[&quot;haspicartridge&quot;] > 0) { 'Restricted' }&#xD;&#xA;else { 'Public' }"/>
     </dataSets>
   </files>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="Text Analytics Library.rptlibrary" path="/GDPR-PII-Demo/Report Libraries/Text Analytics Library.rptlibrary"/>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="ThemesReportItems31-BU.rptlibrary" path="/GDPR-PII-Demo/ThemesReportItems31-BU.rptlibrary"/>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Sankey_pii.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/Sankey_pii.RPTDESIGN" libraries="//@files.0">
-    <linkedFromReportsMap key="//@files.7" value="1"/>
-  </files>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="launcher.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/launcher.RPTDESIGN" libraries="//@files.0">
-    <linkedToReportsMap key="10" value="//@files.6"/>
-  </files>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="PII BiPartite.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/PII BiPartite.RPTDESIGN" libraries="//@files.0">
-    <dataSets name="Customers and Payments Data Set">
-      <columns name="COUNTRY"/>
-      <columns name="CREDITCATEGORY"/>
-      <columns name="TOTALCUSTOMERS"/>
-      <columns name="TOTALORDERS"/>
-    </dataSets>
-  </files>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Document Detail.rptdesign" path="/GDPR-PII-Demo/Report Designs/Document Detail.rptdesign" libraries="//@files.0">
-    <linkedFromReportsMap key="//@files.16" value="1"/>
-  </files>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="PII Network.rptdesign" path="/GDPR-PII-Demo/Report Designs/PII Network.rptdesign" libraries="//@files.0">
-    <linkedFromReportsMap key="//@files.17" value="1"/>
-    <dataSets name="Nodes">
-      <columns name="doc_id"/>
-      <columns name="label"/>
-      <columns name="node"/>
-      <columns name="total"/>
-      <columns name="level"/>
-      <columns name="id"/>
-      <columns name="duplicate" expression="false"/>
-    </dataSets>
-    <dataSets name="NodeCounts">
-      <columns name="node"/>
-      <columns name="count"/>
-    </dataSets>
-  </files>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Top 5 Categories.rptdesign" path="/GDPR-PII-Demo/Report Designs/Top 5 Categories.rptdesign" libraries="//@files.0"/>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Document List.rptdesign" path="/GDPR-PII-Demo/Report Designs/Document List.rptdesign" libraries="//@files.0">
-    <dataSets name="NodeCT">
-      <columns name="doc_id"/>
-      <columns name="name"/>
-      <columns name="Address"/>
-      <columns name="BankAccount"/>
-      <columns name="CreditCard"/>
-      <columns name="Email"/>
-      <columns name="Filename"/>
-      <columns name="Phone"/>
-      <columns name="PN"/>
-      <columns name="SSN"/>
-      <columns name="Twitter"/>
-      <columns name="URL"/>
-    </dataSets>
-  </files>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Top 5 Categories Chart.rptdesign" path="/GDPR-PII-Demo/Report Designs/Top 5 Categories Chart.rptdesign" libraries="//@files.0"/>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="MetaData Stats.rptdesign" path="/GDPR-PII-Demo/Report Designs/MetaData Stats.rptdesign" libraries="//@files.0"/>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="PII BiPartite Small.rptdesign" path="/GDPR-PII-Demo/Report Designs/PII BiPartite Small.rptdesign" libraries="//@files.0"/>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="MostRecentPII.rptdesign" path="/GDPR-PII-Demo/Report Designs/MostRecentPII.rptdesign" libraries="//@files.0">
-    <linkedToReportsMap key="1126" value="//@files.9"/>
-  </files>
-  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="TopPII.rptdesign" path="/GDPR-PII-Demo/Report Designs/TopPII.rptdesign" libraries="//@files.0">
-    <linkedToReportsMap key="1319" value="//@files.10"/>
-  </files>
   <files xsi:type="com.actuate.istudio.analysis.model:DataDesign" name="PII Network.datadesign" path="/GDPR-PII-Demo/Data Objects/PII Network.datadesign">
     <dataSets name="PII">
       <columns name="doc_id"/>
@@ -331,5 +270,65 @@
       <columns name="entity"/>
       <columns name="doc_id"/>
     </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="Text Analytics Library.rptlibrary" path="/GDPR-PII-Demo/Report Libraries/Text Analytics Library.rptlibrary"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="ThemesReportItems31-BU.rptlibrary" path="/GDPR-PII-Demo/ThemesReportItems31-BU.rptlibrary"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Sankey_pii.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/Sankey_pii.RPTDESIGN" libraries="//@files.0">
+    <linkedFromReportsMap key="//@files.8" value="1"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="launcher.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/launcher.RPTDESIGN" libraries="//@files.0">
+    <linkedToReportsMap key="10" value="//@files.7"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="PII BiPartite.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/PII BiPartite.RPTDESIGN" libraries="//@files.0">
+    <dataSets name="Customers and Payments Data Set">
+      <columns name="COUNTRY"/>
+      <columns name="CREDITCATEGORY"/>
+      <columns name="TOTALCUSTOMERS"/>
+      <columns name="TOTALORDERS"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Document Detail.rptdesign" path="/GDPR-PII-Demo/Report Designs/Document Detail.rptdesign" libraries="//@files.0">
+    <linkedFromReportsMap key="//@files.16" value="1"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="PII Network.rptdesign" path="/GDPR-PII-Demo/Report Designs/PII Network.rptdesign" libraries="//@files.0">
+    <linkedFromReportsMap key="//@files.17" value="1"/>
+    <dataSets name="Nodes">
+      <columns name="doc_id"/>
+      <columns name="label"/>
+      <columns name="node"/>
+      <columns name="total"/>
+      <columns name="level"/>
+      <columns name="id"/>
+      <columns name="duplicate" expression="false"/>
+    </dataSets>
+    <dataSets name="NodeCounts">
+      <columns name="node"/>
+      <columns name="count"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Top 5 Categories.rptdesign" path="/GDPR-PII-Demo/Report Designs/Top 5 Categories.rptdesign" libraries="//@files.0"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Document List.rptdesign" path="/GDPR-PII-Demo/Report Designs/Document List.rptdesign" libraries="//@files.0">
+    <dataSets name="NodeCT">
+      <columns name="doc_id"/>
+      <columns name="name"/>
+      <columns name="Address"/>
+      <columns name="BankAccount"/>
+      <columns name="CreditCard"/>
+      <columns name="Email"/>
+      <columns name="Filename"/>
+      <columns name="Phone"/>
+      <columns name="PN"/>
+      <columns name="SSN"/>
+      <columns name="Twitter"/>
+      <columns name="URL"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Top 5 Categories Chart.rptdesign" path="/GDPR-PII-Demo/Report Designs/Top 5 Categories Chart.rptdesign" libraries="//@files.0"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="MetaData Stats.rptdesign" path="/GDPR-PII-Demo/Report Designs/MetaData Stats.rptdesign" libraries="//@files.0"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="MostRecentPII.rptdesign" path="/GDPR-PII-Demo/Report Designs/MostRecentPII.rptdesign" libraries="//@files.0">
+    <linkedToReportsMap key="1126" value="//@files.10"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="TopPII.rptdesign" path="/GDPR-PII-Demo/Report Designs/TopPII.rptdesign" libraries="//@files.0">
+    <linkedToReportsMap key="1319" value="//@files.11"/>
   </files>
 </com.actuate.istudio.analysis.model:Project>
