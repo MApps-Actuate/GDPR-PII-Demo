@@ -1,0 +1,1637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">/ThemesReportItems31.rptlibrary</property>
+            <property name="namespace">ThemesReportItems31</property>
+        </structure>
+    </list-property>
+    <method name="onContentUpdate"><![CDATA[// Get the Viewer's current UI Options
+var uiOptions = this.getViewer().getUIOptions();
+
+// Remove ability for user to change interactivity options
+uiOptions.enableEditReport(false);
+uiOptions.enableToolBar(false);
+
+// Set the modified UI Options back into the Viewer
+this.getViewer().setUIOptions(uiOptions);
+
+// If Interactivity is not enabled, enable it
+//if (!this.getViewer().isInteractive())
+	//this.getViewer().enableIV();]]></method>
+    <parameters>
+        <scalar-parameter name="pSearch" id="1958">
+            <text-property name="promptText">Enter PII to Search</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">KRAA</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Postgres" id="2348">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:8433/PII_Network</property>
+            <property name="odaUser">postgres</property>
+            <encrypted-property name="odaPassword" encryptionID="jce">901c2e83fdda402dcaab65efdde92e0b</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="NodeCT" id="2669">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">doc_id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">doc_id</text-property>
+                    <text-property name="heading">doc_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Address</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Address</text-property>
+                    <text-property name="heading">Address</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">BankAccount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">BankAccount</text-property>
+                    <text-property name="heading">BankAccount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CreditCard</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CreditCard</text-property>
+                    <text-property name="heading">CreditCard</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Email</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Email</text-property>
+                    <text-property name="heading">Email</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Filename</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Filename</text-property>
+                    <text-property name="heading">Filename</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Phone</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Phone</text-property>
+                    <text-property name="heading">Phone</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PN</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">PN</text-property>
+                    <text-property name="heading">PN</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SSN</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SSN</text-property>
+                    <text-property name="heading">SSN</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Twitter</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Twitter</text-property>
+                    <text-property name="heading">Twitter</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">URL</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">URL</text-property>
+                    <text-property name="heading">URL</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">doc_id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Address</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">BankAccount</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">CreditCard</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Email</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Filename</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Phone</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">PN</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">SSN</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Twitter</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">URL</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[var txt = params["pSearch"].value + "";
+var txtClean = txt.replace(/[.,\/#!$%\^&amp;\*;:{}=\-_`~()\s]/g,"");
+this.queryText = new Packages.java.lang.String(this.queryText).replaceAll("999", txtClean.toUpperCase());]]></method>
+            <property name="dataSource">Postgres</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">doc_id</property>
+                    <property name="nativeName">doc_id</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Address</property>
+                    <property name="nativeName">Address</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">BankAccount</property>
+                    <property name="nativeName">BankAccount</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">CreditCard</property>
+                    <property name="nativeName">CreditCard</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">Email</property>
+                    <property name="nativeName">Email</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Filename</property>
+                    <property name="nativeName">Filename</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">Phone</property>
+                    <property name="nativeName">Phone</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">PN</property>
+                    <property name="nativeName">PN</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">SSN</property>
+                    <property name="nativeName">SSN</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">Twitter</property>
+                    <property name="nativeName">Twitter</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">URL</property>
+                    <property name="nativeName">URL</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT "ct"."doc_id", "ct"."name"
+ , sum(case when cartridge = 'Address' then frequency end) as "Address"
+ , sum(case when cartridge = 'BankAccount' then frequency end) as "BankAccount"
+ , sum(case when cartridge = 'CreditCard' then frequency end) as "CreditCard"
+ , sum(case when cartridge = 'Email' then frequency end) as "Email"
+ , sum(case when cartridge = 'Filename' then frequency end) as "Filename"
+ , sum(case when cartridge = 'Phone' then frequency end) as "Phone"
+ , sum(case when cartridge = 'PN' then frequency end) as "PN"
+ , sum(case when cartridge = 'SSN' then frequency end) as "SSN"
+ , sum(case when cartridge = 'Twitter' or cartridge = 'Hashtag' then frequency end) as "Twitter"
+ , sum(case when cartridge = 'URL' then frequency end) as "URL"
+FROM "public"."PII" as "ct"
+WHERE "ct"."doc_id" IN (SELECT DISTINCT "c"."doc_id"
+                         FROM "public"."PII" AS "c"
+                         WHERE "c"."Search" LIKE '%999%' ORDER BY "c"."doc_id" FETCH FIRST 100 ROWS ONLY)
+GROUP BY "ct"."doc_id", "ct"."name"]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>doc_id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>doc_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>doc_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PN</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>PN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PN</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>BankAccount</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>BankAccount</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>BankAccount</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Email</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>Email</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Email</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>URL</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>URL</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>URL</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Phone</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>Phone</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Phone</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SSN</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>SSN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SSN</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Filename</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>Filename</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Filename</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Twitter</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>Twitter</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Twitter</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CreditCard</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>CreditCard</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CreditCard</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Address</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>Address</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Address</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="orientation">auto</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <text id="2462">
+            <property name="marginBottom">5pt</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script>
+	$('head').append('<link id="myCSS" rel="stylesheet" type="text/css" href="/iportal/servlet/DownloadFile/blank.css?name=/Applications/GDPR-PII-Demo/css/blank.css&amp;fileExtension=css&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false">');
+	$("#myCSS").attr("href", "/iportal/servlet/DownloadFile/overrideActuate_2019.css?name=/Applications/GDPR-PII-Demo/css/overrideActuate_2019.css&amp;fileExtension=css&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false");
+	$(".floatPanel").css("margin-top","-25px");
+</script>
+
+<div id="banner" align="left" style="height:65px;">
+	<table id="bannerHeading" width="100%">
+		<tbody>
+			<tr style="vertical-align:middle;">
+				<td width="30%" align="left" style="white-space: nowrap;">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/Home%20Banner.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px" style="padding-left:20px"><span style="vertical-align:super; white-space: nowrap;">Privacy and Data Governance</span>
+				</td>
+				<td width="30%" align="center">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/OT%20Magellan.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px">
+				</td>
+				<td width="40%" align="right">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/userhead.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px" style="padding-right:20px">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div>
+]]></text-property>
+        </text>
+        <grid id="2637">
+            <expression name="bookmark" type="javascript">"DocListViewer"</expression>
+            <column id="2638">
+                <property name="width">40%</property>
+            </column>
+            <column id="2648">
+                <property name="width">1%</property>
+            </column>
+            <column id="2639">
+                <property name="width">65%</property>
+            </column>
+            <row id="2640">
+                <property name="fontFamily">"Lato"</property>
+                <cell id="2641">
+                    <property name="overflow">scroll</property>
+                    <text id="2667">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<script src="https://use.fontawesome.com/3edbcdbcb7.js"></script>]]></text-property>
+                    </text>
+                    <table id="1370">
+                        <property name="fontSize">9pt</property>
+                        <property name="dataSet">NodeCT</property>
+                        <property name="theme">ThemesReportItems31.Table-Innovate Bank</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">doc_id</property>
+                                <text-property name="displayName">doc_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">name</property>
+                                <text-property name="displayName">name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Address</property>
+                                <text-property name="displayName">Address</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">BankAccount</property>
+                                <text-property name="displayName">BankAccount</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["BankAccount"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">CreditCard</property>
+                                <text-property name="displayName">CreditCard</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["CreditCard"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Email</property>
+                                <text-property name="displayName">Email</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Email"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Filename</property>
+                                <text-property name="displayName">Filename</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Filename"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Phone</property>
+                                <text-property name="displayName">Phone</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Phone"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">PN</property>
+                                <text-property name="displayName">PN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PN"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">SSN</property>
+                                <text-property name="displayName">SSN</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SSN"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Twitter</property>
+                                <text-property name="displayName">Twitter</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Twitter"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">URL</property>
+                                <text-property name="displayName">URL</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["URL"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">FirstDoc</property>
+                                <property name="dataType">string</property>
+                                <property name="aggregateFunction">FIRST</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["doc_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <method name="onCreate"><![CDATA[vars["docToLoadFirst"] = row["FirstDoc"];]]></method>
+                        <property name="pageBreakInterval">0</property>
+                        <list-property name="sort">
+                            <structure>
+                                <expression name="key" type="javascript">row["doc_id"]</expression>
+                                <property name="direction">asc</property>
+                                <property name="strength">-1</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">is-true</property>
+                                <expression name="expr" type="javascript">//Just for demo video, remove after not needed.&#13;
+if(params["pSearch"].value == "Lisa Rosenberg") {&#13;
+	if (row["doc_id"] == '2267747' || row["doc_id"] == '2268827' || row["doc_id"] == '2271006')&#13;
+		true;&#13;
+	else&#13;
+		false;&#13;
+}&#13;
+else&#13;
+	true;</expression>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="1424">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="1425">
+                            <property name="width">1.5in</property>
+                        </column>
+                        <column id="1426">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="1427">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="1428">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="1429">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="1430">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="1431">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="2654">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="2658">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="2662">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <column id="2666">
+                            <property name="width">0.5in</property>
+                        </column>
+                        <header>
+                            <row id="1434">
+                                <cell id="1435">
+                                    <property name="colSpan">12</property>
+                                    <property name="rowSpan">1</property>
+                                    <grid id="698">
+                                        <column id="699">
+                                            <property name="width">56px</property>
+                                        </column>
+                                        <column id="700"/>
+                                        <row id="701">
+                                            <property name="backgroundColor">#E6E6E6</property>
+                                            <cell id="702">
+                                                <property name="paddingTop">3pt</property>
+                                                <property name="paddingLeft">8pt</property>
+                                                <property name="paddingBottom">3pt</property>
+                                                <text id="21">
+                                                    <property name="paddingTop">2pt</property>
+                                                    <property name="paddingLeft">4pt</property>
+                                                    <property name="contentType">html</property>
+                                                    <text-property name="content"><![CDATA[<VALUE-OF format="HTML">"<img src='https://i.imgur.com/Oe3DHl9.png'/>";</VALUE-OF>]]></text-property>
+                                                </text>
+                                            </cell>
+                                            <cell id="704">
+                                                <property name="paddingLeft">4pt</property>
+                                                <property name="verticalAlign">middle</property>
+                                                <text-data id="2636">
+                                                    <property name="backgroundAttachment">scroll</property>
+                                                    <property name="backgroundPositionX">0%</property>
+                                                    <property name="backgroundPositionY">0%</property>
+                                                    <property name="backgroundRepeat">repeat</property>
+                                                    <property name="fontFamily">"Lato"</property>
+                                                    <property name="fontSize">11pt</property>
+                                                    <property name="fontWeight">normal</property>
+                                                    <property name="fontStyle">normal</property>
+                                                    <property name="fontVariant">normal</property>
+                                                    <property name="color">black</property>
+                                                    <property name="textLineThrough">none</property>
+                                                    <property name="textOverline">none</property>
+                                                    <property name="textUnderline">none</property>
+                                                    <property name="borderBottomColor">black</property>
+                                                    <property name="borderBottomStyle">none</property>
+                                                    <property name="borderBottomWidth">medium</property>
+                                                    <property name="borderLeftColor">black</property>
+                                                    <property name="borderLeftStyle">none</property>
+                                                    <property name="borderLeftWidth">medium</property>
+                                                    <property name="borderRightColor">black</property>
+                                                    <property name="borderRightStyle">none</property>
+                                                    <property name="borderRightWidth">medium</property>
+                                                    <property name="borderTopColor">black</property>
+                                                    <property name="borderTopStyle">none</property>
+                                                    <property name="borderTopWidth">medium</property>
+                                                    <property name="marginTop">0pt</property>
+                                                    <property name="marginLeft">0pt</property>
+                                                    <property name="marginBottom">0pt</property>
+                                                    <property name="marginRight">0pt</property>
+                                                    <property name="paddingTop">3pt</property>
+                                                    <property name="paddingLeft">1pt</property>
+                                                    <property name="paddingBottom">3pt</property>
+                                                    <property name="paddingRight">1pt</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="letterSpacing">normal</property>
+                                                    <property name="lineHeight">normal</property>
+                                                    <property name="orphans">2</property>
+                                                    <property name="textTransform">none</property>
+                                                    <property name="whiteSpace">normal</property>
+                                                    <property name="widows">2</property>
+                                                    <property name="wordSpacing">normal</property>
+                                                    <property name="display">block</property>
+                                                    <property name="pageBreakAfter">auto</property>
+                                                    <property name="pageBreakBefore">auto</property>
+                                                    <property name="pageBreakInside">auto</property>
+                                                    <property name="showIfBlank">false</property>
+                                                    <property name="canShrink">true</property>
+                                                    <property name="overflow">hidden</property>
+                                                    <expression name="valueExpr">"Documents Containing: " + params["pSearch"].value</expression>
+                                                    <property name="contentType">html</property>
+                                                </text-data>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                            </row>
+                            <row id="1371">
+                                <property name="backgroundColor">#F8F8F8</property>
+                                <property name="color">#5D6066</property>
+                                <cell id="1372">
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <property name="verticalAlign">bottom</property>
+                                </cell>
+                                <cell id="1374">
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <property name="verticalAlign">bottom</property>
+                                </cell>
+                                <cell id="1376">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="135">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#3578AD</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1378">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="136">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#9ECC4C</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1380">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2271">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#2E988C</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1382">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2329">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#2C8E3C</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1384">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2274">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#8CEA9C</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1386">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <image id="2280">
+                                        <property name="display">inline</property>
+                                        <property name="height">30px</property>
+                                        <property name="width">40px</property>
+                                        <property name="source">embed</property>
+                                        <property name="imageName">SSN.JPG</property>
+                                    </image>
+                                </cell>
+                                <cell id="2652">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2283">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#005377</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2656">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2284">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#93D6E2</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2660">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2287">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#0C6B17</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2664">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2298">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">24pt</property>
+                                        <property name="color">#75C6B1</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="2717">
+                                <property name="backgroundColor">#F8F8F8</property>
+                                <property name="color">#5D6066</property>
+                                <cell id="2718">
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="817">
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">6pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">Document Id</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2719">
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="815">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">6pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">Document Name</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2720">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="130">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Person</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2721">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="131">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Bank Account</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2722">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2270">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Email Address</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2723">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2330">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">URL</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2724">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2275">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Phone</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2725">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2277">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Social Security</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2726">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2282">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Filename</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2727">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2285">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Twitter</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2728">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2286">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Credit Card</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2729">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <label id="2297">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">#5D6066</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Address</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="1392">
+                                <expression name="bookmark" type="javascript">row["doc_id"]</expression>
+                                <property name="fontSize">10pt</property>
+                                <property name="verticalAlign">middle</property>
+                                <cell id="1393">
+                                    <data id="1394">
+                                        <property name="paddingTop">2pt</property>
+                                        <property name="paddingLeft">6pt</property>
+                                        <property name="paddingBottom">2pt</property>
+                                        <property name="paddingRight">2pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="resultSetColumn">doc_id</property>
+                                    </data>
+                                </cell>
+                                <cell id="1395">
+                                    <text id="2645">
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[<div style="font-family:'Lato';" onclick="$('[id*=_<VALUE-OF>row["doc_id"]</VALUE-OF>]').css('background-color','#DEDEDE');
+removeRowHighlight('<VALUE-OF>row["doc_id"]</VALUE-OF>');
+showDocDetail('<VALUE-OF>row["doc_id"]</VALUE-OF>');">
+<span style="cursor:pointer; color:blue; text-decoration:underline;"><VALUE-OF>row["name"]</VALUE-OF></span>
+</div>
+]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="1397">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2698">
+                                        <property name="resultSetColumn">PN</property>
+                                    </data>
+                                </cell>
+                                <cell id="1399">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2700">
+                                        <property name="resultSetColumn">BankAccount</property>
+                                    </data>
+                                </cell>
+                                <cell id="1401">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2702">
+                                        <property name="resultSetColumn">Email</property>
+                                    </data>
+                                </cell>
+                                <cell id="1403">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2704">
+                                        <property name="resultSetColumn">URL</property>
+                                    </data>
+                                </cell>
+                                <cell id="1405">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2706">
+                                        <property name="resultSetColumn">Phone</property>
+                                    </data>
+                                </cell>
+                                <cell id="1407">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2708">
+                                        <property name="resultSetColumn">SSN</property>
+                                    </data>
+                                </cell>
+                                <cell id="2653">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2710">
+                                        <property name="resultSetColumn">Filename</property>
+                                    </data>
+                                </cell>
+                                <cell id="2657">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2712">
+                                        <property name="resultSetColumn">Twitter</property>
+                                    </data>
+                                </cell>
+                                <cell id="2661">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2714">
+                                        <property name="resultSetColumn">CreditCard</property>
+                                    </data>
+                                </cell>
+                                <cell id="2665">
+                                    <property name="borderLeftColor">#C0C0C0</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#C0C0C0</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <data id="2716">
+                                        <property name="resultSetColumn">Address</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                    <text id="2650">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<script>
+selectedRow = '<VALUE-OF>vars["docToLoadFirst"]</VALUE-OF>';
+$("[id*=_" + selectedRow + "]").css("background-color","#DEDEDE");
+function removeRowHighlight(docid) {
+	$("[id*=_" + selectedRow +"]").css("background-color","#ffffff");
+	selectedRow = docid;
+
+} 
+</script>]]></text-property>
+                    </text>
+                </cell>
+                <cell id="2647"/>
+                <cell id="2642">
+                    <property name="overflow">scroll</property>
+                    <text id="2643">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <property name="marginTop">0pt</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<script>	
+	//Open report to be viewed inside a "frame"
+	var rpt = "/Applications/GDPR-PII-Demo/Report Designs/Document Detail.rptdesign";
+
+			var panel = new actuate.viewer.BrowserPanel();
+			uiCfg = new actuate.viewer.UIConfig();
+			uiCfg.setContentPanel(panel);
+			var vwr = new actuate.Viewer("acViewer", uiCfg);
+			var uiOptions = new actuate.viewer.UIOptions( );
+			uiOptions.enableToolBar(false);
+			vwr.setUIOptions(uiOptions);
+			vwr.setWidth($(window).width()/1.75);
+			vwr.setHeight(850);
+			vwr.setReportName(rpt);
+			vwr.setParameters({'pDocID': <VALUE-OF>vars["docToLoadFirst"]</VALUE-OF>, 'pHideBanner':true});
+			vwr.submit();
+			
+function showDocDetail(docid) {
+			vwr.setParameters({'pDocID': docid, 'pHideBanner':true});
+			vwr.submit();
+			$("#acViewer").show();
+}
+
+</script>
+<div id="acViewer" style="overflow-y:auto;display:block;margin-top:-24px;"></div>]]></text-property>
+                    </text>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <property name="pageVariables">
+        <variable-element name="Highlight Color">
+            <expression name="value" type="javascript">"#E1E166"</expression>
+            <property name="type">report</property>
+        </variable-element>
+        <variable-element name="docToLoadFirst">
+            <expression name="value" type="javascript">0</expression>
+            <property name="type">report</property>
+        </variable-element>
+    </property>
+    <list-property name="images">
+        <structure>
+            <property name="name">SSN.JPG</property>
+            <property name="data">
+                /9j/4AAQSkZJRgABAQEAYABgAAD/4RDuRXhpZgAATU0AKgAAAAgABAE7AAIAAAAMAAAISodpAAQAAAAB
+                AAAIVpydAAEAAAAYAAAQzuocAAcAAAgMAAAAPgAAAAAc6gAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEdlZmYgVml0
+                YWxlAAAFkAMAAgAAABQAABCkkAQAAgAAABQAABC4kpEAAgAAAAM1MAAAkpIAAgAAAAM1MAAA6hwABwAA
+                CAwAAAiYAAAAABzqAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAxOTowNToxNCAxNjoxOTo1NwAyMDE5OjA1OjE0
+                IDE2OjE5OjU3AAAARwBlAGYAZgAgAFYAaQB0AGEAbABlAAAA/+ELHmh0dHA6Ly9ucy5hZG9iZS5jb20v
+                eGFwLzEuMC8APD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQn
+                Pz4NCjx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iPjxyZGY6UkRGIHhtbG5zOnJkZj0i
+                aHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+PHJkZjpEZXNjcmlwdGlv
+                biByZGY6YWJvdXQ9InV1aWQ6ZmFmNWJkZDUtYmEzZC0xMWRhLWFkMzEtZDMzZDc1MTgyZjFiIiB4bWxu
+                czpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iLz48cmRmOkRlc2NyaXB0aW9uIHJk
+                ZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHhtbG5zOnht
+                cD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyI+PHhtcDpDcmVhdGVEYXRlPjIwMTktMDUtMTRU
+                MTY6MTk6NTcuNTAxPC94bXA6Q3JlYXRlRGF0ZT48L3JkZjpEZXNjcmlwdGlvbj48cmRmOkRlc2NyaXB0
+                aW9uIHJkZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHht
+                bG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyI+PGRjOmNyZWF0b3I+PHJkZjpT
+                ZXEgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48
+                cmRmOmxpPkdlZmYgVml0YWxlPC9yZGY6bGk+PC9yZGY6U2VxPg0KCQkJPC9kYzpjcmVhdG9yPjwvcmRm
+                OkRlc2NyaXB0aW9uPjwvcmRmOlJERj48L3g6eG1wbWV0YT4NCiAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAog
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                IAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgPD94cGFja2V0IGVuZD0n
+                dyc/Pv/bAEMABwUFBgUEBwYFBggHBwgKEQsKCQkKFQ8QDBEYFRoZGBUYFxseJyEbHSUdFxgiLiIlKCkr
+                LCsaIC8zLyoyJyorKv/bAEMBBwgICgkKFAsLFCocGBwqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+                KioqKioqKioqKioqKioqKioqKioqKv/AABEIAEEAXwMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAA
+                AAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgj
+                QrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2
+                d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj
+                5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIE
+                BAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYn
+                KCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqi
+                o6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEA
+                AhEDEQA/ANr4j/EfxXoPxA1LTdJ1X7PaQeV5cf2eJtuYkY8spPUnvXMf8Lf8c/8AQc/8lIP/AIim/GD/
+                AJKtrH/bD/0RHUOl6XYzaVbyS2yM7Jkk96uEXJ2RMpKKLH/C3/HP/Qc/8lIP/iKP+Fv+Of8AoOf+SkH/
+                AMRSnR9O/wCfSP8AKmHSdO/59I/yrT2LM/aod/wt/wAc/wDQc/8AJSD/AOIo/wCFv+Of+g5/5KQf/EVH
+                /ZOnf8+sf5Uf2Tp3/PpH+VL2LD2qJP8Ahb/jn/oOf+SkH/xFH/C3/HP/AEHP/JSD/wCIqP8AsnT/APn1
+                j/KlGk6d/wA+kf5UexfcPaof/wALf8c/9Bz/AMlIP/iKP+Fv+Of+g5/5KQf/ABFINI07/n0jp40fTv8A
+                n0j/ACp+xYe1Q3/hb/jn/oOf+SkH/wARXp/wa8X654r/ALZ/t+++1/ZvI8r9yibd3mZ+6oz90dfSvGvE
+                tja2ltA1tCsZZyCV78V6V+zx/wAzF/27f+1aylHldjSMuZXOI+MP/JVtY/7Yf+iI6k0c/wDEmtf9yo/j
+                D/yVbWP+2H/oiOnaQcaPbf7la0fiM6ux6ZH4a8O+GtFgvPF5luLm5XKW0bEY4zgYI5GeSTiqd9a+BdU0
+                W4uNKuJdLuoIy6wysSZD2GGJzn/ZPFbt9a6Z8SdIs3tNQS11G3QgwvyRkDII64yOGFcJr/gvW/D8ZmvL
+                cSWw6zwNuUfXuPxFVe7fM7MlaJNK6LPgvwqviW8nlvJjBYWihpnXgnOeATwOhJP+NbYufhm14bT7JdKv
+                QXe+TZn1+9n/AMdxVL4da9ptnHqGj6zIsEF+uBKx2qOCCCe2QeDTtV+FOpwq0+iXMOo255RdwRyP/QT9
+                cj6U5P3tdhRXu6bnOeI7LTtN1x7bR78X1qApWUEHGf4cjg49RXb+NPh/bWmjrqPh+Bo/IXdPDvZty/3h
+                kk5Hp6V5nPbz2d21vdRPDNG2HjdcFT9K9n8SeKz4a8U6WtxlrC6t9s69dvzcOPpn8RRK9opP+rDja7bR
+                44r12N3o2nxfDGw1aODF7NOUeXe3I3OMYzjsO1M8e+FF0m6XVdLCvpl4dylDkRsecD/ZPUfl6Vfv/wDk
+                iul/9fR/9CkqnK8LrugjG0mn2f5Hlfis/wCiW/8Avn+Veifs7/8AMxf9u3/tWvOfFX/Hpb/75/lXov7O
+                3/Mxf9u3/tWsKvxGlP4TivjD/wAlW1j/ALYf+iI6foyNJpNoqKWZlAAAySc0z4wf8lW1j/th/wCiI6n0
+                KSSDS7KaFikkYDKy9VIOQaqj8RNbYu6hpt7pN15N/byW0wAYBxj8Qe9ei/DnUL/UtF1WHWZXudPjj2q1
+                wd2Mg7lyeoxjjtWbF8SXmsVt9e0a11Tb0ZyFB9yCrDP0xWfr/j+71bTP7OsLOLTLNhteOJslh/dzgAD2
+                Aq5KUouLREeVNSucrHpN/PpsuoQWsslpC22SVVyFPXmrfhrU9X0/WLZNFnlEkkqjyVY7ZMnoy9DWn4Z8
+                aal4ZBhiC3Nmxy1vJ2Pqp7fqPatwfEy2tjLNpnhiztbqQczBxyffCAn86tuSe10Qkmt7EPxcSAeJbIxh
+                RO1uDLjqRuO3P61J8XBnUtL/AOvY/wA64vUtQutW1GS+v5DLPIck+noAOwrX8W+J/wDhKbm1l+x/Zfs8
+                Zjx5u/dz16DFZqDSiuzZo5puX9dje8BeIbe+sn8K6/iS1uFKW7OehP8ABnt6j0P4Vp+MNIOhfDS104v5
+                ghvDtb1UlyPxwRXmKAqwZSQwOQR2rq9Y8a3Gu+GbfS722BmidWa5En38AjlcdeeuaqUW3dd0KnNK6fn+
+                R5z4qH+iW/8Avn+Vei/s7f8AMxf9u3/tWvPPFY/0S3/3z/KvRP2d/wDmYv8At2/9q1jV+I1p/CcV8YP+
+                Srax/wBsP/REdR6XqljDpVvHLcorqmCpPSut+JHw38V6/wDEDUtS0nSvtFpP5XlyfaIl3YiRTwzA9Qe1
+                cv8A8Kf8c/8AQD/8m4P/AIuphJxd0VKKkh51fTv+fuP86YdW07/n7j/Ok/4U/wCOf+gH/wCTcH/xdJ/w
+                p7xz/wBAP/ybg/8Ai609szP2SFOrad/z9x/nR/aunf8AP3H+dJ/wp7xz/wBAP/ybg/8Ai6P+FPeOf+gH
+                /wCTcH/xdL2zD2SF/tbTv+fuP86Bq2nf8/cf50n/AAp7xz/0A/8Aybg/+Lo/4U945/6Af/k3B/8AF0/b
+                MPZIeNX07/n7j/OnjWNO/wCfuP8AOov+FPeOf+gH/wCTcH/xdH/Cn/HP/QD/APJuD/4uj2zD2SMvxLfW
+                t3bQLbTLIVckhe3Felfs8f8AMxf9u3/tWuK/4U/45/6Af/k3B/8AF16f8GvB+u+FP7Z/t+x+yfavI8r9
+                8j7tvmZ+6xx94dfWspS5nc0jHlVj1CiiipKCiiigAooooAKKKKACiiigAooooA//2Q==
+</property>
+        </structure>
+    </list-property>
+</report>

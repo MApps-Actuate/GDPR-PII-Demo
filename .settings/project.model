@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.actuate.istudio.analysis.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.actuate.istudio.analysis.model="http:///com.actuate.istudio.analysis.model.ecore" name="GDPR-PII-Demo">
+  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="ThemesReportItems31.rptlibrary" path="/GDPR-PII-Demo/ThemesReportItems31.rptlibrary" reports="//@files.6 //@files.7 //@files.8 //@files.9 //@files.10 //@files.11 //@files.12 //@files.13 //@files.14 //@files.15 //@files.16 //@files.17"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="ThemesOTDemo.rptlibrary" path="/GDPR-PII-Demo/ThemesOTDemo.rptlibrary"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:Dashboard" name="Text Analytics Dashboard.dashboard" path="/GDPR-PII-Demo/Dashboards/Text Analytics Dashboard.dashboard"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:DataDesign" name="Text Analytics.datadesign" path="/GDPR-PII-Demo/Data Objects/Text Analytics.datadesign">
+    <dataSets name="Documents">
+      <columns name="doc_id"/>
+      <columns name="repository_id"/>
+      <columns name="doc_date"/>
+      <columns name="name"/>
+      <columns name="id"/>
+      <columns name="tone"/>
+      <columns name="positive_tone_score"/>
+      <columns name="negative_tone_score"/>
+      <columns name="subjectivity"/>
+      <columns name="subjectivity_score"/>
+      <columns name="language"/>
+      <columns name="language_confidence_score"/>
+      <columns name="document_body"/>
+      <columns name="content_type"/>
+      <columns name="document_month" expression="BirtDateTime.firstDayOfMonth(row[&quot;doc_date&quot;])"/>
+      <columns name="random_content_type" expression="if (row[&quot;doc_id&quot;] % 3 == 1) { &quot;Content Server&quot; }&#xD;&#xA;else if (row[&quot;doc_id&quot;] % 5 == 1) { &quot;Documentum&quot; }&#xD;&#xA;else if (row[&quot;doc_id&quot;] % 7 == 1) { &quot;DOCS&quot; }&#xD;&#xA;else { &quot;File Share&quot; }"/>
+    </dataSets>
+    <dataSets name="Categories">
+      <columns name="doc_id"/>
+      <columns name="kb_name"/>
+      <columns name="categoryid"/>
+      <columns name="category"/>
+      <columns name="category_index"/>
+      <columns name="weight"/>
+      <columns name="kb_relevancy"/>
+    </dataSets>
+    <dataSets name="Concepts">
+      <columns name="doc_id"/>
+      <columns name="name"/>
+      <columns name="frequency"/>
+      <columns name="relevancy"/>
+      <columns name="is_complex"/>
+      <columns name="concept_type" expression="if (row[&quot;is_complex&quot;]==1) {&#xD;&#xA;&#x9;&quot;Complex Concepts&quot;&#xD;&#xA;}&#xD;&#xA;else {&quot;Simple Concepts&quot;}"/>
+    </dataSets>
+    <dataSets name="Entities">
+      <columns name="doc_id"/>
+      <columns name="cartridge"/>
+      <columns name="entity"/>
+      <columns name="term_index"/>
+      <columns name="confidence_score"/>
+      <columns name="relevancy_score"/>
+      <columns name="frequency"/>
+      <columns name="entity_type" expression="if (row[&quot;cartridge&quot;] == &quot;ON&quot;) {&#xD;&#xA;&#x9;&quot;Organizations&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;PN&quot;) {&#xD;&#xA;&#x9;&quot;People&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;GL&quot;) {&#xD;&#xA;&#x9;&quot;Places&quot;&#xD;&#xA;}&#xD;&#xA;else {row[&quot;cartridge&quot;]}"/>
+      <columns name="PII_status" expression="if (row[&quot;cartridge&quot;] == &quot;PN&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Phone&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;URL&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Email&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Address&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Filename&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;DriversLicense&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Hashtag&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;CreditCard&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Twitter&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;SSN&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;BankAccount&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else {&quot;No PII found&quot;}"/>
+    </dataSets>
+    <dataSets name="Sentence Sentiments">
+      <columns name="doc_id"/>
+      <columns name="tone"/>
+      <columns name="sentiment_index"/>
+      <columns name="positive_tone_score"/>
+      <columns name="negative_tone_score"/>
+      <columns name="subjectivity"/>
+      <columns name="subjectivity_score"/>
+      <columns name="sentence"/>
+    </dataSets>
+    <dataSets name="Summary">
+      <columns name="doc_id"/>
+      <columns name="summary"/>
+    </dataSets>
+    <dataSets name="Twitter">
+      <columns name="doc_id"/>
+      <columns name="twitter_crawler_group_name"/>
+      <columns name="twitter_retweet_count"/>
+      <columns name="twitter_retweeted"/>
+      <columns name="twitter_favorite_count"/>
+      <columns name="twitter_favorited"/>
+      <columns name="twitter_in_reply_to_screen_name"/>
+      <columns name="twitter_in_reply_to_status_id"/>
+      <columns name="twitter_retweeted_status_id"/>
+      <columns name="twitter_coordinates"/>
+      <columns name="twitter_user_favorites_count"/>
+      <columns name="twitter_user_friends_count"/>
+      <columns name="twitter_user_followers_count"/>
+      <columns name="twitter_user_statuses_count"/>
+      <columns name="twitter_user_location"/>
+      <columns name="twitter_user_url"/>
+      <columns name="twitter_user_lang"/>
+      <columns name="twitter_user_created_at"/>
+      <columns name="twitter_user_description"/>
+      <columns name="twitter_user_time_zone"/>
+      <columns name="twitter_place_name"/>
+      <columns name="twitter_place_country"/>
+      <columns name="twitter_place_full_name"/>
+      <columns name="twitter_place_place_type"/>
+      <columns name="twitter_user_screen_name"/>
+      <columns name="twitter_user_name"/>
+      <columns name="twitter_lang"/>
+    </dataSets>
+    <dataSets name="Web">
+      <columns name="doc_id"/>
+      <columns name="web_crawler_group_name"/>
+      <columns name="web_content_url"/>
+      <columns name="web_created_at"/>
+      <columns name="web_modified_at"/>
+      <columns name="web_content_title"/>
+      <columns name="web_content_source"/>
+    </dataSets>
+    <dataSets name="Entities Classification">
+      <columns name="doc_id"/>
+      <columns name="cartridge"/>
+      <columns name="entity"/>
+      <columns name="term_index"/>
+      <columns name="confidence_score"/>
+      <columns name="relevancy_score"/>
+      <columns name="frequency"/>
+      <columns name="entity_type" expression="if (row[&quot;cartridge&quot;] == &quot;ON&quot;) {&#xD;&#xA;&#x9;&quot;Organizations&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;PN&quot;) {&#xD;&#xA;&#x9;&quot;People&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;GL&quot;) {&#xD;&#xA;&#x9;&quot;Places&quot;&#xD;&#xA;}&#xD;&#xA;else {row[&quot;cartridge&quot;]}"/>
+      <columns name="PII_status" expression="if (row[&quot;cartridge&quot;] == &quot;PN&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Phone&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;URL&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Email&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Address&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Filename&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;DriversLicense&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Hashtag&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;CreditCard&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Twitter&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;SSN&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;BankAccount&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else {&quot;No PII found&quot;}"/>
+    </dataSets>
+    <dataSets name="Hashtags">
+      <columns name="doc_id"/>
+      <columns name="hash_tag_index"/>
+      <columns name="hashtag"/>
+    </dataSets>
+    <dataSets name="User Mentions">
+      <columns name="doc_id"/>
+      <columns name="mention_index"/>
+      <columns name="twitter_user_mention_name"/>
+      <columns name="twitter_user_mention_screen_name"/>
+    </dataSets>
+    <dataSets name="URLs">
+      <columns name="doc_id"/>
+      <columns name="url_index"/>
+      <columns name="url"/>
+    </dataSets>
+    <dataSets name="Document Details">
+      <columns name="doc_id"/>
+      <columns name="description"/>
+      <columns name="last_modification_date"/>
+      <columns name="created_by"/>
+      <columns name="owned_by"/>
+      <columns name="file_type"/>
+      <columns name="content_stream_length"/>
+      <columns name="subject"/>
+      <columns name="authors"/>
+      <columns name="content_stream_mime_type"/>
+      <columns name="version_major"/>
+      <columns name="version_minor"/>
+      <columns name="version_label"/>
+      <columns name="number_versions"/>
+      <columns name="direct_link"/>
+      <columns name="normalized_file_type"/>
+      <columns name="direct_link_mask"/>
+      <columns name="attribute_index"/>
+      <columns name="title"/>
+      <columns name="author"/>
+      <columns name="keyword"/>
+      <columns name="comment"/>
+      <columns name="last_author"/>
+      <columns name="application_name"/>
+      <columns name="last_print_date"/>
+      <columns name="last_save_time"/>
+      <columns name="total_editing_time"/>
+      <columns name="content_creation_date"/>
+      <columns name="category"/>
+      <columns name="manager"/>
+      <columns name="company"/>
+      <columns name="template"/>
+      <columns name="number_of_pages"/>
+      <columns name="number_of_lines"/>
+      <columns name="number_of_words"/>
+      <columns name="number_of_characters"/>
+      <columns name="number_of_paragraphs"/>
+      <columns name="number_of_characters_with_spaces"/>
+    </dataSets>
+    <dataSets name="Category Count">
+      <columns name="category"/>
+      <columns name="category_count"/>
+      <columns name="positive_tone_score"/>
+      <columns name="negative_tone_score"/>
+      <columns name="positive_count"/>
+      <columns name="negative_count"/>
+      <columns name="neutral_count"/>
+    </dataSets>
+    <dataSets name="Concept Count">
+      <columns name="concept"/>
+      <columns name="concept_count"/>
+      <columns name="total_concept_count"/>
+    </dataSets>
+    <dataSets name="Entity Count">
+      <columns name="entity"/>
+      <columns name="entity_count"/>
+    </dataSets>
+    <dataSets name="Classification">
+      <columns name="doc_id"/>
+      <columns name="haspikbname"/>
+      <columns name="haspicartridge"/>
+      <columns name="Classification" expression="if (row[&quot;haspikbname&quot;] > 0 &amp;&amp; row[&quot;haspicartridge&quot;] > 0) { 'Protected' }&#xD;&#xA;else if (row[&quot;haspikbname&quot;] == 0 &amp;&amp; row[&quot;haspicartridge&quot;] > 0) { 'Restricted' }&#xD;&#xA;else { 'Public' }"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="Text Analytics Library.rptlibrary" path="/GDPR-PII-Demo/Report Libraries/Text Analytics Library.rptlibrary"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptLibrary" name="ThemesReportItems31-BU.rptlibrary" path="/GDPR-PII-Demo/ThemesReportItems31-BU.rptlibrary"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Sankey_pii.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/Sankey_pii.RPTDESIGN" libraries="//@files.0">
+    <linkedFromReportsMap key="//@files.7" value="1"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="launcher.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/launcher.RPTDESIGN" libraries="//@files.0">
+    <linkedToReportsMap key="10" value="//@files.6"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="PII BiPartite.RPTDESIGN" path="/GDPR-PII-Demo/Report Designs/PII BiPartite.RPTDESIGN" libraries="//@files.0">
+    <dataSets name="Customers and Payments Data Set">
+      <columns name="COUNTRY"/>
+      <columns name="CREDITCATEGORY"/>
+      <columns name="TOTALCUSTOMERS"/>
+      <columns name="TOTALORDERS"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Document Detail.rptdesign" path="/GDPR-PII-Demo/Report Designs/Document Detail.rptdesign" libraries="//@files.0">
+    <linkedFromReportsMap key="//@files.16" value="1"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="PII Network.rptdesign" path="/GDPR-PII-Demo/Report Designs/PII Network.rptdesign" libraries="//@files.0">
+    <linkedFromReportsMap key="//@files.17" value="1"/>
+    <dataSets name="Nodes">
+      <columns name="doc_id"/>
+      <columns name="label"/>
+      <columns name="node"/>
+      <columns name="total"/>
+      <columns name="level"/>
+      <columns name="id"/>
+      <columns name="duplicate" expression="false"/>
+    </dataSets>
+    <dataSets name="NodeCounts">
+      <columns name="node"/>
+      <columns name="count"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Top 5 Categories.rptdesign" path="/GDPR-PII-Demo/Report Designs/Top 5 Categories.rptdesign" libraries="//@files.0"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Document List.rptdesign" path="/GDPR-PII-Demo/Report Designs/Document List.rptdesign" libraries="//@files.0">
+    <dataSets name="NodeCT">
+      <columns name="doc_id"/>
+      <columns name="name"/>
+      <columns name="Address"/>
+      <columns name="BankAccount"/>
+      <columns name="CreditCard"/>
+      <columns name="Email"/>
+      <columns name="Filename"/>
+      <columns name="Phone"/>
+      <columns name="PN"/>
+      <columns name="SSN"/>
+      <columns name="Twitter"/>
+      <columns name="URL"/>
+    </dataSets>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="Top 5 Categories Chart.rptdesign" path="/GDPR-PII-Demo/Report Designs/Top 5 Categories Chart.rptdesign" libraries="//@files.0"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="MetaData Stats.rptdesign" path="/GDPR-PII-Demo/Report Designs/MetaData Stats.rptdesign" libraries="//@files.0"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="PII BiPartite Small.rptdesign" path="/GDPR-PII-Demo/Report Designs/PII BiPartite Small.rptdesign" libraries="//@files.0"/>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="MostRecentPII.rptdesign" path="/GDPR-PII-Demo/Report Designs/MostRecentPII.rptdesign" libraries="//@files.0">
+    <linkedToReportsMap key="1126" value="//@files.9"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:RptDesign" name="TopPII.rptdesign" path="/GDPR-PII-Demo/Report Designs/TopPII.rptdesign" libraries="//@files.0">
+    <linkedToReportsMap key="1319" value="//@files.10"/>
+  </files>
+  <files xsi:type="com.actuate.istudio.analysis.model:DataDesign" name="PII Network.datadesign" path="/GDPR-PII-Demo/Data Objects/PII Network.datadesign">
+    <dataSets name="PII">
+      <columns name="doc_id"/>
+      <columns name="Search"/>
+      <columns name="entity"/>
+      <columns name="cartridge"/>
+      <columns name="term_index"/>
+      <columns name="frequency"/>
+      <columns name="confidence_score"/>
+      <columns name="relevancy_score"/>
+      <columns name="doc_date"/>
+      <columns name="id"/>
+      <columns name="language"/>
+      <columns name="language_confidence_score"/>
+      <columns name="name"/>
+      <columns name="negative_tone_score"/>
+      <columns name="positive_tone_score"/>
+      <columns name="subjectivity"/>
+      <columns name="subjectivity_score"/>
+      <columns name="tone"/>
+    </dataSets>
+    <dataSets name="Documents">
+      <columns name="doc_id"/>
+      <columns name="repository_id"/>
+      <columns name="doc_date"/>
+      <columns name="name"/>
+      <columns name="id"/>
+      <columns name="tone"/>
+      <columns name="positive_tone_score"/>
+      <columns name="negative_tone_score"/>
+      <columns name="subjectivity"/>
+      <columns name="subjectivity_score"/>
+      <columns name="language"/>
+      <columns name="language_confidence_score"/>
+      <columns name="document_body"/>
+      <columns name="content_type"/>
+      <columns name="haspikbname"/>
+      <columns name="haspicartridge"/>
+      <columns name="Classification" expression="if (row[&quot;haspikbname&quot;] > 0 &amp;&amp; row[&quot;haspicartridge&quot;] > 0) { 'Protected' }&#xD;&#xA;else if (row[&quot;haspikbname&quot;] == 0 &amp;&amp; row[&quot;haspicartridge&quot;] > 0) { 'Restricted' }&#xD;&#xA;else { 'Public' }"/>
+    </dataSets>
+    <dataSets name="Categories">
+      <columns name="doc_id"/>
+      <columns name="kb_name"/>
+      <columns name="categoryid"/>
+      <columns name="category"/>
+      <columns name="category_index"/>
+      <columns name="weight"/>
+      <columns name="kb_relevancy"/>
+    </dataSets>
+    <dataSets name="Concepts">
+      <columns name="doc_id"/>
+      <columns name="name"/>
+      <columns name="frequency"/>
+      <columns name="relevancy"/>
+      <columns name="is_complex"/>
+      <columns name="concept_type" expression="if (row[&quot;is_complex&quot;]==1) {&#xD;&#xA;&#x9;&quot;Complex Concepts&quot;&#xD;&#xA;}&#xD;&#xA;else {&quot;Simple Concepts&quot;}"/>
+    </dataSets>
+    <dataSets name="Entities">
+      <columns name="doc_id"/>
+      <columns name="cartridge"/>
+      <columns name="entity"/>
+      <columns name="term_index"/>
+      <columns name="confidence_score"/>
+      <columns name="relevancy_score"/>
+      <columns name="frequency"/>
+      <columns name="haspikbname"/>
+      <columns name="entity_type" expression="if (row[&quot;cartridge&quot;] == &quot;ON&quot;) {&#xD;&#xA;&#x9;&quot;Organizations&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;PN&quot;) {&#xD;&#xA;&#x9;&quot;People&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;GL&quot;) {&#xD;&#xA;&#x9;&quot;Places&quot;&#xD;&#xA;}&#xD;&#xA;else {row[&quot;cartridge&quot;]}"/>
+      <columns name="PII_status" expression="if (row[&quot;cartridge&quot;] == &quot;PN&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Phone&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;URL&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Email&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Address&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Filename&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;DriversLicense&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Hashtag&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;CreditCard&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;Twitter&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;SSN&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else if (row[&quot;cartridge&quot;] == &quot;BankAccount&quot;) {&#xD;&#xA;&#x9;&quot;PII detected&quot;&#xD;&#xA;}&#xD;&#xA;else {&quot;No PII found&quot;}"/>
+      <columns name="Classification" expression="if (row[&quot;haspikbname&quot;]>0 &amp;&amp; row[&quot;PII_status&quot;] == &quot;PII detected&quot;)&#xD;&#xA;&#x9;&quot;Protected&quot;&#xD;&#xA;else if (row[&quot;haspikbname&quot;] == 0 &amp;&amp; row[&quot;PII_status&quot;] == &quot;PII detected&quot;)&#xD;&#xA;&#x9;&quot;Restricted&quot;&#xD;&#xA;else&#xD;&#xA;&#x9;&quot;Public&quot;"/>
+    </dataSets>
+    <dataSets name="Top PII">
+      <columns name="cartridge"/>
+      <columns name="Search"/>
+      <columns name="entity"/>
+      <columns name="doc_id"/>
+    </dataSets>
+  </files>
+</com.actuate.istudio.analysis.model:Project>

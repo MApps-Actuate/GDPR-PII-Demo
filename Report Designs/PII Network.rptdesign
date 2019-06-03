@@ -1,0 +1,2205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
+    <html-property name="description">WizardTemplateChoicePage.message.BlankAuto</html-property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">2349</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">2349</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">2349</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <method name="beforeFactory"><![CDATA[edges = [];]]></method>
+    <property name="theme">ThemesReportItems31.Modern</property>
+    <text-property name="displayName">WizardTemplateChoicePage.title.BlankAuto</text-property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">/ThemesReportItems31.rptlibrary</property>
+            <property name="namespace">ThemesReportItems31</property>
+        </structure>
+    </list-property>
+    <method name="onContentUpdate"><![CDATA[// Get the Viewer's current UI Options
+var uiOptions = this.getViewer().getUIOptions();
+uiOptions.enableToolBar(false);
+
+// Remove ability for user to change interactivity options
+uiOptions.enableEditReport(false);
+
+// Set the modified UI Options back into the Viewer
+this.getViewer().setUIOptions(uiOptions);
+
+// If Interactivity is not enabled, enable it
+//if (!this.getViewer().isInteractive())
+	this.getViewer().disableIV();]]></method>
+    <parameters>
+        <scalar-parameter name="pSearch" id="1958">
+            <text-property name="promptText">Enter PII to Search</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">Jeff Skilling</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Postgres" id="2348">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:8433/PII_Network</property>
+            <property name="odaUser">postgres</property>
+            <encrypted-property name="odaPassword" encryptionID="jce">901c2e83fdda402dcaab65efdde92e0b</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Nodes" id="2349">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">duplicate</property>
+                    <expression name="expression" type="javascript">false</expression>
+                    <property name="dataType">boolean</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">doc_id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">doc_id</text-property>
+                    <text-property name="heading">doc_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">label</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">label</text-property>
+                    <text-property name="heading">label</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">node</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">node</text-property>
+                    <text-property name="heading">node</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">total</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">total</text-property>
+                    <text-property name="heading">total</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">level</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">level</text-property>
+                    <text-property name="heading">level</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">duplicate</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">is-false</property>
+                    <expression name="expr" type="javascript">row["duplicate"]</expression>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">doc_id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">label</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">node</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">total</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">level</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">duplicate</property>
+                        <property name="dataType">boolean</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[var txt = params["pSearch"].value + "";
+var txtClean = txt.replace(/[.,\/#!$%\^&amp;\*;:{}=\-_`~()\s]/g,"");
+this.queryText = new Packages.java.lang.String(this.queryText).replaceAll("999", txtClean.toUpperCase());
+docs = {};
+edges = [];]]></method>
+            <method name="onFetch"><![CDATA[if (row["level"] > 1) {
+	if (!(row["id"] in docs)) {
+		docs[row["id"]] = row["id"];
+	}
+	else {
+		row["duplicate"] = true;
+	}
+	edges.push("{from: '" + row["doc_id"] + "', to: '" + row["id"].replace(/'/g , "&amp;apos;") + "', value:" + row["total"] + "}");
+}]]></method>
+            <property name="dataSource">Postgres</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">doc_id</property>
+                    <property name="nativeName">doc_id</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">label</property>
+                    <property name="nativeName">label</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">node</property>
+                    <property name="nativeName">node</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">total</property>
+                    <property name="nativeName">total</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">level</property>
+                    <property name="nativeName">level</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[(SELECT DISTINCT "doc_id", "name" AS "label", 'Doc' AS "node", 1 AS "total",
+    1 AS "level", "doc_id" AS "id"
+    FROM "public"."PII"
+    WHERE "Search" LIKE '%999%'
+    ORDER BY "doc_id"
+    FETCH FIRST 100 ROWS ONLY)
+  UNION
+  (SELECT "doc_id", "entity" AS "label", "cartridge" AS "node", "frequency" AS "total",
+    2 AS "level", "entity" AS "id"
+    FROM "public"."PII"
+    WHERE "doc_id" IN (SELECT DISTINCT "c"."doc_id"
+                         FROM "public"."PII" AS "c"
+                         WHERE "c"."Search" LIKE '%999%' ORDER BY "c"."doc_id" FETCH FIRST 100 ROWS ONLY)
+	)
+  ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>doc_id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>doc_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>doc_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>label</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>label</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>label</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>node</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>node</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>node</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>total</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>total</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>level</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>level</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>level</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="NodeCounts" id="2356">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">node</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">node</text-property>
+                    <text-property name="heading">node</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">count</text-property>
+                    <text-property name="heading">count</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">node</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[var txt = params["pSearch"].value + "";
+var txtClean = txt.replace(/[.,\/#!$%\^&amp;\*;:{}=\-_`~()\s]/g,"");
+this.queryText = new Packages.java.lang.String(this.queryText).replaceAll("999", txtClean.toUpperCase());]]></method>
+            <property name="dataSource">Postgres</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">node</property>
+                    <property name="nativeName">node</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">count</property>
+                    <property name="nativeName">count</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[Select 'Doc' as "node", count(DISTINCT "doc_id") from "public"."PII" where "doc_id" in (SELECT DISTINCT d."doc_id"
+    FROM "public"."PII" as d
+    WHERE d."Search" LIKE '%999%'
+    ORDER BY d."doc_id"
+    FETCH FIRST 100 ROWS ONLY)
+	GROUP BY "node"
+  UNION
+  (SELECT "cartridge" AS "node", sum("frequency") AS "total"
+    FROM "public"."PII"
+    WHERE "doc_id" IN (SELECT DISTINCT "c"."doc_id"
+                         FROM "public"."PII" AS "c"
+                         WHERE "c"."Search" LIKE '%999%' ORDER BY "c"."doc_id" FETCH FIRST 100 ROWS ONLY)
+	GROUP BY "node")]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="orientation">auto</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <text id="2462">
+            <property name="marginBottom">5pt</property>
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script>
+	$('head').append('<link id="myCSS" rel="stylesheet" type="text/css" href="/iportal/servlet/DownloadFile/blank.css?name=/Applications/GDPR-PII-Demo/css/blank.css&amp;fileExtension=css&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false">');
+	$("#myCSS").attr("href", "/iportal/servlet/DownloadFile/overrideActuate_2019.css?name=/Applications/GDPR-PII-Demo/css/overrideActuate_2019.css&amp;fileExtension=css&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false");
+	$(".floatPanel").css("margin-top","-25px");
+</script>
+
+<div id="banner" align="left" style="height:65px;">
+	<table id="bannerHeading" width="100%">
+		<tbody>
+			<tr style="vertical-align:middle;">
+				<td width="30%" align="left" style="white-space: nowrap;">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/Home%20Banner.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px" style="padding-left:20px"><span style="vertical-align:super; white-space: nowrap;">Privacy and Data Governance</span>
+				</td>
+				<td width="30%" align="center">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/OT%20Magellan.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px">
+				</td>
+				<td width="40%" align="right">
+					<img src="/iportal/servlet/DownloadFile/Home Banner.png?name=/Applications/GDPR-PII-Demo/Images/userhead.png&amp;fileExtension=png&amp;__vp=Default%20Volume&amp;volume=Default%20Volume&amp;showBanner=false" height="50px" style="padding-right:20px">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div>
+]]></text-property>
+        </text>
+        <text id="2463">
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script>
+ function notification() {
+ 	$("#notify").show();
+ }
+</script>
+<div id="notify" style="overflow:float;visibility:hidden;width:200px;height:50px;left:400">Request Submitted</div>]]></text-property>
+        </text>
+        <table id="2191">
+            <property name="dataSet">Nodes</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">true</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">doc_id</property>
+                    <text-property name="displayName">doc_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">id</property>
+                    <text-property name="displayName">id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">label</property>
+                    <text-property name="displayName">label</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["label"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">total</property>
+                    <text-property name="displayName">total</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["total"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">node</property>
+                    <text-property name="displayName">node</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">level</property>
+                    <text-property name="displayName">level</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["level"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">duplicate</property>
+                    <text-property name="displayName">duplicate</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["duplicate"]</expression>
+                    <property name="dataType">boolean</property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">is-false</property>
+                    <expression name="expr" type="javascript">row["duplicate"]</expression>
+                    <property name="updateAggregation">true</property>
+                </structure>
+            </list-property>
+            <column id="2225"/>
+            <column id="2226"/>
+            <column id="2227"/>
+            <column id="2228"/>
+            <column id="2229"/>
+            <column id="2230"/>
+            <header>
+                <row id="2192">
+                    <cell id="2193">
+                        <label id="2194">
+                            <text-property name="text">doc_id</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2195">
+                        <label id="2196">
+                            <text-property name="text">id</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2197">
+                        <label id="2198">
+                            <text-property name="text">label</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2199">
+                        <label id="2200">
+                            <text-property name="text">total</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2201">
+                        <label id="2202">
+                            <text-property name="text">node</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2203">
+                        <label id="2204">
+                            <text-property name="text">level</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="2205">
+                    <cell id="2206">
+                        <data id="2207">
+                            <property name="resultSetColumn">doc_id</property>
+                        </data>
+                    </cell>
+                    <cell id="2208">
+                        <data id="2209">
+                            <property name="resultSetColumn">id</property>
+                        </data>
+                    </cell>
+                    <cell id="2210">
+                        <data id="2211">
+                            <property name="resultSetColumn">label</property>
+                        </data>
+                    </cell>
+                    <cell id="2212">
+                        <data id="2213">
+                            <property name="resultSetColumn">total</property>
+                        </data>
+                    </cell>
+                    <cell id="2214">
+                        <data id="2215">
+                            <property name="resultSetColumn">node</property>
+                        </data>
+                    </cell>
+                    <cell id="2216">
+                        <data id="2217">
+                            <property name="resultSetColumn">level</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2218">
+                    <cell id="2219"/>
+                    <cell id="2220"/>
+                    <cell id="2221"/>
+                    <cell id="2222"/>
+                    <cell id="2223"/>
+                    <cell id="2224"/>
+                </row>
+            </footer>
+        </table>
+        <text id="2233">
+            <property name="contentType">html</property>
+            <text-property name="content"><![CDATA[<script src="https://use.fontawesome.com/3edbcdbcb7.js"></script>
+
+<script>
+
+	var myEdges = [<VALUE-OF>edges.join(",")</VALUE-OF>];
+	searchTerm = '<VALUE-OF>params["pSearch"].value</VALUE-OF>';
+</script>
+
+]]></text-property>
+        </text>
+        <text id="2354">
+            <property name="fontWeight">bold</property>
+            <property name="color">#FF0000</property>
+            <property name="marginTop">10pt</property>
+            <property name="textAlign">center</property>
+            <property name="contentType">auto</property>
+            <text-property name="content"><![CDATA[- RESTRICTED ACCESS - PROTECTED INFORMATION -]]></text-property>
+        </text>
+        <grid id="2311">
+            <column id="2316">
+                <property name="width">0.75in</property>
+            </column>
+            <column id="2312">
+                <property name="textAlign">left</property>
+                <property name="width">95%</property>
+            </column>
+            <row id="2350">
+                <cell id="2351"/>
+                <cell id="2352">
+                    <text-data id="2353">
+                        <property name="fontFamily">"Lato"</property>
+                        <property name="paddingTop">3pt</property>
+                        <property name="paddingBottom">3pt</property>
+                        <expression name="valueExpr">"Documents Containing:  "+params["pSearch"].value+""</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="2313">
+                <cell id="2315">
+                    <table id="2374">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"Doc"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2389"/>
+                        <detail>
+                            <row id="2380">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2383">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="2390">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#00819D</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2384">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2391">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Document</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+                <cell id="2314">
+                    <property name="colSpan">1</property>
+                    <property name="rowSpan">11</property>
+                    <extended-item extensionName="HTMLControl" id="2232">
+                        <property name="html">&lt;div id="mynetwork">&lt;/div></property>
+                        <property name="css">#mynetwork {&#13;
+            width: 100%;&#13;
+            height: 850px;&#13;
+            border: 1px solid #222222;&#13;
+            background-color: #222222;&#13;
+            font-family: 'Lato';&#13;
+        }&#13;
+        &#13;
+div.popupMenu {&#13;
+      position:absolute;&#13;
+      top:0px;&#13;
+      left:0px;&#13;
+      width:200px;&#13;
+      height:45px;&#13;
+      background-color:#ffffff;&#13;
+      padding: 6px;&#13;
+      white-space: nowrap;&#13;
+  	  overflow: hidden;&#13;
+      text-overflow: ellipsis;&#13;
+      line-height: 1.25;&#13;
+      font-weight: bold;&#13;
+      font-size: small;&#13;
+      font-family: 'Lato';&#13;
+    }&#13;
+    &#13;
+.excludeTable th{&#13;
+			text-align: left;&#13;
+	}</property>
+                        <method name="clientOnCreate"><![CDATA[   //{id: 0, label: "0", group: 'source'},
+   var nodes = dataTransfrom(this.getDataCursor());
+	var popupMenu = undefined;
+
+//debugger;
+	var edges = myEdges;
+
+
+//console.log (nodes);
+//console.log (edges);
+
+
+	
+function dataTransfrom(cursor) {
+
+	var links = [];
+
+
+	for (var i=0;cursor.hasNext();i++) {
+	
+		var dataObj = cursor.next();
+
+		var link = {};
+		link.id = dataObj["id"];
+		link.label = dataObj["label"];
+		link.group = dataObj["node"];
+		link.value = dataObj["total"];
+		link.level = dataObj["level"];
+		links.push(link);
+	}
+
+
+	return links;
+}
+
+
+            
+function showDetail(txt) {
+	window.open("./executereport.do?__executableName=%2fApplications%2fGDPR-PII-Demo%2fReport%20Designs%2fDocument%20Detail.rptdesign&amp;invokesubmit=true&amp;pDocID=" + txt, "_blank");
+}
+
+function showList(txt) {
+	window.open("./executereport.do?__executableName=%2fApplications%2fGDPR-PII-Demo%2fReport%20Designs%2fDocument%20List.rptdesign&amp;invokesubmit=true&amp;hideSummary=false&amp;pSearch=" + encodeURIComponent(txt), "_blank");
+
+}
+
+function getNodeIdx(node) {
+  debugger;
+ 	var i = null;
+ 		for (i=0; i < nodes.length; i++) {
+			if (nodes[i].id == node) {
+				break;
+			}
+		}
+	return i;
+}
+
+ function getType(node) {
+// debugger;
+ 	var pType = "undefined";
+ 	var i = null;
+ 		for (i=0; i < nodes.length; i++) {
+			if (nodes[i].id == node) {
+				pType = nodes[i].group
+				break;
+			}
+		}
+	return pType;
+ }
+
+        var svgSSN = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20">' +
+            '<rect x="0" y="0" width="100%" height="100%" fill="#7890A7" stroke-width="5" stroke="#464646" ></rect>' +
+            '<foreignObject x="0" y="2" width="100%" height="100%">' +
+            '<div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Lato;font-size:12px;text-align:center;">' +
+            '<span style="color:white; text-shadow:0 0 10px #000000;">' +
+            'SSN</span>' +
+            '</div>' +
+            '</foreignObject>' +
+            '</svg>';
+
+
+        var urlSSN = "data:image/svg+xml;charset=utf-8,"+ encodeURIComponent(svgSSN);
+        
+  var changeNodeColor =
+    function(values, id, selected, hovering) {
+      values.color.background = "Yellow";
+    }
+    
+  var changeEdgeColor =
+    function(values, id, selected, hovering) {
+      values.color = "Yellow";
+  	}
+  	
+var callback = function() {
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {
+    	autoResize: true,
+  		height: '100%',
+  		width: '100%',
+  		locale: 'en',
+  	
+        nodes: {
+            shape: 'dot',
+            size: 20,
+            font: {
+                size: 15,
+                color: '#ffffff'
+            },
+            borderWidth: 2,
+            chosen: {node: changeNodeColor}
+        },
+
+        groups: {
+            Email: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf0e0',
+                    size: 50,
+                    color: '#2E988C'
+                }
+            },
+            PN: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf007',
+                    size: 50,
+                    color: '#3578AD'
+                }
+            },
+            URL: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf0ac',
+                    size: 50,
+                    color: '#2C8E3C'
+                }
+            },
+            Phone: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf098',
+                    size: 50,
+                    color: '#8CEA9C'
+                }
+            },
+            Doc: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf15c',
+                    size: 50,
+                    color: 'teal'
+                }
+            },
+            SSN: {
+                image: urlSSN, 
+                shape: 'image',
+                size: 25                
+            },
+            Filename: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf0c7',
+                    size: 50,
+                    color: '#005377'
+                }
+            },
+            Twitter: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf081',
+                    size: 50,
+                    color: '#93D6E2'
+                }
+            },
+            Hashtag: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf081',
+                    size: 50,
+                    color: '#93D6E2'
+                }
+            },
+            BankAccount: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf19c',
+                    size: 50,
+                    color: '#9ECC4C'
+                }
+            },
+            CreditCard: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf09d',
+                    size: 50,
+                    color: '#0C6B17'
+                }
+            },
+            Address: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf041',
+                    size: 50,
+                    color: '#75C6B1',
+                }
+            },
+            Passport: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf5ab',
+                    size: 50,
+                    color: 'cyan'
+                }
+            }
+        },
+      edges: {
+        width: 0.15,
+        color: {inherit: 'from'},
+        smooth: {
+          type: 'continuous'
+        }, 
+        chosen:{edge: changeEdgeColor}
+      },
+      physics: {
+      	enabled: true,
+        stabilization: false,
+        barnesHut: {
+          gravitationalConstant: -30000,
+          centralGravity: 0.5,
+          springConstant: 0,
+          springLength: 40,
+          damping: 0.25,
+          avoidOverlap: 0.75
+        },
+      	maxVelocity: 100,
+      	minVelocity: 1,
+      },
+
+	  layout: {
+	  		//randomSeed:2,
+	  		improvedLayout: false,
+	  		hierarchical: {
+	  			enabled: false,
+            	direction: "LR",
+                sortMethod: "directed",
+                levelSeparation: 200,
+                nodeSpacing: 200,
+                treeSpacing: 200,
+                parentCentralization: false,
+                blockShifting: true,
+                edgeMinimization: true
+            }
+	  }
+    };
+    setTimeout(function(){ 
+    	network = new vis.Network(container, data, options); 
+    	highlightSearch(); //highlight the node that matches the search term
+   // add event listeners
+    //menu
+      network.on('select', function(params) {
+        if (popupMenu !== undefined) {
+          popupMenu.parentNode.removeChild(popupMenu);
+          popupMenu = undefined;
+        }
+        params.event.preventDefault();
+      });
+      
+      network.on('oncontext', function(params) {
+         if (popupMenu !== undefined) {
+          popupMenu.parentNode.removeChild(popupMenu);
+          popupMenu = undefined;
+        }
+        if (network.getSelection().nodes.length > 0) {
+          var offsetLeft = container.offsetLeft;
+          var offsetTop = container.offsetTop + 75;
+
+          popupMenu = document.createElement("div");
+          popupMenu.className = 'popupMenu';
+          popupMenu.style.left = params.pointer.DOM.x + offsetLeft + 'px';
+          popupMenu.style.top = params.pointer.DOM.y + offsetTop +'px';
+          var txtNode = params.nodes;
+
+          	popupMenu.innerHTML = "<a class='redact' href='javascript:notification();' id='" + txtNode + "'>Submit to Redaction Workflow</a><br><a class='delete' href='#' id='" + txtNode + "'>Initiate Deletion Workflow</a><br><a class='rightAccess' href='#' id='" + txtNode + "'>Process Right of Access Request</a>";
+          	container.appendChild(popupMenu);
+        }
+           	
+      });
+
+   
+    	//open listing report
+    	network.on('doubleClick', function (params) {
+    		var txtNode = params.nodes.toString();
+    		if (txtNode.length > 0) {
+    			if (getType(txtNode) == "Doc")
+    				showDetail(txtNode);
+    			else
+    				showList(txtNode);
+    		}
+    	});
+	},500);
+ }
+ 
+function highlightSearch() {
+    	var selectedNode = [searchTerm];
+		network.selectNodes(selectedNode);
+}
+ 
+
+ delete define.amd;
+    	
+//head.load ('http://visjs.org/dist/vis-network.min.css', 'http://visjs.org/dist/vis.js', 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', callback);
+//head.load ('/iportal/js/vis.min.js', callback);
+head.load('http://visjs.org/dist/vis.min.js', callback);
+
+]]></method>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">is-false</property>
+                                <expression name="expr" type="javascript">row["duplicate"]</expression>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="height">480px</property>
+                        <property name="width">100%</property>
+                        <property name="dataSet">Nodes</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">doc_id</property>
+                                <text-property name="displayName">doc_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["doc_id"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">id</property>
+                                <text-property name="displayName">id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["id"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">label</property>
+                                <text-property name="displayName">label</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["label"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">total</property>
+                                <text-property name="displayName">total</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["total"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">level</property>
+                                <text-property name="displayName">level</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["level"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">duplicate</property>
+                                <text-property name="displayName">duplicate</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["duplicate"]</expression>
+                                <property name="dataType">boolean</property>
+                            </structure>
+                        </list-property>
+                    </extended-item>
+                </cell>
+            </row>
+            <row id="2317">
+                <cell id="2318">
+                    <table id="2392">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"PN"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2398"/>
+                        <detail>
+                            <row id="2393">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2394">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="135">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#3578AD</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2396">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="130">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Person</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2320">
+                <cell id="2321">
+                    <table id="2399">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"BankAccount"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2405"/>
+                        <detail>
+                            <row id="2400">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2401">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="136">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#9ECC4C</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2403">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="131">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Bank Account</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2323">
+                <cell id="2324">
+                    <table id="2406">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"Email"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2412"/>
+                        <detail>
+                            <row id="2407">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2408">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="2271">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#2E988C</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2410">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2270">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Email Address</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2326">
+                <cell id="2327">
+                    <table id="2413">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"URL"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2419"/>
+                        <detail>
+                            <row id="2414">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2415">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="2329">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#2C8E3C</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2417">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2330">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">URL</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2331">
+                <cell id="2332">
+                    <table id="2420">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"Phone"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2426"/>
+                        <detail>
+                            <row id="2421">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2422">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="2274">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#8CEA9C</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2424">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2275">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Phone</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2334">
+                <cell id="2335">
+                    <property name="textAlign">center</property>
+                    <table id="2427">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"SSN"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2433"/>
+                        <detail>
+                            <row id="2428">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2429">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <image id="2280">
+                                        <property name="display">inline</property>
+                                        <property name="height">30px</property>
+                                        <property name="width">45px</property>
+                                        <property name="source">embed</property>
+                                        <property name="imageName">SSN.JPG</property>
+                                    </image>
+                                    <data id="2431">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2277">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Social Security Number</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2337">
+                <cell id="2338">
+                    <property name="textAlign">center</property>
+                    <table id="2434">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"Filename"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2440"/>
+                        <detail>
+                            <row id="2435">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2436">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="2283">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#005377</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2438">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2282">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Filename</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2340">
+                <cell id="2341">
+                    <property name="textAlign">center</property>
+                    <table id="2441">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">in</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"Twitter"</value>
+                                    <value type="javascript">"Hashtag"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2447"/>
+                        <detail>
+                            <row id="2442">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2443">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="2284">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#93D6E2</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2445">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2285">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Twitter</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2343">
+                <cell id="2344">
+                    <property name="textAlign">center</property>
+                    <table id="2448">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"CreditCard"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2454"/>
+                        <detail>
+                            <row id="2449">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2450">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="2287">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#0C6B17</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2452">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2286">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Credit Card</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+            <row id="2346">
+                <cell id="2347">
+                    <property name="textAlign">center</property>
+                    <table id="2455">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="dataSet">NodeCounts</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">node</property>
+                                <text-property name="displayName">node</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["node"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">count</property>
+                                <text-property name="displayName">count</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">eq</property>
+                                <expression name="expr" type="javascript">row["node"]</expression>
+                                <simple-property-list name="value1">
+                                    <value type="javascript">"Address"</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="2461"/>
+                        <detail>
+                            <row id="2456">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <cell id="2457">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="2298">
+                                        <property name="fontFamily">"FontAwesome"</property>
+                                        <property name="fontSize">36pt</property>
+                                        <property name="color">#75C6B1</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="display">inline</property>
+                                        <text-property name="text"></text-property>
+                                    </label>
+                                    <data id="2459">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">8pt</property>
+                                        <property name="paddingLeft">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="display">inline</property>
+                                        <property name="resultSetColumn">count</property>
+                                    </data>
+                                    <label id="2297">
+                                        <property name="fontFamily">"Lato"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="color">black</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Address</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <property name="thumbnail">
+        iVBORw0KGgoAAAANSUhEUgAAALgAAADlCAMAAADX/c3cAAADAFBMVEUAAAD////PomuXkHZ/iHzAwMBt
+        gn9ifoK5m2/kqGbW1tbFnm3MzMxzhH6MjHmllHTvrGTdpmje3t6ymHGTjnfFxcXMmWZ7hnyslnL2rmPW
+        pGlmgIHoqmWSjni2mnCdknVsgoCFinq9nG7MmWbmpWsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN+Hl9AAACI0lEQVR4nO3V2Y7aQBQAUYedELZABGHH
+        //+RY5iBsBglaiXVc6MqufvBT0dX3Xbxs65JXZv7+k9Na1vV1Xjd4GXlbcU/dteyk9xl+Qj/EjDhdMLp
+        ej3hbMLphNMJp9vthLNV8MkkNyIl4XTC6YTThYXPZsLZhNMJpxNOFxm+2eRGpCScbrkUziacTjidcLrI
+        8H4/NyIl4XTC6YTTjcfC2YTTCaeLDJ9OcyNSEk4nnE44nXA64XRh4fu9cDbhdMLpKvhqlRuRknA64XTC
+        6cLCm03hbMLphNMJp4sMbzRyI1ISThcWPp8LZxNOJ5wuLHy7Fc4mnE44nXA64XSjUVz4YJAbkZJwOuF0
+        wumE0wmnE04XFn48CmcTTiecroKXZW5ESsLphNMJpwsLb7WEswmnE05XwXu93IiUhNMJpxNOJ5xusSh2
+        u9yIlITTCacTTiecLjJ8NsuNSEk43XAonE04nXA64XSR4ctlbkRKwumE0wmn63SEswmnE04nnC4yfDzO
+        jUjpcBDOJpxOON0TvN1u/zj37dLXa9/fy2W967+DF1VXevEJ4ev1C/hpxYSfwNVTVOrLFgl+nvdp4ucV
+        CH466+/o4jryXNa7fgMv7iYe46icL2cR76h8fA6Lj4sZ5nJ++h9QBd/vb1+EhUdJOF1YeLcrnE04nXC6
+        M7yq+dD80va20VPHp1pPLR4a1tS57XBt/Vj3V0UNu979J+y/4D68dndvewPPryQJnh8+HgAAAABJRU5E
+        rkJggg==
+</property>
+    <list-property name="images">
+        <structure>
+            <property name="name">SSN.JPG</property>
+            <property name="data">
+                /9j/4AAQSkZJRgABAQEAYABgAAD/4RDuRXhpZgAATU0AKgAAAAgABAE7AAIAAAAMAAAISodpAAQAAAAB
+                AAAIVpydAAEAAAAYAAAQzuocAAcAAAgMAAAAPgAAAAAc6gAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEdlZmYgVml0
+                YWxlAAAFkAMAAgAAABQAABCkkAQAAgAAABQAABC4kpEAAgAAAAM1MAAAkpIAAgAAAAM1MAAA6hwABwAA
+                CAwAAAiYAAAAABzqAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAxOTowNToxNCAxNjoxOTo1NwAyMDE5OjA1OjE0
+                IDE2OjE5OjU3AAAARwBlAGYAZgAgAFYAaQB0AGEAbABlAAAA/+ELHmh0dHA6Ly9ucy5hZG9iZS5jb20v
+                eGFwLzEuMC8APD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQn
+                Pz4NCjx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iPjxyZGY6UkRGIHhtbG5zOnJkZj0i
+                aHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+PHJkZjpEZXNjcmlwdGlv
+                biByZGY6YWJvdXQ9InV1aWQ6ZmFmNWJkZDUtYmEzZC0xMWRhLWFkMzEtZDMzZDc1MTgyZjFiIiB4bWxu
+                czpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iLz48cmRmOkRlc2NyaXB0aW9uIHJk
+                ZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHhtbG5zOnht
+                cD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyI+PHhtcDpDcmVhdGVEYXRlPjIwMTktMDUtMTRU
+                MTY6MTk6NTcuNTAxPC94bXA6Q3JlYXRlRGF0ZT48L3JkZjpEZXNjcmlwdGlvbj48cmRmOkRlc2NyaXB0
+                aW9uIHJkZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHht
+                bG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyI+PGRjOmNyZWF0b3I+PHJkZjpT
+                ZXEgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48
+                cmRmOmxpPkdlZmYgVml0YWxlPC9yZGY6bGk+PC9yZGY6U2VxPg0KCQkJPC9kYzpjcmVhdG9yPjwvcmRm
+                OkRlc2NyaXB0aW9uPjwvcmRmOlJERj48L3g6eG1wbWV0YT4NCiAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAog
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                IAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+                ICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgPD94cGFja2V0IGVuZD0n
+                dyc/Pv/bAEMABwUFBgUEBwYFBggHBwgKEQsKCQkKFQ8QDBEYFRoZGBUYFxseJyEbHSUdFxgiLiIlKCkr
+                LCsaIC8zLyoyJyorKv/bAEMBBwgICgkKFAsLFCocGBwqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+                KioqKioqKioqKioqKioqKioqKioqKv/AABEIAEEAXwMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAA
+                AAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgj
+                QrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2
+                d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj
+                5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIE
+                BAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYn
+                KCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqi
+                o6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEA
+                AhEDEQA/ANr4j/EfxXoPxA1LTdJ1X7PaQeV5cf2eJtuYkY8spPUnvXMf8Lf8c/8AQc/8lIP/AIim/GD/
+                AJKtrH/bD/0RHUOl6XYzaVbyS2yM7Jkk96uEXJ2RMpKKLH/C3/HP/Qc/8lIP/iKP+Fv+Of8AoOf+SkH/
+                AMRSnR9O/wCfSP8AKmHSdO/59I/yrT2LM/aod/wt/wAc/wDQc/8AJSD/AOIo/wCFv+Of+g5/5KQf/EVH
+                /ZOnf8+sf5Uf2Tp3/PpH+VL2LD2qJP8Ahb/jn/oOf+SkH/xFH/C3/HP/AEHP/JSD/wCIqP8AsnT/APn1
+                j/KlGk6d/wA+kf5UexfcPaof/wALf8c/9Bz/AMlIP/iKP+Fv+Of+g5/5KQf/ABFINI07/n0jp40fTv8A
+                n0j/ACp+xYe1Q3/hb/jn/oOf+SkH/wARXp/wa8X654r/ALZ/t+++1/ZvI8r9yibd3mZ+6oz90dfSvGvE
+                tja2ltA1tCsZZyCV78V6V+zx/wAzF/27f+1aylHldjSMuZXOI+MP/JVtY/7Yf+iI6k0c/wDEmtf9yo/j
+                D/yVbWP+2H/oiOnaQcaPbf7la0fiM6ux6ZH4a8O+GtFgvPF5luLm5XKW0bEY4zgYI5GeSTiqd9a+BdU0
+                W4uNKuJdLuoIy6wysSZD2GGJzn/ZPFbt9a6Z8SdIs3tNQS11G3QgwvyRkDII64yOGFcJr/gvW/D8ZmvL
+                cSWw6zwNuUfXuPxFVe7fM7MlaJNK6LPgvwqviW8nlvJjBYWihpnXgnOeATwOhJP+NbYufhm14bT7JdKv
+                QXe+TZn1+9n/AMdxVL4da9ptnHqGj6zIsEF+uBKx2qOCCCe2QeDTtV+FOpwq0+iXMOo255RdwRyP/QT9
+                cj6U5P3tdhRXu6bnOeI7LTtN1x7bR78X1qApWUEHGf4cjg49RXb+NPh/bWmjrqPh+Bo/IXdPDvZty/3h
+                kk5Hp6V5nPbz2d21vdRPDNG2HjdcFT9K9n8SeKz4a8U6WtxlrC6t9s69dvzcOPpn8RRK9opP+rDja7bR
+                44r12N3o2nxfDGw1aODF7NOUeXe3I3OMYzjsO1M8e+FF0m6XVdLCvpl4dylDkRsecD/ZPUfl6Vfv/wDk
+                iul/9fR/9CkqnK8LrugjG0mn2f5Hlfis/wCiW/8Avn+Veifs7/8AMxf9u3/tWvOfFX/Hpb/75/lXov7O
+                3/Mxf9u3/tWsKvxGlP4TivjD/wAlW1j/ALYf+iI6foyNJpNoqKWZlAAAySc0z4wf8lW1j/th/wCiI6n0
+                KSSDS7KaFikkYDKy9VIOQaqj8RNbYu6hpt7pN15N/byW0wAYBxj8Qe9ei/DnUL/UtF1WHWZXudPjj2q1
+                wd2Mg7lyeoxjjtWbF8SXmsVt9e0a11Tb0ZyFB9yCrDP0xWfr/j+71bTP7OsLOLTLNhteOJslh/dzgAD2
+                Aq5KUouLREeVNSucrHpN/PpsuoQWsslpC22SVVyFPXmrfhrU9X0/WLZNFnlEkkqjyVY7ZMnoy9DWn4Z8
+                aal4ZBhiC3Nmxy1vJ2Pqp7fqPatwfEy2tjLNpnhiztbqQczBxyffCAn86tuSe10Qkmt7EPxcSAeJbIxh
+                RO1uDLjqRuO3P61J8XBnUtL/AOvY/wA64vUtQutW1GS+v5DLPIck+noAOwrX8W+J/wDhKbm1l+x/Zfs8
+                Zjx5u/dz16DFZqDSiuzZo5puX9dje8BeIbe+sn8K6/iS1uFKW7OehP8ABnt6j0P4Vp+MNIOhfDS104v5
+                ghvDtb1UlyPxwRXmKAqwZSQwOQR2rq9Y8a3Gu+GbfS722BmidWa5En38AjlcdeeuaqUW3dd0KnNK6fn+
+                R5z4qH+iW/8Avn+Vei/s7f8AMxf9u3/tWvPPFY/0S3/3z/KvRP2d/wDmYv8At2/9q1jV+I1p/CcV8YP+
+                Srax/wBsP/REdR6XqljDpVvHLcorqmCpPSut+JHw38V6/wDEDUtS0nSvtFpP5XlyfaIl3YiRTwzA9Qe1
+                cv8A8Kf8c/8AQD/8m4P/AIuphJxd0VKKkh51fTv+fuP86YdW07/n7j/Ok/4U/wCOf+gH/wCTcH/xdJ/w
+                p7xz/wBAP/ybg/8Ai609szP2SFOrad/z9x/nR/aunf8AP3H+dJ/wp7xz/wBAP/ybg/8Ai6P+FPeOf+gH
+                /wCTcH/xdL2zD2SF/tbTv+fuP86Bq2nf8/cf50n/AAp7xz/0A/8Aybg/+Lo/4U945/6Af/k3B/8AF0/b
+                MPZIeNX07/n7j/OnjWNO/wCfuP8AOov+FPeOf+gH/wCTcH/xdH/Cn/HP/QD/APJuD/4uj2zD2SMvxLfW
+                t3bQLbTLIVckhe3Felfs8f8AMxf9u3/tWuK/4U/45/6Af/k3B/8AF16f8GvB+u+FP7Z/t+x+yfavI8r9
+                8j7tvmZ+6xx94dfWspS5nc0jHlVj1CiiipKCiiigAooooAKKKKACiiigAooooA//2Q==
+</property>
+        </structure>
+    </list-property>
+</report>
