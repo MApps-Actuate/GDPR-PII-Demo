@@ -528,15 +528,6 @@ this.queryText = new Packages.java.lang.String(this.queryText).replaceAll("999",
 <div>
 ]]></text-property>
         </text>
-        <text id="2463">
-            <property name="contentType">html</property>
-            <text-property name="content"><![CDATA[<script>
- function notification() {
- 	$("#notify").show();
- }
-</script>
-<div id="notify" style="overflow:float;visibility:hidden;width:200px;height:50px;left:400">Request Submitted</div>]]></text-property>
-        </text>
         <table id="2191">
             <property name="dataSet">Nodes</property>
             <list-property name="visibility">
@@ -1131,8 +1122,23 @@ var callback = function() {
           popupMenu.style.top = params.pointer.DOM.y + offsetTop +'px';
           var txtNode = params.nodes;
 
-          	popupMenu.innerHTML = "<a class='redact' href='javascript:notification();' id='" + txtNode + "'>Submit to Redaction Workflow</a><br><a class='delete' href='#' id='" + txtNode + "'>Initiate Deletion Workflow</a><br><a class='rightAccess' href='#' id='" + txtNode + "'>Process Right of Access Request</a>";
+          	popupMenu.innerHTML = "<a class='redact' href='#' id='" + txtNode + "'>Submit to Redaction Workflow</a><br><a class='delete' href='#' id='" + txtNode + "'>Initiate Deletion Workflow</a><br><a class='rightAccess' href='#' id='" + txtNode + "'>Process Right of Access Request</a>";
           	container.appendChild(popupMenu);
+            $('.redact').click(function() {
+              alert(this.id + " submitted to Redaction Workflow");
+              popupMenu.parentNode.removeChild(popupMenu);
+              popupMenu = undefined;
+      		});
+      		$('.delete').click(function() {
+              alert(this.id + " submitted to Deletion Workflow");
+              popupMenu.parentNode.removeChild(popupMenu);
+              popupMenu = undefined;
+      		});
+      		$('.rightAccess').click(function() {
+              alert(this.id + " submitted to Right of Access Workflow");
+              popupMenu.parentNode.removeChild(popupMenu);
+              popupMenu = undefined;
+      		});
         }
            	
       });
@@ -1155,7 +1161,7 @@ function highlightSearch() {
     	var selectedNode = [searchTerm];
 		network.selectNodes(selectedNode);
 }
- 
+
 
  delete define.amd;
     	
