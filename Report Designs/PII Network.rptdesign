@@ -1079,7 +1079,7 @@ var callback = function() {
       },
 
 	  layout: {
-	  		//randomSeed:2,
+	  		randomSeed:2,
 	  		improvedLayout: false,
 	  		hierarchical: {
 	  			enabled: false,
@@ -1166,8 +1166,8 @@ function highlightSearch() {
  delete define.amd;
     	
 //head.load ('http://visjs.org/dist/vis-network.min.css', 'http://visjs.org/dist/vis.js', 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', callback);
-//head.load ('/iportal/js/vis.min.js', callback);
-head.load('http://visjs.org/dist/vis.min.js', callback);
+head.load ('/iportal/js/vis.min.js', callback);
+
 
 ]]></method>
                         <list-property name="filter">
