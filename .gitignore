@@ -1,0 +1,5 @@
+
+*.model_diagram
+*.model
+Data Objects/Text Analytics.data
+Data Objects/PII Network.data

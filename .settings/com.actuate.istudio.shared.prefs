@@ -1,5 +1,5 @@
-PublishLocation=/Applications/GDPR-PII-Demo/Report Designs/
+PublishLocation=/Applications/GDPR-PII-Demo/
 eclipse.preferences.version=1
-publishFilesCheckBox=true
+publishFilesCheckBox=false
 publishReportPreserveFolderStructure=false
-publishResourcesCheckBox=false
+publishResourcesCheckBox=true

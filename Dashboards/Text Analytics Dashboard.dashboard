@@ -139,6 +139,7 @@
   <extendedProperties name="keep.hierarchy.series" value="false"/>
   <extendedProperties name="enable.data.summarize" value="false"/>
   <extendedProperties name="jschart.series.shadow" value="false"/>
+  <extendedProperties name="jschart.client.script" value="beforeGeneration:function(o){if(o&amp;&amp;o.chart&amp;&amp;o.chart.renderTo){var r=document.getElementById(o.chart.renderTo);if(r.parentNode&amp;&amp;r.parentNode.id){var b=r.parentNode.id;var v=actuate.getViewer(b);if(v){v.enableGlobalFilter(o);}}}}"/>
   <sampleData>
    <baseSampleData dataSetRepresentation="&#039;A&#039;,&#039;B&#039;,&#039;C&#039;,&#039;D&#039;,&#039;E&#039;"/>
    <orthogonalSampleData dataSetRepresentation="6,4,12,8,10" seriesDefinitionIndex="0"/>
@@ -219,8 +220,13 @@
                     <property name="name">copyHyperlink</property>
                     <property name="type">string</property>
                 </structure>
+                <structure>
+                    <property name="name">createdBy</property>
+                    <property name="type">string</property>
+                </structure>
             </list-property>
             <property name="copyHyperlink">true</property>
+            <property name="createdBy">dashboard</property>
         </extended-item>
         <extended-item extensionName="Chart" name="Doughnut Chart - Data Model_c0cf0a86-0e16-46b0-9c20-a6cee7e3d497" id="1984">
             <xml-property name="xmlRepresentation"><![CDATA[<ActuateChart version="2.6.1">
@@ -282,6 +288,7 @@
   <extendedProperties name="keep.hierarchy.series" value="true"/>
   <extendedProperties name="enable.data.summarize" value="false"/>
   <extendedProperties name="jschart.series.shadow" value="false"/>
+  <extendedProperties name="jschart.client.script" value="beforeGeneration:function(o){if(o&amp;&amp;o.chart&amp;&amp;o.chart.renderTo){var r=document.getElementById(o.chart.renderTo);if(r.parentNode&amp;&amp;r.parentNode.id){var b=r.parentNode.id;var v=actuate.getViewer(b);if(v){v.enableGlobalFilter(o);}}}}"/>
   <sampleData>
    <baseSampleData dataSetRepresentation="&#039;A&#039;,&#039;B&#039;,&#039;C&#039;,&#039;D&#039;,&#039;E&#039;"/>
    <orthogonalSampleData dataSetRepresentation="6,4,12,8,10" seriesDefinitionIndex="0"/>
@@ -362,8 +369,13 @@
                     <property name="name">copyHyperlink</property>
                     <property name="type">string</property>
                 </structure>
+                <structure>
+                    <property name="name">createdBy</property>
+                    <property name="type">string</property>
+                </structure>
             </list-property>
             <property name="copyHyperlink">true</property>
+            <property name="createdBy">dashboard</property>
         </extended-item>
         <extended-item extensionName="Chart" name="Bubble Chart - Data Model_587d5db7-cdb4-48b1-bf11-343019166f30" id="1993">
             <xml-property name="xmlRepresentation"><![CDATA[<ActuateChart version="2.6.1">
@@ -426,6 +438,7 @@
   <extendedProperties name="enable.data.summarize" value="false"/>
   <extendedProperties name="jschart.zoom" value="xy"/>
   <extendedProperties name="jschart.series.shadow" value="false"/>
+  <extendedProperties name="jschart.client.script" value="beforeGeneration:function(o){if(o&amp;&amp;o.chart&amp;&amp;o.chart.renderTo){var r=document.getElementById(o.chart.renderTo);if(r.parentNode&amp;&amp;r.parentNode.id){var b=r.parentNode.id;var v=actuate.getViewer(b);if(v){v.enableGlobalFilter(o);}}}}"/>
   <sampleData>
    <baseSampleData dataSetRepresentation="01/25/2005"/>
    <orthogonalSampleData dataSetRepresentation="QWER QWER" seriesDefinitionIndex="0"/>
@@ -639,12 +652,14 @@
                     <property name="name">copyHyperlink</property>
                     <property name="type">string</property>
                 </structure>
+                <structure>
+                    <property name="name">createdBy</property>
+                    <property name="type">string</property>
+                </structure>
             </list-property>
             <property name="copyHyperlink">true</property>
+            <property name="createdBy">dashboard</property>
         </extended-item>
-        <text name="8e841661-1dc0-4946-a820-1e83a989a195" id="2035">
-            <text-property name="content"><![CDATA[<div style="background-color: rgb(245, 157, 76);" align="center"><br><font size="32" face="Lato" color="#6D65FF"><b>4.2</b><table border="0" style="padding-top:10;padding-left:20;"><tbody><tr><td style="font-family: Lato;font-size:20;color:#353535;color:#353535;" width="60">1 - 2.9</td><td style="font-family: Lato;font-size:20;color:#353535;padding-left:20;">Minimal</td></tr><tr><td style="font-family: Lato;font-size:20;color:#353535;" width="48">3 - 4.9</td><td style="font-family: Lato;font-size:20;color:#353535;padding-left:20;">Moderate</td></tr><tr><td style="font-family: Lato;font-size:20;color:#353535;" width="48">5 - 6.9</td><td style="font-family: Lato;font-size:20;color:#353535;padding-left:20;">Critical</td></tr><tr><td style="font-family: Lato;font-size:20;color:#353535;" width="48">7 - 8.9</td><td style="font-family: Lato;font-size:20;color:#353535;padding-left:20;">Severe</td></tr><tr><td style="font-family: Lato;font-size:20;color:#353535;" width="48">9 - 10</td><td style="font-family: Lato;font-size:20;color:#353535;padding-left:20;">Catastrophic</td></tr></tbody></table></font><br><br><br><br></div>]]></text-property>
-        </text>
         <table name="Single Metric" id="2122">
             <text-property name="displayName" key="SingleMetric_Dashboard_Single Metric"></text-property>
             <list-property name="userProperties">
@@ -918,7 +933,7 @@
             <property name="marginRight">0px</property>
             <property name="textAlign">center</property>
             <property name="overflow">auto</property>
-            <property name="height">21pt</property>
+            <property name="height">50.25pt</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">doc_id</property>
@@ -1035,7 +1050,7 @@
             <property name="marginRight">0px</property>
             <property name="textAlign">center</property>
             <property name="overflow">auto</property>
-            <property name="height">21pt</property>
+            <property name="height">48.75pt</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">doc_id</property>
@@ -1120,6 +1135,13 @@
     </body>
     <property name="dashboardView">
         <dashboard id="2">
+            <list-property name="userProperties">
+                <structure>
+                    <property name="name">dashboardTheme</property>
+                    <property name="type">string</property>
+                </structure>
+            </list-property>
+            <property name="dashboardTheme">ThemesReportItems31.Classic:Light</property>
             <property name="activeTab">4807ff6e-77d4-4942-a0c9-9e35c4bf7fd7</property>
             <property name="tabs">
                 <tab-element name="4807ff6e-77d4-4942-a0c9-9e35c4bf7fd7" id="1971">
@@ -1128,8 +1150,13 @@
                             <property name="name">responsiveView</property>
                             <property name="type">boolean</property>
                         </structure>
+                        <structure>
+                            <property name="name">tabTheme</property>
+                            <property name="type">string</property>
+                        </structure>
                     </list-property>
                     <property name="responsiveView">true</property>
+                    <property name="tabTheme">ThemesReportItems31.Classic:Light</property>
                     <property name="title">Personal Information</property>
                     <property name="backgroundColor">auto</property>
                     <property name="freeFormGadgets">
@@ -1281,36 +1308,6 @@
                                 </data-view>
                             </property>
                         </gadget>
-                        <gadget name="5a3a1f69-d599-4a8a-9b64-497dba7f3b4d" id="2033">
-                            <property name="x">1033px</property>
-                            <property name="y">9px</property>
-                            <property name="title">Global Risk Index</property>
-                            <property name="gadgetContentType">text</property>
-                            <property name="showTitle">false</property>
-                            <property name="showBorder">true</property>
-                            <property name="zIndex">7</property>
-                            <property name="showScrollBar">false</property>
-                            <property name="height">243px</property>
-                            <property name="width">406px</property>
-                            <property name="caption">
-                                <gadget-caption id="2034">
-                                    <property name="showCaption">true</property>
-                                    <property name="horizontalAlignment">center</property>
-                                    <property name="fontFamily">"Lato"</property>
-                                    <property name="fontSize">18pt</property>
-                                    <property name="fontWeight">normal</property>
-                                    <property name="fontStyle">normal</property>
-                                    <property name="color">#353535</property>
-                                    <property name="textUnderline">none</property>
-                                </gadget-caption>
-                            </property>
-                            <property name="content">
-                                <data-view id="2037">
-                                    <property name="gadgetType">embedded</property>
-                                    <property name="internalReportLetRef">8e841661-1dc0-4946-a820-1e83a989a195</property>
-                                </data-view>
-                            </property>
-                        </gadget>
                         <gadget name="Gadget_7b803b69-cc18-4784-9f1d-3e3c2cc1421a" id="2092">
                             <property name="x">1469px</property>
                             <property name="y">9px</property>
@@ -1387,7 +1384,49 @@
                                     <property name="gadgetType">viewer</property>
                                     <property name="externalContentRef">
                                         <external-element-ref>
-                                            <property name="sourceFile">/Applications/GDPR-PII-Demo/Report Designs/PII BiPartite Small.rptdesign</property>
+                                            <property name="sourceFile">/Applications/GDPR-PII-Demo/Report Designs/PII BiPartite Small.RPTDOCUMENT</property>
+                                        </external-element-ref>
+                                    </property>
+                                </data-view>
+                            </property>
+                        </gadget>
+                        <gadget name="Gadget_89754df0-63bf-42b5-b910-72cc8805613e" id="2180">
+                            <property name="x">1026px</property>
+                            <property name="y">10px</property>
+                            <property name="title">Global Risk Index</property>
+                            <property name="externalGadgetURI">/Applications/GDPR-PII-Demo/Report Designs/New Risk Charts_3.rptdesign</property>
+                            <property name="showTitle">true</property>
+                            <property name="showBorder">true</property>
+                            <property name="zIndex">11</property>
+                            <property name="showScrollBar">false</property>
+                            <property name="height">242px</property>
+                            <property name="width">412px</property>
+                            <property name="caption">
+                                <gadget-caption id="2181">
+                                    <property name="showCaption">true</property>
+                                    <property name="horizontalAlignment">center</property>
+                                    <property name="fontFamily">"Lato"</property>
+                                    <property name="fontSize">18pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="fontStyle">normal</property>
+                                    <property name="color">#353535</property>
+                                    <property name="textUnderline">none</property>
+                                </gadget-caption>
+                            </property>
+                            <property name="content">
+                                <data-view id="2182">
+                                    <list-property name="userProperties">
+                                        <structure>
+                                            <property name="name">showViewerToolbar</property>
+                                            <property name="type">boolean</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="showViewerToolbar">true</property>
+                                    <property name="gadgetType">viewer</property>
+                                    <property name="externalContentRef">
+                                        <external-element-ref>
+                                            <property name="sourceFile">/Applications/GDPR-PII-Demo/Report Designs/New Risk Chart.rptdesign</property>
+                                            <property name="targetBookmark">RiskCharts</property>
                                         </external-element-ref>
                                     </property>
                                 </data-view>
@@ -1401,8 +1440,13 @@
                             <property name="name">responsiveView</property>
                             <property name="type">boolean</property>
                         </structure>
+                        <structure>
+                            <property name="name">tabTheme</property>
+                            <property name="type">string</property>
+                        </structure>
                     </list-property>
                     <property name="responsiveView">true</property>
+                    <property name="tabTheme">ThemesReportItems31.Classic:Light</property>
                     <property name="title">Explore</property>
                     <property name="showHeader">true</property>
                     <property name="headerHTML">&lt;div align="center">&lt;font size="4" color="993300">- RESTRICTED ACCESS - PROTECTED INFORMATION -&lt;/font>&lt;br>&lt;/div></property>
@@ -1416,8 +1460,8 @@
                             <property name="showBorder">true</property>
                             <property name="zIndex">15</property>
                             <property name="showScrollBar">false</property>
-                            <property name="height">107px</property>
-                            <property name="width">170px</property>
+                            <property name="height">148px</property>
+                            <property name="width">203px</property>
                             <property name="caption">
                                 <gadget-caption id="2105">
                                     <property name="showCaption">true</property>
@@ -1475,15 +1519,15 @@
                             </property>
                         </gadget>
                         <gadget name="Gadget_ad5a7495-eaf4-45cf-8f7d-08322813eed5" id="2101">
-                            <property name="x">216px</property>
+                            <property name="x">223px</property>
                             <property name="y">29px</property>
                             <property name="title">Category</property>
                             <property name="showTitle">false</property>
                             <property name="showBorder">true</property>
                             <property name="zIndex">14</property>
                             <property name="showScrollBar">false</property>
-                            <property name="height">109px</property>
-                            <property name="width">419px</property>
+                            <property name="height">149px</property>
+                            <property name="width">453px</property>
                             <property name="caption">
                                 <gadget-caption id="2102">
                                     <property name="showCaption">true</property>
@@ -1539,15 +1583,15 @@
                             </property>
                         </gadget>
                         <gadget name="Gadget_d296a655-3398-4355-8fed-98f4ea4a7410" id="2098">
-                            <property name="x">666px</property>
+                            <property name="x">680px</property>
                             <property name="y">28px</property>
                             <property name="title">Entity Type</property>
                             <property name="showTitle">false</property>
                             <property name="showBorder">true</property>
                             <property name="zIndex">13</property>
                             <property name="showScrollBar">false</property>
-                            <property name="height">110px</property>
-                            <property name="width">376px</property>
+                            <property name="height">150px</property>
+                            <property name="width">405px</property>
                             <property name="caption">
                                 <gadget-caption id="2099">
                                     <property name="showCaption">true</property>
@@ -1606,15 +1650,15 @@
                             </property>
                         </gadget>
                         <gadget name="Gadget_01aea968-1671-42f6-b50e-92e17ee19bcf" id="2095">
-                            <property name="x">1070px</property>
+                            <property name="x">1091px</property>
                             <property name="y">28px</property>
                             <property name="title">Entity</property>
                             <property name="showTitle">false</property>
                             <property name="showBorder">true</property>
                             <property name="zIndex">12</property>
                             <property name="showScrollBar">false</property>
-                            <property name="height">111px</property>
-                            <property name="width">454px</property>
+                            <property name="height">150px</property>
+                            <property name="width">453px</property>
                             <property name="caption">
                                 <gadget-caption id="2096">
                                     <property name="showCaption">true</property>
@@ -1693,6 +1737,7 @@
                                         <event-object>
                                             <property name="appliedTo">pSearch</property>
                                             <property name="gadget">Gadget_4a2bddfb-9898-455f-a6af-af69eca59238</property>
+                                            <property name="dirty">false</property>
                                         </event-object>
                                     </property>
                                 </event-subscriber>
@@ -1762,7 +1807,7 @@
                             </property>
                         </gadget>
                         <gadget name="Gadget_bd6d2b79-0e5a-40d6-8870-fe59b41b3c13" id="2120">
-                            <property name="x">1548px</property>
+                            <property name="x">1549px</property>
                             <property name="y">25px</property>
                             <property name="title">Total Documents</property>
                             <property name="showTitle">true</property>
@@ -1770,7 +1815,7 @@
                             <property name="zIndex">8</property>
                             <property name="showScrollBar">false</property>
                             <property name="height">68px</property>
-                            <property name="width">133px</property>
+                            <property name="width">132px</property>
                             <property name="caption">
                                 <gadget-caption id="2121">
                                     <property name="showCaption">false</property>
@@ -1827,7 +1872,7 @@
                             </property>
                         </gadget>
                         <gadget name="Gadget_6a6cabcc-9855-4e38-93df-8b4b901ea28f" id="2131">
-                            <property name="x">1695px</property>
+                            <property name="x">1696px</property>
                             <property name="y">25px</property>
                             <property name="title">Single Metric - Classification</property>
                             <property name="showTitle">true</property>
@@ -1835,7 +1880,7 @@
                             <property name="zIndex">9</property>
                             <property name="showScrollBar">false</property>
                             <property name="height">69px</property>
-                            <property name="width">130px</property>
+                            <property name="width">129px</property>
                             <property name="caption">
                                 <gadget-caption id="2132">
                                     <property name="showCaption">false</property>
@@ -1893,13 +1938,13 @@
                         </gadget>
                         <gadget name="Gadget_82d7e8db-21ea-4a3c-8e12-f235d25cb43c" id="2141">
                             <property name="x">1549px</property>
-                            <property name="y">105px</property>
+                            <property name="y">128px</property>
                             <property name="title">Single Metric - Classification 1</property>
                             <property name="showTitle">false</property>
                             <property name="showBorder">true</property>
                             <property name="zIndex">10</property>
                             <property name="showScrollBar">false</property>
-                            <property name="height">63px</property>
+                            <property name="height">102px</property>
                             <property name="width">133px</property>
                             <property name="caption">
                                 <gadget-caption id="2142">
@@ -1958,13 +2003,13 @@
                         </gadget>
                         <gadget name="Gadget_898c83ff-9921-4307-95b6-cc4aadc90073" id="2152">
                             <property name="x">1697px</property>
-                            <property name="y">105px</property>
+                            <property name="y">128px</property>
                             <property name="title">Single Metric - Classification 2</property>
                             <property name="showTitle">true</property>
                             <property name="showBorder">true</property>
                             <property name="zIndex">11</property>
                             <property name="showScrollBar">false</property>
-                            <property name="height">63px</property>
+                            <property name="height">100px</property>
                             <property name="width">128px</property>
                             <property name="caption">
                                 <gadget-caption id="2153">
@@ -2023,14 +2068,14 @@
                         </gadget>
                         <gadget name="Gadget_4a2bddfb-9898-455f-a6af-af69eca59238" id="2177">
                             <property name="x">18px</property>
-                            <property name="y">188px</property>
+                            <property name="y">241px</property>
                             <property name="title">Reportlet - Document List - DocListViewer</property>
                             <property name="externalGadgetURI">/Applications/GDPR-PII-Demo/Report Designs/Document List.rptdesign</property>
                             <property name="showTitle">true</property>
                             <property name="showBorder">true</property>
-                            <property name="zIndex">0</property>
+                            <property name="zIndex">20</property>
                             <property name="showScrollBar">false</property>
-                            <property name="height">835px</property>
+                            <property name="height">862px</property>
                             <property name="width">1833px</property>
                             <property name="caption">
                                 <gadget-caption id="2178">
@@ -2075,6 +2120,7 @@
                                         <event-object>
                                             <property name="appliedTo">pSearch</property>
                                             <property name="gadget">Gadget_01aea968-1671-42f6-b50e-92e17ee19bcf</property>
+                                            <property name="dirty">false</property>
                                         </event-object>
                                     </property>
                                 </event-subscriber>

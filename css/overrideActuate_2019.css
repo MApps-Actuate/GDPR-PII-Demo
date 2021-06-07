@@ -6,9 +6,9 @@
 
 @font-face {
   font-family: OpenText Sans;
-  src: url('https://www.opentext.com/file_source/OpenText/Fonts/OpenTextSans_W_Lt.woff2') format('woff'),
-	   url('https://www.opentext.com/file_source/OpenText/Fonts/OpenTextSans_W_Rg.woff2') format('woff'),
-	   url('https://www.opentext.com/file_source/OpenText/Fonts/OpenTextSans_W_Bd.woff2') format('woff');
+  src: url('OpenTextSans_W_Lt.woff2') format('woff'),
+	   url('OpenTextSans_W_Rg.woff2') format('woff'),
+	   url('OpenTextSans_W_Bd.woff2') format('woff');
   font-weight: 100;
   font-style: normal;
 }
@@ -35,9 +35,9 @@
 .actuate-dashboard-ux-tab-inline-toolbar-area {
   	background: #222431 !important;
 }
-.actuate-tab-panel ul, .actuate-tab-panel ol {
+/* .actuate-tab-panel ul, .actuate-tab-panel ol {
   	background-color: #1F212F !important;
-}
+} */
 /* .actuate-widget-border-layout-ct {
   background: #1d1d1d !important;
 } */
@@ -122,5 +122,4 @@ ul.actuate-dashboard-tab-strip li {
 	background-image: linear-gradient(to right, #1F212F, #222431) !important;
 
 }
-
 

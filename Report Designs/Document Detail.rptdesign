@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.11.0.v202101151752</property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -233,7 +233,9 @@ else null;</expression>
                                         <text-property name="content"><![CDATA[<script>
 $("<style type='text/css'> .highlight { background-color: <VALUE-OF>vars["Highlight Color"]</VALUE-OF> }</style>").appendTo("head");
 
-jQuery.fn.highlight=function(c){function e(b,c){var d=0;if(3==b.nodeType){var a=b.data.toUpperCase().indexOf(c),a=a-(b.data.substr(0,a).toUpperCase().length-b.data.substr(0,a).length);if(0<=a){d=document.createElement("span");d.className="highlight";a=b.splitText(a);a.splitText(c.length);var f=a.cloneNode(!0);d.appendChild(f);a.parentNode.replaceChild(d,a);d=1}}else if(1==b.nodeType&amp;&amp;b.childNodes&amp;&amp;!/(script|style)/i.test(b.tagName))for(a=0;a<b.childNodes.length;++a)a+=e(b.childNodes[a],c);return d} return this.length&amp;&amp;c&amp;&amp;c.length?this.each(function(){e(this,c.toUpperCase())}):this};jQuery.fn.removeHighlight=function(){return this.find("span.highlight").each(function(){this.parentNode.firstChild.nodeName;with(this.parentNode)replaceChild(this.firstChild,this),normalize()}).end()};
+$.fn.highlight=function(c){function e(b,c){var d=0;if(3==b.nodeType){var a=b.data.toUpperCase().indexOf(c),a=a-(b.data.substr(0,a).toUpperCase().length-b.data.substr(0,a).length);if(0<=a){d=document.createElement("span");d.className="highlight";a=b.splitText(a);a.splitText(c.length);var f=a.cloneNode(!0);d.appendChild(f);a.parentNode.replaceChild(d,a);d=1}}else if(1==b.nodeType&amp;&amp;b.childNodes&amp;&amp;!/(script|style)/i.test(b.tagName))for(a=0;a<b.childNodes.length;++a)a+=e(b.childNodes[a],c);return d} return this.length&amp;&amp;c&amp;&amp;c.length?this.each(function(){e(this,c.toUpperCase())}):this};
+
+$.fn.removeHighlight=function(){return this.find("span.highlight").each(function(){this.parentNode.firstChild.nodeName;with(this.parentNode)replaceChild(this.firstChild,this),normalize()}).end()};
 
 if (!/johannburkard.de$/i.test(location.hostname)) {
     (function() {
@@ -1024,7 +1026,8 @@ else "<img src='https://i.imgur.com/Oe3DHl9.png'/>";</VALUE-OF>]]></text-propert
                                                     <text-property name="content"><![CDATA[<div onmouseover="bg = $(this).parent().get(0).style.background;
 fontColor = $(this).css('color');
 $(this).css('color','black');
-$(this).parent().get(0).style.background='#DEDEDE';$('[id*=_theBody]').removeHighlight();$('[id*=_theBody]').highlight('<VALUE-OF>row["entity"]</VALUE-OF>');"  onmouseout="$(this).parent().get(0).style.background=bg;
+$(this).parent().get(0).style.background='#DEDEDE';$('[id*=_theBody]').removeHighlight();$('[id*=_theBody]').highlight('<VALUE-OF>var txt = row["entity"];
+txt.replace(/.com|.org|.edu|.co/i, ".");</VALUE-OF>');"  onmouseout="$(this).parent().get(0).style.background=bg;
 $(this).css('color',fontColor);
 $('[id*=_theBody]').removeHighlight()" style="cursor: pointer;"><VALUE-OF>row["entity"]</VALUE-OF></div>
 ]]></text-property>
