@@ -1,0 +1,54 @@
+-- Database: PII_Network
+
+-- DROP DATABASE "PII_Network";
+
+CREATE DATABASE "PII_Network"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+-- Table: public."PII"
+
+-- DROP TABLE public."PII";
+
+CREATE TABLE public."PII"
+(
+    doc_id character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    "Search" text COLLATE pg_catalog."default" NOT NULL,
+    entity text COLLATE pg_catalog."default" NOT NULL,
+    cartridge character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    term_index integer,
+    frequency integer,
+    confidence_score real,
+    relevancy_score real,
+    doc_date timestamp without time zone,
+    id character varying(256) COLLATE pg_catalog."default",
+    language character varying(10) COLLATE pg_catalog."default",
+    language_confidence_score real,
+    name character varying(250) COLLATE pg_catalog."default",
+    negative_tone_score real,
+    positive_tone_score real,
+    subjectivity character varying(10) COLLATE pg_catalog."default",
+    subjectivity_score real,
+    tone character varying(10) COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."PII"
+    OWNER to postgres;
+
+-- Index: searchIdx
+
+-- DROP INDEX public."searchIdx";
+
+CREATE INDEX "searchIdx"
+    ON public."PII" USING btree
+    ("Search" COLLATE pg_catalog."default" text_pattern_ops)
+    TABLESPACE pg_default;
