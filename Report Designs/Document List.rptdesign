@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.11.0.v202101151752</property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -867,6 +867,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="135">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -885,6 +886,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="136">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -903,6 +905,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="2271">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -921,6 +924,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="2329">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -939,6 +943,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="2274">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -957,6 +962,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <image id="2280">
                                         <property name="display">inline</property>
                                         <property name="height">30px</property>
@@ -974,6 +980,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="2283">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -992,6 +999,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="2284">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -1010,6 +1018,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="2287">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -1028,6 +1037,7 @@ else&#13;
                                     <property name="borderRightWidth">thin</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">1pt</property>
+                                    <property name="textAlign">center</property>
                                     <label id="2298">
                                         <property name="fontFamily">"FontAwesome"</property>
                                         <property name="fontSize">24pt</property>
@@ -1398,6 +1408,8 @@ showDocDetail('<VALUE-OF>row["doc_id"]</VALUE-OF>');">
                     <text id="2650">
                         <property name="contentType">html</property>
                         <text-property name="content"><![CDATA[<script>
+$( "th[align='center']" ).css("text-align","center");
+
 selectedRow = '<VALUE-OF>vars["docToLoadFirst"]</VALUE-OF>';
 $("[id*=_" + selectedRow + "]").css("background-color","#DEDEDE");
 function removeRowHighlight(docid) {
