@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201804241733</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.11.0.v202101151752</property>
     <property name="units">in</property>
     <property name="theme">ThemesReportItems31.Modern</property>
     <property name="iconFile">/templates/blank_report.gif</property>
@@ -132,7 +132,7 @@ d3.select(self.frameElement).style("height", "340px");
 
 delete define.amd;
 
-head.load('https://d3js.org/d3.v4.min.js', 'http://vizjs.org/viz.v1.1.0.min.js', callback);]]></method>
+head.load('https://d3js.org/d3.v4.min.js', this.getBirtResourceURL('js/bipartite/viz.v1.1.0.min.js'), callback);]]></method>
                         <property name="groups">
                             <data-group>
                                 <property name="groupName">Source Group</property>
